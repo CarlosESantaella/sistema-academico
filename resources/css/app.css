@@ -1,12 +1,7 @@
 @tailwind base;
     @layer base{
-        .btn{
-            @apply text-white;
-            @apply rounded-sm;
-            @apply px-10;
-            @apply py-4;
-            @apply border;
-            @apply border-red-500;
+        .form-control {
+            @apply bg-slate-100;
         }
     }
 @tailwind components;
