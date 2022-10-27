@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentsController extends Controller
@@ -55,7 +56,12 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        return view('students.edit-student', ["id" => $id]);
+        // $student = Student::where('codigo', $id)->get();
+        $student = Student::find($id);
+        $responsibles = Student::find($id)->responsibles()->get();
+        
+        
+        return view('students.edit-student', ["student" => $student, "responsibles" => $responsibles]);
     }
 
     /**

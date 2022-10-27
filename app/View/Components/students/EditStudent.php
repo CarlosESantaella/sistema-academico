@@ -11,7 +11,7 @@ class EditStudent extends Component
      *
      * @return void
      */
-    public function __construct(public $id)
+    public function __construct(public $student, public $responsibles)
     {
         //
     }

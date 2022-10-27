@@ -3,7 +3,7 @@
 @section('content')
 <main>
     <div class="container-fluid">
-        <x-students.edit.edit-student :id="$id"/>
+        <x-students.edit.edit-student :student="$student" :responsibles="$responsibles"/>
     </div>
 </main>
 @endsection

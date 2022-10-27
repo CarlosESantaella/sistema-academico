@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,10 @@ Route::get('/', function () {
 });
 
 Route::resource('students', StudentsController::class);
+
+
+Route::group(['controller' => LoginController::class], function(){
+
+    Route::get('/login', 'index');
+    Route::post('/login', 'store');
+});
