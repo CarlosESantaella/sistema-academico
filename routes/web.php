@@ -23,7 +23,6 @@ Route::resource('students', StudentsController::class);
 
 
 Route::group(['controller' => LoginController::class], function(){
-
     Route::get('/login', 'index');
     Route::post('/login', 'store');
 });

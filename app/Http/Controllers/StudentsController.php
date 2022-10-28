@@ -57,8 +57,8 @@ class StudentsController extends Controller
     public function edit($id)
     {
         // $student = Student::where('codigo', $id)->get();
-        $student = Student::find($id);
-        $responsibles = Student::find($id)->responsibles()->get();
+        $student = Student::findOrFail($id);
+        $responsibles = Student::findOrFail($id)->responsibles()->get();
         
         
         return view('students.edit-student', ["student" => $student, "responsibles" => $responsibles]);
