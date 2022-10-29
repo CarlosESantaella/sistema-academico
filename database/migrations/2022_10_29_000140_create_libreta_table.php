@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLogbookTable extends Migration
+class CreateLibretaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLogbookTable extends Migration
      */
     public function up()
     {
-        Schema::create('logbook', function (Blueprint $table) {
+        Schema::create('libreta', function (Blueprint $table) {
             $table->integer('codigo')->primary();
             $table->integer('aus')->default(0)->comment('total ausencias');
             $table->integer('atr')->default(0)->comment('total atrazos');
@@ -42,6 +42,6 @@ class CreateLogbookTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('logbook');
+        Schema::dropIfExists('libreta');
     }
 }

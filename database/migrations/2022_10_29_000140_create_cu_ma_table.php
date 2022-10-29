@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCousesSubjectsTable extends Migration
+class CreateCuMaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCousesSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('couses_subjects', function (Blueprint $table) {
+        Schema::create('cu_ma', function (Blueprint $table) {
             $table->integer('codcurso')->index('codcurso');
             $table->integer('codmateria')->index('codmateria');
         });
@@ -26,6 +26,6 @@ class CreateCousesSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('couses_subjects');
+        Schema::dropIfExists('cu_ma');
     }
 }

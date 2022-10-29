@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateControlsTable extends Migration
+class CreateControlTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateControlsTable extends Migration
      */
     public function up()
     {
-        Schema::create('controls', function (Blueprint $table) {
+        Schema::create('control', function (Blueprint $table) {
             $table->integer('codigo', true);
             $table->integer('neval')->default(0)->comment('Numero de evaluacion');
             $table->integer('indice1')->default(0);
@@ -35,6 +35,6 @@ class CreateControlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('controls');
+        Schema::dropIfExists('control');
     }
 }

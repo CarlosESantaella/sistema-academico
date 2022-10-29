@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeysToCoursesTable extends Migration
+class CreateMateriaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddForeignKeysToCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->foreign(['responsable'], 'courses_ibfk_1')->references(['codigo'])->on('users')->onDelete('SET NULL');
+        Schema::create('materia', function (Blueprint $table) {
+            $table->integer('codigo', true);
+            $table->string('descripcion', 42);
+            $table->string('sigla', 5);
+            $table->integer('codarea')->nullable()->index('codarea');
         });
     }
 
@@ -25,8 +28,6 @@ class AddForeignKeysToCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->dropForeign('courses_ibfk_1');
-        });
+        Schema::dropIfExists('materia');
     }
 }
