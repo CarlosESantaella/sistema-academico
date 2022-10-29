@@ -11,6 +11,7 @@ class Student extends Model
 
     protected $guarded = [];
     protected $primaryKey = 'codigo';
+    protected $table = 'alumno';
 
     public function responsibles()
     {
