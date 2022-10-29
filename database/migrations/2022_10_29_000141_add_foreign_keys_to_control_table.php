@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeysToSubjectsTable extends Migration
+class AddForeignKeysToControlTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddForeignKeysToSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::table('subjects', function (Blueprint $table) {
-            $table->foreign(['codarea'], 'subjects_ibfk_1')->references(['codigo'])->on('areas');
+        Schema::table('control', function (Blueprint $table) {
+            $table->foreign(['codlibreta'], 'control_ibfk_1')->references(['codigo'])->on('libreta')->onDelete('CASCADE');
         });
     }
 
@@ -25,8 +25,8 @@ class AddForeignKeysToSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::table('subjects', function (Blueprint $table) {
-            $table->dropForeign('subjects_ibfk_1');
+        Schema::table('control', function (Blueprint $table) {
+            $table->dropForeign('control_ibfk_1');
         });
     }
 }

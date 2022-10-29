@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIndexesTable extends Migration
+class AddForeignKeysToMateriaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateIndexesTable extends Migration
      */
     public function up()
     {
-        Schema::create('indexes', function (Blueprint $table) {
-            $table->integer('codigo')->primary();
-            $table->string('descripcion', 120);
+        Schema::table('materia', function (Blueprint $table) {
+            $table->foreign(['codarea'], 'materia_ibfk_1')->references(['codigo'])->on('area');
         });
     }
 
@@ -26,6 +25,8 @@ class CreateIndexesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('indexes');
+        Schema::table('materia', function (Blueprint $table) {
+            $table->dropForeign('materia_ibfk_1');
+        });
     }
 }

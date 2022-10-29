@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectsUsersTable extends Migration
+class CreateDictaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSubjectsUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('subjects_users', function (Blueprint $table) {
+        Schema::create('dicta', function (Blueprint $table) {
             $table->integer('idusuario')->index('idusuario');
             $table->integer('idmateria')->index('idmateria');
             $table->integer('idcurso')->index('idcurso');
@@ -28,6 +28,6 @@ class CreateSubjectsUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjects_users');
+        Schema::dropIfExists('dicta');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateResponsiblesStudentsTable extends Migration
+class CreateRaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateResponsiblesStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('responsibles_students', function (Blueprint $table) {
+        Schema::create('ra', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('codalumno')->nullable()->index('codalumno')->comment('Codigo Alumno');
             $table->integer('codresponsable')->nullable()->index('codresponsable')->comment('Codigo Responsable');
@@ -27,6 +27,6 @@ class CreateResponsiblesStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('responsibles_students');
+        Schema::dropIfExists('ra');
     }
 }

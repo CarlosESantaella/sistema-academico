@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeysToControlsTable extends Migration
+class AddForeignKeysToLibretaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddForeignKeysToControlsTable extends Migration
      */
     public function up()
     {
-        Schema::table('controls', function (Blueprint $table) {
-            $table->foreign(['codlibreta'], 'controls_ibfk_1')->references(['codigo'])->on('logbook')->onDelete('CASCADE');
+        Schema::table('libreta', function (Blueprint $table) {
+            $table->foreign(['codigo'], 'libreta_ibfk_1')->references(['codigo'])->on('matricula')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
@@ -25,8 +25,8 @@ class AddForeignKeysToControlsTable extends Migration
      */
     public function down()
     {
-        Schema::table('controls', function (Blueprint $table) {
-            $table->dropForeign('controls_ibfk_1');
+        Schema::table('libreta', function (Blueprint $table) {
+            $table->dropForeign('libreta_ibfk_1');
         });
     }
 }

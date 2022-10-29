@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateResponsiblesTable extends Migration
+class CreateResponsableTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateResponsiblesTable extends Migration
      */
     public function up()
     {
-        Schema::create('responsibles', function (Blueprint $table) {
+        Schema::create('responsable', function (Blueprint $table) {
             $table->integer('codigo', true);
             $table->string('ci', 12)->nullable()->comment('Cedula de Identidad');
             $table->string('nombres', 32);
@@ -36,6 +36,6 @@ class CreateResponsiblesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('responsibles');
+        Schema::dropIfExists('responsable');
     }
 }
