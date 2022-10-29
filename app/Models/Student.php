@@ -15,6 +15,6 @@ class Student extends Model
 
     public function responsibles()
     {
-        return $this->belongsToMany(Responsible::class, 'responsibles_students', 'codalumno', 'codresponsable');
+        return $this->belongsToMany(Responsible::class, 'ra', 'codalumno', 'codresponsable');
     }
 }
