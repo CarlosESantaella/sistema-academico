@@ -23,7 +23,13 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+
+                if(Auth::user()->tipo == 3){
+                    return redirect()->route('students.edit', ['student' => Auth::user()->clave]);
+                }else{
+                    return redirect(RouteServiceProvider::HOME);
+                }
+                
             }
         }
 

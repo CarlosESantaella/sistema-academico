@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Student extends Model
 {
@@ -16,5 +17,8 @@ class Student extends Model
     public function responsibles()
     {
         return $this->belongsToMany(Responsible::class, 'ra', 'codalumno', 'codresponsable');
+    }
+    public function user(){
+        return $this->belongsToMany(User::class, 'matricula', 'codalumno', 'codusuario');
     }
 }

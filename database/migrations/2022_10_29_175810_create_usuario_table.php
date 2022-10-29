@@ -18,7 +18,7 @@ class CreateUsuarioTable extends Migration
             $table->string('appaterno', 22)->nullable();
             $table->string('apmaterno', 22)->nullable();
             $table->string('nombres', 22);
-            $table->string('clave', 12);
+            $table->string('clave');
             $table->string('direccion', 108)->nullable()->comment('domicilio');
             $table->string('telefono', 12)->nullable()->comment('fijo o celular');
             $table->date('fnacimiento')->comment('Fecha de nacimiento');
