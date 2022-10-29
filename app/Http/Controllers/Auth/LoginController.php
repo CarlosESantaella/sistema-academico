@@ -44,6 +44,6 @@ class LoginController extends Controller
             return back()->with('error_login', 'Usuario o contraseña incorrectos');
         }
 
-        return redirect()->
+        // return redirect()->
     }
 }
