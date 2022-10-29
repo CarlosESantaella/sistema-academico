@@ -12,6 +12,7 @@ class Responsible extends Model
 
     protected $guarded = [];
     protected $primaryKey = 'codigo';
+    protected $table = 'responsable';
 
     public function students()
     {
