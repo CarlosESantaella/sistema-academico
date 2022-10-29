@@ -10,31 +10,31 @@
                 <label for="code" class="col-4 col-form-label fw-bold">CÓDIGO</label>
                 <div class="col-8">
                     <input type="text" disabled class="form-control" id="codigo" name="codigo"
-                        value="2546216">
+                        value="{{$student->codigo}}">
                 </div>
             </div>
             <p class="mb-2">
                 <b>Apellidos y Nombres</b>
             </p>
             <div class="mb-3 row">
-                <label for="ap_paterno" class="col-4 col-form-label">Ap. Paterno</label>
+                <label for="appaterno" class="col-4 col-form-label">Ap. Paterno</label>
                 <div class="col-8">
-                    <input type="text" class="form-control" id="ap_paterno" name="ap_paterno"
-                        value="John Doe">
+                    <input type="text" class="form-control" id="appaterno" name="appaterno"
+                        value="{{$student->appaterno}}">
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="ap_materno" class="col-4 col-form-label">Ap. Materno</label>
+                <label for="apmaterno" class="col-4 col-form-label">Ap. Materno</label>
                 <div class="col-8">
-                    <input type="text" class="form-control" id="ap_materno" name="ap_materno"
-                        value="Jane Doe">
+                    <input type="text" class="form-control" id="apmaterno" name="apmaterno"
+                        value="{{$student->apmaterno}}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="nombres" class="col-4 col-form-label">Nombres</label>
                 <div class="col-8">
                     <input type="text" class="form-control" id="nombres" name="nombres"
-                        value="John Doe Jr">
+                        value="{{$student->nombres}}">
                 </div>
             </div>
         </div>

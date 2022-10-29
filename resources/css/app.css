@@ -1,7 +1,7 @@
 @tailwind base;
     @layer base{
         .form-control {
-            @apply bg-slate-100;
+            @apply bg-slate-100 !important;
         }
     }
 @tailwind components;

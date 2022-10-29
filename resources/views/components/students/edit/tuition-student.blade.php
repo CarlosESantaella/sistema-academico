@@ -22,7 +22,7 @@
                 tabindex="0">
                 <div class="input-group">
                     <span class="input-group-text">SIE: </span>
-                    <input type="text" name="sie" value="2165465" class="form-control">
+                    <input type="text" name="sie" value="{{$student->sie}}" class="form-control">
                 </div>
             </div>
             <div class="tab-pane fade p-4" id="historial-tab-pane" role="tabpanel" aria-labelledby="historial-tab"
