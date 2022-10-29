@@ -2,19 +2,19 @@
 
     <div class="col-md-6 px-4">
         <div class="card p-4">
-            <x-students.edit.data-student student={{$student}}/>
+            @include('components.students.edit.data-student', ["student" => $student])
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="p-4 p-md-0">
             <div class="row">
-                <x-students.edit.tuition-student student={{$student}}/>
+                @include('components.students.edit.tuition-student', ["student" => $student])
             </div>
-
+            
             <div class="row mt-3">
                 <div class="card p-3">
-                    <x-students.edit.family-info student={{$student}}/>
+                    @include('components.students.edit.family-info', ["student" => $student, 'responsibles' => $responsibles])
                 </div>
             </div>
 
