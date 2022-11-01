@@ -12,14 +12,14 @@
     </div>
 </main>
 @endsection
-@push('scrips')
+@push('scripts')
     <script>
         $(document).ready(function(){
 
             setTimeout(() => {
-                $('.alert').fadeOut();
+                $('.alert').slideUp();
             }, 3000);
-            
+
         })
     </script>
 @endpush
