@@ -1,6 +1,8 @@
 @extends('layouts.layout')
 @section('title', 'Home')
 @section('content')
+@inject('auth2', 'App\Models\User')
+
 <main>
     <div class="container-fluid">
         <x-alert color="success" message="Alumno actualizado correctamente!" classes="mt-4 text-center" />
