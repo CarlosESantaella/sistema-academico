@@ -8,6 +8,7 @@ use Livewire\WithFileUploads;
 class ChangeImageStudent extends Component
 {
     public $image;
+    public $student;
 
     use WithFileUploads;
 

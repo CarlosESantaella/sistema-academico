@@ -2,8 +2,8 @@
     <h2 class="fs-4 text-center mb-4 fw-bold">Datos del estudiante</h2>
 
     <div class="row">
-        <livewire:change-image-student/>
-        <div class="col-md-8">
+        <livewire:change-image-student :student="$student"/>
+        <div class="col-xl-8">
             <div class="mb-3 row">
                 <label for="code" class="col-4 col-form-label fw-bold">CÓDIGO</label>
                 <div class="col-8">
