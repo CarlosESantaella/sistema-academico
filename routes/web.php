@@ -26,3 +26,5 @@ Route::controller(LoginController::class)->group(function(){
     Route::get('/login', 'index')->name('login.index');
     Route::post('/login', 'store')->name('login.store');
 });
+
+Route::put('/students/{student}/changeState', [StrudentsController::class, 'changeState'])->name('students.changestate');
