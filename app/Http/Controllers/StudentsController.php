@@ -62,7 +62,6 @@ class StudentsController extends Controller
         
         $responsibles = Student::findOrFail($student->codigo)->responsibles()->get();
 
-
         return view('students.edit-student', ["student" => $student, "responsibles" => $responsibles]);
     }
 
