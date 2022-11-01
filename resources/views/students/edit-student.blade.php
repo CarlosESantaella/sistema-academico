@@ -3,7 +3,9 @@
 @section('content')
 <main>
     <div class="container-fluid">
-        <x-students.edit.edit-student :student="$student" :responsibles="$responsibles"/>
+        <form method="POST" action="/students/{{$student->codigo}}">
+            <x-students.edit.edit-student :student="$student" :responsibles="$responsibles"/>
+        </form>
     </div>
 </main>
 @endsection

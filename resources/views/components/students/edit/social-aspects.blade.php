@@ -7,7 +7,12 @@
         </label>
         <div class="col-md-4">
             <select name="etnia" id="etnia" class="form-control">
-                <option value="Mestizo">Mestizo</option>
+                <option 
+                    @if($student->pertenece =='MESTIZO')         
+                        selected
+                    @endif
+                    value="MESTIZO"
+                >Mestizo</option>
             </select>
         </div>
     </div>
@@ -18,9 +23,18 @@
         </label>
         <div class="col-md-4">
             <select name="salud" id="salud" class="form-control">
-                <option value="3 a 5 veces">3 a 5 veces</option>
-                <option value="5 a 7 veces">5 a 7 veces</option>
-                <option value="más de 7 veces">más de 7 veces</option>
+                <option 
+                    @if($student->nsalud =='1 a 2 veces')         
+                        selected
+                    @endif
+                    value="1 a 2 veces"
+                >1 a 2 veces</option>
+                <option 
+                    @if($student->nsalud =='3 a 5 veces')         
+                        selected
+                    @endif
+                    value="3 a 5 veces"
+                >3 a 5 veces</option>
             </select>
         </div>
     </div>
@@ -31,9 +45,24 @@
         </label>
         <div class="col-md-4">
             <select name="transporte" id="transporte" class="form-control">
-                <option value="Vehiculo">Vehiculo</option>
-                <option value="Bus">Bus</option>
-                <option value="Caminando">Caminando</option>
+                <option 
+                    @if($student->nsalud =='A PIE')         
+                        selected
+                    @endif
+                    value="A PIE"
+                >A PIE</option>
+                <option 
+                    @if($student->nsalud =='VEHICULO')         
+                        selected
+                    @endif
+                    value="VEHICULO"
+                >VEHICULO</option>
+                <option 
+                    @if($student->nsalud =='BUS')         
+                        selected
+                    @endif
+                    value="BUS"
+                >BUS</option>
             </select>
         </div>
     </div>
@@ -44,9 +73,30 @@
         </label>
         <div class="col-md-4">
             <select name="tiempo" id="tiempo" class="form-control">
-                <option value="1/2 a 1 hora">1/2 a 1 hora</option>
-                <option value="1 a 2 horas">1 a 2 horas</option>
-                <option value="2 a 3 horas">2 a 3 horas</option>
+                <option 
+                    @if($student->nsalud =='< a 1/2 hora')         
+                        selected
+                    @endif
+                    value="1/2 a 1 hora"
+                >1/2 a 1 hora</option>
+                <option 
+                    @if($student->nsalud =='1/2 a 1 hora')         
+                        selected
+                    @endif
+                    value="1/2 a 1 hora"
+                >1/2 a 1 hora</option>
+                <option 
+                    @if($student->nsalud =='1 a 2 horas')         
+                        selected
+                    @endif
+                    value="1 a 2 horas"
+                >1 a 2 horas</option>
+                <option 
+                    @if($student->nsalud =='2 a 3 horas')         
+                        selected
+                    @endif
+                    value="2 a 3 horas"
+                >2 a 3 horas</option>
             </select>
         </div>
     </div>
