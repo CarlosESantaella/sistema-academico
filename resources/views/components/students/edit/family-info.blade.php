@@ -131,7 +131,7 @@
             <div class="mb-3 row">
                 <label for="ci_2" class="col-4 col-form-label">C.I: </label>
                 <div class="col-8">
-                    <input type="text" class="form-control" id="ci_2" name="relacion_2" value="{{$responsibles[1]->ci}}">
+                    <input type="text" class="form-control" id="ci_2" name="ci_2" value="{{$responsibles[1]->ci}}">
                 </div>
             </div>
             <div class="mb-3 row">
