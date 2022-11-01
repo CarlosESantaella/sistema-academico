@@ -14,8 +14,8 @@ class AddForeignKeysToRaTable extends Migration
     public function up()
     {
         Schema::table('ra', function (Blueprint $table) {
-            $table->foreign(['codalumno'], 'ra_ibfk_4')->references(['codigo'])->on('alumno')->onDelete('CASCADE');
             $table->foreign(['codresponsable'], 'ra_ibfk_3')->references(['codigo'])->on('responsable')->onDelete('CASCADE');
+            $table->foreign(['codalumno'], 'ra_ibfk_4')->references(['codigo'])->on('alumno')->onDelete('CASCADE');
         });
     }
 
@@ -27,8 +27,8 @@ class AddForeignKeysToRaTable extends Migration
     public function down()
     {
         Schema::table('ra', function (Blueprint $table) {
-            $table->dropForeign('ra_ibfk_4');
             $table->dropForeign('ra_ibfk_3');
+            $table->dropForeign('ra_ibfk_4');
         });
     }
 }

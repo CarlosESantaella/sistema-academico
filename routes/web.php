@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::resource('students', StudentsController::class);
 
 
-Route::group(['controller' => LoginController::class], function(){
-    Route::get('/login', 'index');
-    Route::post('/login', 'store');
+Route::controller(LoginController::class)->group(function(){
+    Route::get('/login', 'index')->name('login.index');
+    Route::post('/login', 'store')->name('login.store');
 });

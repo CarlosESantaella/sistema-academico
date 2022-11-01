@@ -14,8 +14,8 @@ class AddForeignKeysToCuMaTable extends Migration
     public function up()
     {
         Schema::table('cu_ma', function (Blueprint $table) {
-            $table->foreign(['codmateria'], 'cu_ma_ibfk_2')->references(['codigo'])->on('materia');
             $table->foreign(['codcurso'], 'cu_ma_ibfk_1')->references(['codigo'])->on('curso')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign(['codmateria'], 'cu_ma_ibfk_2')->references(['codigo'])->on('materia');
         });
     }
 
@@ -27,8 +27,8 @@ class AddForeignKeysToCuMaTable extends Migration
     public function down()
     {
         Schema::table('cu_ma', function (Blueprint $table) {
-            $table->dropForeign('cu_ma_ibfk_2');
             $table->dropForeign('cu_ma_ibfk_1');
+            $table->dropForeign('cu_ma_ibfk_2');
         });
     }
 }

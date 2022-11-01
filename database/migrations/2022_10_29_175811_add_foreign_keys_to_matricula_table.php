@@ -14,9 +14,9 @@ class AddForeignKeysToMatriculaTable extends Migration
     public function up()
     {
         Schema::table('matricula', function (Blueprint $table) {
-            $table->foreign(['codcurso'], 'matricula_ibfk_2')->references(['codigo'])->on('curso')->onDelete('NO ACTION');
             $table->foreign(['codusuario'], 'matricula_ibfk_1')->references(['codigo'])->on('usuario')->onDelete('CASCADE');
             $table->foreign(['codalumno'], 'matricula_ibfk_3')->references(['codigo'])->on('alumno')->onDelete('CASCADE');
+            $table->foreign(['codcurso'], 'matricula_ibfk_2')->references(['codigo'])->on('curso')->onDelete('NO ACTION');
         });
     }
 
@@ -28,9 +28,9 @@ class AddForeignKeysToMatriculaTable extends Migration
     public function down()
     {
         Schema::table('matricula', function (Blueprint $table) {
-            $table->dropForeign('matricula_ibfk_2');
             $table->dropForeign('matricula_ibfk_1');
             $table->dropForeign('matricula_ibfk_3');
+            $table->dropForeign('matricula_ibfk_2');
         });
     }
 }

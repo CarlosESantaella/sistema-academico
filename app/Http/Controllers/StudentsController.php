@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -57,8 +58,10 @@ class StudentsController extends Controller
     public function edit($id)
     {
         // $student = Student::where('codigo', $id)->get();
-        $student = Student::findOrFail($id);
-        $responsibles = Student::findOrFail($id)->responsibles()->get();
+        $student = User::where('clave', $id)->firstOrFail()->student()->firstOrFail();
+        
+        $responsibles = Student::findOrFail($student->codigo)->responsibles()->get();
+
 
         return view('students.edit-student', ["student" => $student, "responsibles" => $responsibles]);
     }
