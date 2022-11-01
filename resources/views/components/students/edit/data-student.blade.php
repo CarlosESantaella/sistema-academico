@@ -83,7 +83,7 @@
                     <div class="mb-3 row">
                         <label for="sexo" class="col-sm-4 col-form-label">Sexo :</label>
                         <div class="col-sm-8">
-                            <select class="form-select" id="sexo" name="sexo">
+                            <select class="form-control" id="sexo" name="sexo">
                                 <option 
                                     @if($student->sexo =='M')         
                                         selected
@@ -97,6 +97,16 @@
                                     value="H"
                                 >Hombre</option>
                             </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label for="expedido_del_ci" class="col-sm-4 col-form-label">Exp. CI. :</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="expedido_del_ci"
+                                name="expedido_del_ci" value="{{$student->expedido_del_ci}}"> 
                         </div>
                     </div>
                 </div>
@@ -256,6 +266,37 @@
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="telefono" name="telefono"
                                 value="{{$student->telefono}}">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    
+    <!-- Datos de contacto -->
+    <div class="card p-3 mt-3">
+        <div class="">
+            <label class="label fw-bold mb-2">Datos de contacto</label>
+            <div class="row">
+
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label for="correo_institucional" class="col-sm-4 col-form-label">Correo institucional :</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="correo_institucional" name="correo_institucional"
+                                value="{{$student->correo_institucional}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label for="celular_alumno" class="col-sm-4 col-form-label">Celular: </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="celular_alumno" name="celular_alumno"
+                                value="{{$student->celular_alumno}}">
                         </div>
                     </div>
                 </div>
