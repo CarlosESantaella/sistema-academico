@@ -167,11 +167,7 @@ class StudentsController extends Controller
         $responsible_1->save();
         $responsible_2->save();
         
-        die();
-        //data student
-        // $student->appaterno = $request->appaterno;
-        // $student->apmaterno = $request->apmaterno;
-        // $student->nombres = $request->nombres;
+        return redirect()->route('students.edit', ['student' => $student->codigo.'CLS'])->with('mensaje', 'Información actualizada correctamente');
 
     }
 

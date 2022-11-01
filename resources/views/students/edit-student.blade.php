@@ -3,6 +3,7 @@
 @section('content')
 <main>
     <div class="container-fluid">
+        <x-alert color="success" message="Alumno actualizado correctamente!" classes="mt-4 text-center" />
         <form method="POST" action="/students/{{$student->codigo}}"  enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -11,3 +12,14 @@
     </div>
 </main>
 @endsection
+@push('scrips')
+    <script>
+        $(document).ready(function(){
+
+            setTimeout(() => {
+                $('.alert').fadeOut();
+            }, 3000);
+            
+        })
+    </script>
+@endpush
