@@ -27,6 +27,7 @@ class CreateUsuarioTable extends Migration
             $table->string('mail', 32)->nullable()->comment('Correo Electronico');
             $table->string('foto', 220)->nullable();
             $table->string('ci', 8);
+            $table->rememberToken();
         });
     }
 
