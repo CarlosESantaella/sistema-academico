@@ -120,7 +120,6 @@ class StudentsController extends Controller
         $student->transporte = $request->transporte;
         $student->tiempo = $request->tiempo;
 
-
         // institution of origin
 
 
@@ -180,5 +179,10 @@ class StudentsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function changeState()
+    {
+
     }
 }
