@@ -75,6 +75,13 @@ class StudentsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $student = Student::find($id);
+
+        //data student
+        $student->codigo = $request->codigo;
+        $student->appaterno = $request->appaterno;
+        $student->apmaterno = $request->apmaterno;
+        $student->nombres = $request->nombres;
         
     }
 
