@@ -59,6 +59,7 @@
                         }) 
                     }
                 )
+                
             }
 
             let id_estudiante = "{{$student->codigo}}";
