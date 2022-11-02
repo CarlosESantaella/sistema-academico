@@ -5,6 +5,9 @@
 
         <div class="card p-5 max-w-xl w-full">
             <h2 class="text-center mb-4">LOGIN</h2>
+            @if(session('message'))
+                <x-alert color="danger" message="{{ session('message') }}" />
+            @endif
             <form action="{{ route('login.store') }}" method="POST">
                 @csrf
                 <div class="form-group mb-3">

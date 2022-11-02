@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Student;
 use App\Models\Responsible;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class StudentsController extends Controller
@@ -59,9 +60,22 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
+        // Auth::logout();
+ 
+        // session()->invalidate();
+     
+        // session()->regenerateToken();
+     
+        // return redirect('/');
         // $student = Student::where('codigo', $id)->get();
         $student = User::where('clave', $id)->firstOrFail()->student()->firstOrFail();
-        
+        if($student->estado == 0){
+            
+            Auth::logout();
+            session()->invalidate();
+            session()->regenerateToken();
+            return redirect()->route('login.index')->with('message', 'Su cuenta se escuentra deshabilitada');
+        }   
         $responsibles = Student::findOrFail($student->codigo)->responsibles()->get();
 
         return view('students.edit-student', ["student" => $student, "responsibles" => $responsibles]);
@@ -80,12 +94,12 @@ class StudentsController extends Controller
 
             $img_path = $request->file('image')->store('public/students/img');
             $file_name = str_replace('public/students/img/', '', $img_path);
-            echo $file_name;
-            if(Storage::exists('public/students/img/'.$student->imagen)){
-                Storage::delete('public/students/img/'.$student->imagen);
+            
+            if(Storage::exists('public/students/img/'.$student->foto)){
+                Storage::delete('public/students/img/'.$student->foto);
             }
         }else{
-            $file_name = $student->imagen;
+            $file_name = $student->foto;
         }
 
         // student data
@@ -181,8 +195,20 @@ class StudentsController extends Controller
         //
     }
 
-    public function changeState()
+    public function changeState(Request $request, $id)
     {
 
+
+        $student = Student::find($id);
+        
+        $student->estado = $request->estado;
+
+        $student->save();
+
+        if($request->estado == 1){
+
+        }else{
+            return redirect()->route('login.index');
+        }
     }
 }

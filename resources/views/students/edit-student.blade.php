@@ -51,7 +51,8 @@
                     {
                         method: 'PUT',
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                         },
                         body: JSON.stringify({
                             'estado': estado
@@ -62,11 +63,12 @@
 
             let id_estudiante = "{{$student->codigo}}";
             let estado = "{{$student->estado}}";
+            
             if (estado == "-1") {
                 const verifyModel = new bootstrap.Modal(document.getElementById('verifyModel'), {})
                 verifyModel.show();
                 document.querySelector(".btn-no").addEventListener("click", function() {
-                    changeStatus(id_estudiante, "-1")
+                    changeStatus(id_estudiante, "0")
                 });
                 document.querySelector(".btn-si").addEventListener("click", function() {
                     changeStatus(id_estudiante, "1")
