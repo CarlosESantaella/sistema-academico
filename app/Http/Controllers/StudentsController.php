@@ -94,12 +94,12 @@ class StudentsController extends Controller
 
             $img_path = $request->file('image')->store('public/students/img');
             $file_name = str_replace('public/students/img/', '', $img_path);
-            echo $file_name;
-            if(Storage::exists('public/students/img/'.$student->imagen)){
-                Storage::delete('public/students/img/'.$student->imagen);
+            
+            if(Storage::exists('public/students/img/'.$student->foto)){
+                Storage::delete('public/students/img/'.$student->foto);
             }
         }else{
-            $file_name = $student->imagen;
+            $file_name = $student->foto;
         }
 
         // student data
@@ -204,5 +204,11 @@ class StudentsController extends Controller
         $student->estado = $request->estado;
 
         $student->save();
+
+        if($request->estado == 1){
+
+        }else{
+            return redirect()->route('login.index');
+        }
     }
 }
