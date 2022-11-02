@@ -67,6 +67,7 @@ class StudentsController extends Controller
         // session()->regenerateToken();
      
         // return redirect('/');
+
         // $student = Student::where('codigo', $id)->get();
         $student = User::where('clave', $id)->firstOrFail()->student()->firstOrFail();
         if($student->estado == 0){
@@ -205,10 +206,6 @@ class StudentsController extends Controller
 
         $student->save();
 
-        if($request->estado == 1){
 
-        }else{
-            return redirect()->route('login.index');
-        }
     }
 }
