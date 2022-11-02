@@ -2,7 +2,7 @@
 @section('title', 'Home')
 @section('content')
 <main>
-    
+
     @if ($student->estado == '-1')
     <div class="modal fade" id="verifyModel" tabindex="-1" aria-labelledby="verifyModelLabel" aria-hidden="true">
         <div class="modal-dialog">

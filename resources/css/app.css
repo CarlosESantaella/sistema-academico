@@ -3,6 +3,27 @@
         .form-control {
             @apply bg-slate-100 !important;
         }
+        .btn-primary, 
+        .nav-pills .nav-link.active, 
+        .nav-pills .show>.nav-link {
+            @apply bg-[#012258];
+            @apply border-[#012258];
+            @apply text-white !important;
+        }
+        .btn-outline-primary {
+            @apply text-[#012258];
+            @apply border-[#012258];
+        }
+        .btn-primary:hover, .btn-outline-primary:hover {
+            @apply bg-[#001840];
+            @apply border-[#001840];
+        }
+        .btn-danger {
+            @apply bg-[#fc0122]
+        }
+        .nav-link, .text-primary {
+            @apply text-[#012258] !important;
+        }
     }
 @tailwind components;
 @tailwind utilities;
