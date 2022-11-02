@@ -37,7 +37,8 @@
                     {
                         method: 'PUT',
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                         },
                         body: JSON.stringify({
                             'estado': estado
@@ -47,11 +48,12 @@
             }
             let id_estudiante = "{{$student->codigo}}";
             let estado = "{{$student->estado}}";
+            
             if (estado == "-1") {
                 if (confirm("¿Desea matricularse en el siguiente periodo escolar?")) {
                     changeStatus(id_estudiante, "1");
                 }else {
-                    changeStatus(id_estudiante, "-1");
+                    changeStatus(id_estudiante, "0");
                 }
             }
         });

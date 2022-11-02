@@ -43,7 +43,9 @@ class LoginController extends Controller
                     $letter_a = str_split($letter, 1);
                     $first_letter_names .= $letter_a[0];
                 }
-                $correct_username = $first_letter_names.$user->appaterno;
+                $student = $user->student()->firstOrFail();
+                
+                $correct_username = $first_letter_names.$student->appaterno;
                 // die($correct_username);
                 if($correct_username == $nombres){
                     //PRUEBA1 PRUEBA2

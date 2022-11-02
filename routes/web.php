@@ -27,4 +27,4 @@ Route::controller(LoginController::class)->group(function(){
     Route::post('/login', 'store')->name('login.store');
 });
 
-Route::put('/students/{student}/changeState', [StrudentsController::class, 'changeState'])->name('students.changestate');
+Route::put('/students/{student}/changeState', [StudentsController::class, 'changeState'])->name('students.changestate');
