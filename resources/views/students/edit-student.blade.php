@@ -57,7 +57,7 @@
                             'estado': estado
                         }) 
                     }
-                )
+                ).then(res => window.location.reload());
             }
 
             let id_estudiante = "{{$student->codigo}}";
