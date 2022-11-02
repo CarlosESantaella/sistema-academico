@@ -1,11 +1,26 @@
 @extends('layouts.layout')
 @section('title', 'Home')
 @section('content')
-<script>
-
-</script>
 <main>
-    @if ($student->estado != '1')
+    
+    @if ($student->estado == '-1')
+    <div class="modal fade" id="verifyModel" tabindex="-1" aria-labelledby="verifyModelLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="mb-4">
+                    ¿Desea matricularse en el siguiente periodo escolar?
+                </p>
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary btn-no" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary btn-si">Si</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    @elseif ($student->estado != '1')
         <div class="container-fluid">
             <p>Esta sección esta bloqueada</p>
         </div>
@@ -30,7 +45,6 @@
             setTimeout(() => {
                 $('.alert').slideUp();
             }, 3000);
-
             function changeStatus(id_estudiante, estado) {
                 fetch(
                     "/students/"+id_estudiante+"/changeState",
@@ -46,15 +60,19 @@
                     }
                 )
             }
+
             let id_estudiante = "{{$student->codigo}}";
             let estado = "{{$student->estado}}";
             
             if (estado == "-1") {
-                if (confirm("¿Desea matricularse en el siguiente periodo escolar?")) {
-                    changeStatus(id_estudiante, "1");
-                }else {
-                    changeStatus(id_estudiante, "0");
-                }
+                const verifyModel = new bootstrap.Modal(document.getElementById('verifyModel'), {})
+                verifyModel.show();
+                document.querySelector(".btn-no").addEventListener("click", function() {
+                    changeStatus(id_estudiante, "0")
+                });
+                document.querySelector(".btn-si").addEventListener("click", function() {
+                    changeStatus(id_estudiante, "1")
+                });
             }
         });
     </script>
