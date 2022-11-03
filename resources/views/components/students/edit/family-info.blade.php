@@ -32,9 +32,12 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="expedido_del_ci_1" class="col-4 col-form-label">Expedido del CI: </label>
+                <label for="expedido_del_ci_1" class="col-4 col-form-label">Exp. CI: </label>
                 <div class="col-8">
-                    <input type="date" class="form-control" id="expedido_del_ci_1" name="expedido_del_ci_1" value="{{$responsibles[0]->expedido_del_ci}}">
+                    <x-students.edit.elements.select-exp-ci 
+                        id="expedido_del_ci_1" 
+                        :exp="$responsibles[0]->expedido_del_ci"
+                    />
                 </div>
             </div>
             <div class="mb-3 row">
@@ -70,20 +73,10 @@
             <div class="mb-3 row">
                 <label for="ginstruccion_1" class="col-4 col-form-label">G. Instrucción: </label>
                 <div class="col-8">
-                    <select name="ginstruccion_1" id="ginstruccion_1" class="form-control">
-                        <option 
-                            @if($responsibles[0]->ginstruccion == 'LICENCIATURA')         
-                                selected
-                            @endif
-                            value="LICENCIATURA"
-                        >Licenciatura</option>
-                        <option 
-                            @if($responsibles[0]->ginstruccion == 'BACHILLER')         
-                                selected
-                            @endif
-                            value="BACHILLER"
-                        >Bachiller</option>
-                    </select>
+                    <x-students.edit.elements.select-degree-of-instruction
+                        id="ginstruccion_1"
+                        :ginstruccion="$responsibles[0]->ginstruccion"
+                    />
                 </div>
             </div>
             <div class="mb-3 row">
@@ -147,9 +140,12 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="expedido_del_ci_2" class="col-4 col-form-label">Expedido del CI: </label>
+                <label for="expedido_del_ci_2" class="col-4 col-form-label">Exp. CI: </label>
                 <div class="col-8">
-                    <input type="text" class="form-control" id="expedido_del_ci_2" name="expedido_del_ci_2" value="{{$responsibles[1]->expedido_del_ci}}">
+                    <x-students.edit.elements.select-exp-ci 
+                        id="expedido_del_ci_2" 
+                        :exp="$responsibles[1]->expedido_del_ci"
+                    />
                 </div>
             </div>
             <div class="mb-3 row">
@@ -185,20 +181,10 @@
             <div class="mb-3 row">
                 <label for="ginstruccion_2" class="col-4 col-form-label">G. Instrucción: </label>
                 <div class="col-8">
-                    <select name="ginstruccion_2" id="ginstruccion_2" class="form-control">
-                        <option 
-                            @if($responsibles[0]->ginstruccion == 'LICENCIATURA')         
-                                selected
-                            @endif
-                            value="LICENCIATURA"
-                        >Licenciatura</option>
-                        <option 
-                            @if($responsibles[0]->ginstruccion == 'BACHILLER')         
-                                selected
-                            @endif
-                            value="BACHILLER"
-                        >Bachiller</option>
-                    </select>
+                    <x-students.edit.elements.select-degree-of-instruction
+                        id="ginstruccion_2"
+                        :ginstruccion="$responsibles[1]->ginstruccion"
+                    />
                 </div>
             </div>
             <div class="mb-3 row">

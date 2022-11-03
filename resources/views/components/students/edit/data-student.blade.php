@@ -63,8 +63,10 @@
                     <div class="mb-3 row">
                         <label for="expedido_del_ci" class="col-sm-4 col-form-label">Exp. CI. :</label>
                         <div class="col-sm-8">
-                            <input type="date" class="form-control" id="expedido_del_ci"
-                                name="expedido_del_ci" value="{{$student->expedido_del_ci}}"> 
+                            <x-students.edit.elements.select-exp-ci 
+                                id="expedido_del_ci" 
+                                :exp="$student->expedido_del_ci"
+                            />
                         </div>
                     </div>
                 </div>
