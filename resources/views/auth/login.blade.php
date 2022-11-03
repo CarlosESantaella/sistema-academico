@@ -34,6 +34,6 @@
 @endsection
 @push('scripts')
     <script type="module">
-        Swal.fire('hola mundo!');
+        
     </script>
 @endpush

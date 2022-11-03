@@ -23,8 +23,9 @@ Route::resource('students', StudentsController::class);
 
 
 Route::controller(LoginController::class)->group(function(){
-    Route::get('/login', 'index')->name('login.index');
-    Route::post('/login', 'store')->name('login.store');
+    Route::get('/login', 'index')->middleware('guest')->name('login.index');
+    Route::post('/login', 'store')->middleware('guest')->name('login.store');
+    Route::post('/logout', 'logout')->middleware('auth')->name('logout');
 });
 
 Route::put('/students/{student}/changeState', [StudentsController::class, 'changeState'])->name('students.changestate');

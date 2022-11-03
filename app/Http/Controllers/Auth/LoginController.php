@@ -6,13 +6,15 @@ use App\Models\User;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 
 class LoginController extends Controller
 {
     
     public function __construct()
     {
-        $this->middleware('guest');
+        // $this->middleware('guest');
     }
     public function index()
     {
@@ -76,8 +78,20 @@ class LoginController extends Controller
         //     return back()->with('error_login', 'Usuario o contraseña incorrectos');
         // }
     }
-    public function nombres()
+
+    public function logout(Request $request)
     {
-        return 'nombres';
+        
+        Auth::logout();
+ 
+        session()->invalidate();
+     
+        session()->regenerateToken();
+        
+        return redirect()->route('login.index');
     }
+    // public function nombres()
+    // {
+    //     return 'nombres';
+    // }
 }

@@ -65,7 +65,7 @@
                         <div class="col-sm-8">
                             <x-students.edit.elements.select-exp-ci 
                                 id="expedido_del_ci" 
-                                :exp="$student->expedido_del_ci"
+                                :exp="$student->exp_ci"
                             />
                         </div>
                     </div>
@@ -298,7 +298,7 @@
                         <label for="celular_alumno" class="col-sm-4 col-form-label">Celular: </label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="celular_alumno" name="celular_alumno"
-                                value="{{$student->celular_alumno}}">
+                                value="{{$student->celular}}">
                         </div>
                     </div>
                 </div>

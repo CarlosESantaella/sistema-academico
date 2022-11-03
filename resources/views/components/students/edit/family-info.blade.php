@@ -36,7 +36,7 @@
                 <div class="col-8">
                     <x-students.edit.elements.select-exp-ci 
                         id="expedido_del_ci_1" 
-                        :exp="$responsibles[0]->expedido_del_ci"
+                        :exp="$responsibles[0]->exp_ci"
                     />
                 </div>
             </div>
@@ -100,7 +100,7 @@
             <div class="mb-3 row">
                 <label for="fecha_de_nacimiento_1" class="col-4 col-form-label">Fecha de nacimiento: </label>
                 <div class="col-8">
-                    <input type="date" class="form-control" id="fecha_de_nacimiento_1" name="fecha_de_nacimiento_1" value="{{$responsibles[0]->fecha_de_nacimiento}}">
+                    <input type="date" class="form-control" id="fecha_de_nacimiento_1" name="fecha_de_nacimiento_1" value="{{$responsibles[0]->fnacimiento?->format('Y-m-d') ?? ''}}">
                 </div>
             </div>
             <div class="d-flex justify-content-between">
@@ -144,7 +144,7 @@
                 <div class="col-8">
                     <x-students.edit.elements.select-exp-ci 
                         id="expedido_del_ci_2" 
-                        :exp="$responsibles[1]->expedido_del_ci"
+                        :exp="$responsibles[1]->exp_ci"
                     />
                 </div>
             </div>
@@ -208,7 +208,7 @@
             <div class="mb-3 row">
                 <label for="fecha_de_nacimiento_2" class="col-4 col-form-label">Fecha de nacimiento: </label>
                 <div class="col-8">
-                    <input type="date" class="form-control" id="fecha_de_nacimiento_2" name="fecha_de_nacimiento_2" value="{{$responsibles[1]->fecha_de_nacimiento}}">
+                    <input type="date" class="form-control" id="fecha_de_nacimiento_2" name="fecha_de_nacimiento_2" value="{{$responsibles[1]->fnacimiento?->format('Y-m-d') ?? '0000-00-00'}}">
                 </div>
             </div>
             <div class="d-flex justify-content-between">

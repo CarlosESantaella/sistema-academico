@@ -7,14 +7,28 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-dark">Inicio</a></li>
-                <li><a href="#" class="nav-link px-2 text-dark">Alumnos</a></li>
-                <li><a href="#" class="nav-link px-2 text-dark">Notas</a></li>
+                @auth
+                    @if(auth()->user()->tipo == 3)
+                        <li><a href="#" class="nav-link px-2 text-dark">Inicio</a></li>
+                        <li><a href="#" class="nav-link px-2 text-dark">Alumnos</a></li>
+                        <li><a href="#" class="nav-link px-2 text-dark">Notas</a></li>
+                    @endif
+                @endauth
             </ul>
 
             <div class="text-end">
-                <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                <button type="button" class="btn btn-primary">Sign-up</button>
+                @guest
+                    {{-- <button type="button" class="btn btn-outline-primary me-2">Login</button> --}}
+                    {{-- <button type="button" class="btn btn-primary">Sign-up</button> --}}
+                    {{-- <a href="{{ route('login.index') }}" class="btn btn-outline-primary me-2">Login</a> --}}
+                @endguest
+                @auth
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+
+                        <button type="submit" class="text-primary">Logout</button>
+                    </form>
+                @endauth
             </div>
         </div>
     </div>

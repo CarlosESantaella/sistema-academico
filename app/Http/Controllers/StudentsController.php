@@ -60,14 +60,6 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        // Auth::logout();
- 
-        // session()->invalidate();
-     
-        // session()->regenerateToken();
-     
-        // return redirect('/login');
-
         // $student = Student::where('codigo', $id)->get();
         $student = User::where('clave', $id)->firstOrFail()->student()->firstOrFail();
         if($student->estado == 0){
@@ -75,7 +67,7 @@ class StudentsController extends Controller
             Auth::logout();
             session()->invalidate();
             session()->regenerateToken();
-            return redirect()->route('login.index')->with('message', 'Su cuenta se escuentra deshabilitada');
+            return redirect()->route('login.index')->with('message', 'Su cuenta se escuentra deshabilitada, gracias por haberse matriculado en periodos anteriores!');
         }   
         $responsibles = Student::findOrFail($student->codigo)->responsibles()->get();
 
@@ -109,6 +101,7 @@ class StudentsController extends Controller
         $student->apmaterno = $request->apmaterno;
         $student->nombres = $request->nombres;
         $student->ci = $request->documento;
+        $student->exp_ci = $request->expedido_del_ci;
         $student->pasaporte = $request->pasaporte;
         $student->fnacimiento = $request->fecha_nacimiento;
         $student->sexo = $request->sexo;
@@ -128,6 +121,8 @@ class StudentsController extends Controller
         $student->localidad = $request->localidad;
         $student->telefono = $request->telefono;
         $student->sie = $request->sie;
+        $student->correo_institucional = $request->correo_institucional;
+        $student->celular = $request->celular_alumno;
 
         //social aspects
         $student->pertenece = $request->etnia;
@@ -152,6 +147,7 @@ class StudentsController extends Controller
 
         $responsible_1->relacion = $request->relacion_1;
         $responsible_1->ci = $request->ci_1;
+        $responsible_1->exp_ci = $request->expedido_del_ci_1;
         $responsible_1->appaterno = $request->appaterno_1;
         $responsible_1->apmaterno = $request->apmaterno_1;
         $responsible_1->nombres = $request->nombres_1;
@@ -161,9 +157,11 @@ class StudentsController extends Controller
         $responsible_1->telefono = $request->telefono_1;
         $responsible_1->celular = $request->celular_1;
         $responsible_1->mail = $request->email_1;
+        $responsible_1->fnacimiento = $request->fecha_de_nacimiento_1;
         
         $responsible_2->relacion = $request->relacion_2;
         $responsible_2->ci = $request->ci_2;
+        $responsible_2->exp_ci = $request->expedido_del_ci_2;
         $responsible_2->appaterno = $request->appaterno_2;
         $responsible_2->apmaterno = $request->apmaterno_2;
         $responsible_2->nombres = $request->nombres_2;
@@ -173,6 +171,7 @@ class StudentsController extends Controller
         $responsible_2->telefono = $request->telefono_2;
         $responsible_2->celular = $request->celular_2;
         $responsible_2->mail = $request->email_2;
+        $responsible_2->fnacimiento = $request->fecha_de_nacimiento_2;
         
 
 

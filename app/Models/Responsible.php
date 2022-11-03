@@ -13,6 +13,7 @@ class Responsible extends Model
     protected $guarded = [];
     protected $primaryKey = 'codigo';
     protected $table = 'responsable';
+    protected $dates = ['fnacimiento'];
 
     public function students()
     {

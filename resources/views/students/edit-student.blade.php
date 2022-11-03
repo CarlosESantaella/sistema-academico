@@ -4,7 +4,7 @@
 <main>
 
     @if ($student->estado == '-1')
-    <div class="modal fade" id="verifyModel" tabindex="-1" aria-labelledby="verifyModelLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="verifyModel" tabindex="-1" aria-labelledby="verifyModelLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
@@ -18,7 +18,7 @@
             </div>
         </div>
         </div>
-    </div>
+    </div> --}}
 
     @elseif ($student->estado != '1')
         <div class="container-fluid">
@@ -40,7 +40,7 @@
 </main>
 @endsection
 @push('scripts')
-    <script>
+    <script type="module">
         $(document).ready(function(){
             setTimeout(() => {
                 $('.alert').slideUp();
@@ -65,14 +65,22 @@
             let estado = "{{$student->estado}}";
             
             if (estado == "-1") {
-                const verifyModel = new bootstrap.Modal(document.getElementById('verifyModel'), {})
-                verifyModel.show();
-                document.querySelector(".btn-no").addEventListener("click", function() {
-                    changeStatus(id_estudiante, "0")
-                });
-                document.querySelector(".btn-si").addEventListener("click", function() {
-                    changeStatus(id_estudiante, "1")
-                });
+                Swal.fire({
+                    title: '¿Desea matricularse en el siguiente periodo escolar?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si!',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        changeStatus(id_estudiante, "1")
+                    }else{
+                        changeStatus(id_estudiante, "0")
+
+                    }
+                })
             }
         });
     </script>
