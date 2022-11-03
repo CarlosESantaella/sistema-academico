@@ -8,7 +8,7 @@
                 <label for="code" class="col-4 col-form-label fw-bold">CÓDIGO</label>
                 <div class="col-8">
                     <input type="text" disabled class="form-control" id="codigo" name="codigo"
-                        value="{{$student->codigo}}">
+                        value="{{ $student->codigo }}">
                 </div>
             </div>
             <p class="mb-2">
