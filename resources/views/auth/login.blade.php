@@ -10,7 +10,7 @@
             @endif
             <form action="{{ route('login.store') }}" method="POST">
                 @csrf
-                <div class="form-group mb-3">
+                {{-- <div class="form-group mb-3">
                     <label for="type" class="mb-1">Tipo de usuario:</label>
                     <select name="user_type" id="type" class="form-control">
                         <option value="0">Administrador</option>
@@ -18,7 +18,7 @@
                         <option value="2">Secretaria</option>
                         <option value="3">Estudiante</option>
                     </select>
-                </div>
+                </div> --}}
                 <div class="form-group mb-3">
                     <label for="username" class="mb-1">Username:</label>
                     <input type="text" name="nombres" id="username" class="form-control">

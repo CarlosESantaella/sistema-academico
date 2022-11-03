@@ -33,47 +33,48 @@ class LoginController extends Controller
         $nombres = $request->nombres;
         $clave = $request->clave;
         $user_type = $request->user_type;
-
-        if($user_type == 3){
+        
             
-            $user = User::where('clave', $clave)->first();
-            if($user){
-                $username_a = explode(' ', $user->nombres);
-                $first_letter_names = '';
+        $user = User::where('clave', $clave)->first();
+        if($user){
+            $username_a = explode(' ', $user->nombres);
+            $first_letter_names = '';
 
-                foreach($username_a as $letter){
-                    $letter_a = str_split($letter, 1);
-                    $first_letter_names .= $letter_a[0];
-                }
-                $student = $user->student()->firstOrFail();
-                
-                $correct_username = $first_letter_names.$student->appaterno;
-                // die($correct_username);
-                if($correct_username == $nombres){
-                    //PRUEBA1 PRUEBA2
-                    //777777CLS
+            foreach($username_a as $letter){
+                $letter_a = str_split($letter, 1);
+                $first_letter_names .= $letter_a[0];
+            }
+            
+            $correct_username = $first_letter_names.$user->appaterno;
+            // die($correct_username);
+            if($correct_username == $nombres){
+                //PRUEBA1 PRUEBA2
+                //777777CLS
 
-                    auth()->login($user);
+                auth()->login($user);
+
+                if(auth()->user()->tipo == 3){
 
                     return redirect()->route('students.edit', ['student' => auth()->user()->clave]);
-
-                }else{
-                    return back()->with('error_login', 'Usuario o contraseña incorrectos');
-
+                }else if(auth()->user()->tipo == 2){
+                    echo 'eres una secretaria';
+                }else if(auth()->user()->tipo == 1){
+                    echo 'eres un profesor';
+                }else if(auth()->user()->tipo == 0){
+                    echo 'eres un administrador';
                 }
 
+
             }else{
-                return back()->with('error_login', 'Usuario o contraseña incorrectos');
+                return back()->with('message', 'Usuario o contraseña incorrectos');
+
             }
+
+        }else{
+            return back()->with('message', 'Usuario o contraseña incorrectos');
         }
-        // else if(){
-
-        // }else if(){
-
-        // }else if(){
-
-        // }
         
+
         // if(!auth()->attempt($request->only('email', 'password'))){
         //     return back()->with('error_login', 'Usuario o contraseña incorrectos');
         // }

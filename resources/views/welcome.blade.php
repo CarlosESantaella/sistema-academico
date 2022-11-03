@@ -1,3 +1,13 @@
+@php
+    
+    Auth::logout();
+ 
+ session()->invalidate();
+
+ session()->regenerateToken();
+ 
+ return redirect()->route('login.index');
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
