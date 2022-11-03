@@ -60,13 +60,13 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        Auth::logout();
+        // Auth::logout();
  
-        session()->invalidate();
+        // session()->invalidate();
      
-        session()->regenerateToken();
+        // session()->regenerateToken();
      
-        return redirect('/login');
+        // return redirect('/login');
 
         // $student = Student::where('codigo', $id)->get();
         $student = User::where('clave', $id)->firstOrFail()->student()->firstOrFail();
