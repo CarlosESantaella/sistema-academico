@@ -30,6 +30,10 @@
                 <input type="submit" value="Entrar" class="btn btn-primary mt-3">
             </form>
         </div>
-
 </main>
 @endsection
+@push('scripts')
+    <script type="module">
+        Swal.fire('hola mundo!');
+    </script>
+@endpush

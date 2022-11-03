@@ -66,7 +66,7 @@ class StudentsController extends Controller
      
         // session()->regenerateToken();
      
-        // return redirect('/');
+        // return redirect('/login');
 
         // $student = Student::where('codigo', $id)->get();
         $student = User::where('clave', $id)->firstOrFail()->student()->firstOrFail();
