@@ -92,12 +92,6 @@
                     value="1/2 a 1 hora"
                 >1/2 a 1 hora</option>
                 <option 
-                    @if($student->tiempo =='1/2 a 1 hora')         
-                        selected
-                    @endif
-                    value="1/2 a 1 hora"
-                >1/2 a 1 hora</option>
-                <option 
                     @if($student->tiempo =='1 a 2 horas')         
                         selected
                     @endif
