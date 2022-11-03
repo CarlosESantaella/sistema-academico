@@ -32,6 +32,12 @@
                 </div>
             </div>
             <div class="mb-3 row">
+                <label for="expedido_del_ci_1" class="col-4 col-form-label">Expedido del CI: </label>
+                <div class="col-8">
+                    <input type="date" class="form-control" id="expedido_del_ci_1" name="expedido_del_ci_1" value="{{$responsibles[0]->expedido_del_ci}}">
+                </div>
+            </div>
+            <div class="mb-3 row">
                 <label for="appaterno_1" class="col-4 col-form-label">Ap. Paterno: </label>
                 <div class="col-8">
                     <input type="text" class="form-control" id="appaterno_1" name="appaterno_1" value="{{$responsibles[0]->appaterno}}">
@@ -99,12 +105,6 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="expedido_del_ci_1" class="col-4 col-form-label">Expedido del CI: </label>
-                <div class="col-8">
-                    <input type="text" class="form-control" id="expedido_del_ci_1" name="expedido_del_ci_1" value="{{$responsibles[0]->expedido_del_ci}}">
-                </div>
-            </div>
-            <div class="mb-3 row">
                 <label for="fecha_de_nacimiento_1" class="col-4 col-form-label">Fecha de nacimiento: </label>
                 <div class="col-8">
                     <input type="date" class="form-control" id="fecha_de_nacimiento_1" name="fecha_de_nacimiento_1" value="{{$responsibles[0]->fecha_de_nacimiento}}">
@@ -144,6 +144,12 @@
                 <label for="ci_2" class="col-4 col-form-label">C.I: </label>
                 <div class="col-8">
                     <input type="text" class="form-control" id="ci_2" name="ci_2" value="{{$responsibles[1]->ci}}">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="expedido_del_ci_2" class="col-4 col-form-label">Expedido del CI: </label>
+                <div class="col-8">
+                    <input type="text" class="form-control" id="expedido_del_ci_2" name="expedido_del_ci_2" value="{{$responsibles[1]->expedido_del_ci}}">
                 </div>
             </div>
             <div class="mb-3 row">
@@ -211,12 +217,6 @@
                 <label for="email_2" class="col-4 col-form-label">Email: </label>
                 <div class="col-8">
                     <input type="text" class="form-control" id="email_2" name="email_2" value="{{$responsibles[1]->mail}}">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="expedido_del_ci_2" class="col-4 col-form-label">Expedido del CI: </label>
-                <div class="col-8">
-                    <input type="text" class="form-control" id="expedido_del_ci_2" name="expedido_del_ci_2" value="{{$responsibles[1]->expedido_del_ci}}">
                 </div>
             </div>
             <div class="mb-3 row">

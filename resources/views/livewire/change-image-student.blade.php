@@ -1,4 +1,4 @@
-<div class="col-xl-4 p-4 p-md-0 text-center">
+<div class="col-xl-4 p-4 p-md-2 text-center">
     <div class="container-img-student">
 
         <label for="image" class="inline-block mb-3 rounded-full">

@@ -1,23 +1,44 @@
 <div class="row">
-    <div class="card col-md-8 px-0 my-3 my-md-0">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <div class="card col-12 col-xl-8 px-0 my-3 my-md-0">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="unidad-educativa-tab" data-bs-toggle="tab"
-                    data-bs-target="#unidad-educativa-tab-pane" type="button" role="tab" aria-controls="unidad-educativa-tab-pane"
-                    aria-selected="true">Unidad Educativa de Procedencia</button>
+                <button 
+                    class="nav-link active" 
+                    id="unidad-educativa-tab-pane-tab" 
+                    data-bs-toggle="pill" 
+                    data-bs-target="#unidad-educativa-tab-pane" 
+                    type="button" 
+                    role="tab" 
+                    aria-controls="unidad-educativa-tab-pane" 
+                    aria-selected="true"
+                >Unidad Educativa de Procedencia</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="historial-tab" data-bs-toggle="tab"
-                    data-bs-target="#historial-tab-pane" type="button" role="tab"
-                    aria-controls="historial-tab-pane" aria-selected="false">Historial de matriculas</button>
+                <button 
+                    class="nav-link"
+                    id="historial-tab-pane-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#historial-tab-pane"
+                    type="button"
+                    role="tab"
+                    aria-controls="historial-tab-pane"
+                    aria-selected="false"
+                >Historial de matriculas</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="facturacion-tab" data-bs-toggle="tab"
-                    data-bs-target="#facturacion-tab-pane" type="button" role="tab"
-                    aria-controls="facturacion-tab-pane" aria-selected="false">Facturación</button>
+                <button 
+                    class="nav-link"
+                    id="facturacion-tab-pane-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#facturacion-tab-pane"
+                    type="button"
+                    role="tab"
+                    aria-controls="facturacion-tab-pane"
+                    aria-selected="false"
+                >Facturación</button>
             </li>
         </ul>
-        <div class="tab-content" id="myTabContent">
+        <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade p-4 show active" id="unidad-educativa-tab-pane" role="tabpanel" aria-labelledby="unidad-educativa-tab"
                 tabindex="0">
                 <div class="input-group">
@@ -31,7 +52,7 @@
                 tabindex="0">...</div>
         </div>
     </div>
-    <div class="col-md-4 my-3 my-md-0">
+    <div class="col-12 col-xl-4 my-3 my-xl-0">
         <button class="btn btn-primary btn-lg">Nueva Matricula</button>
     </div>
 </div>
