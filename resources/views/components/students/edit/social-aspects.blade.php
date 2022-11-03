@@ -8,11 +8,17 @@
         <div class="col-md-4">
             <select name="etnia" id="etnia" class="form-control">
                 <option 
+                    @if($student->pertenece =='NO PERTENECE')         
+                        selected
+                    @endif
+                    value="NO PERTENECE"
+                >NO PERTENECE</option>
+                <option 
                     @if($student->pertenece =='MESTIZO')         
                         selected
                     @endif
                     value="MESTIZO"
-                >Mestizo</option>
+                >MESTIZO</option>
             </select>
         </div>
     </div>
@@ -35,6 +41,18 @@
                     @endif
                     value="3 a 5 veces"
                 >3 a 5 veces</option>
+                <option 
+                    @if($student->nsalud =='6 a mas veces')         
+                        selected
+                    @endif
+                    value="6 a mas veces"
+                >6 a mas veces</option>
+                <option 
+                    @if($student->nsalud =='NINGUNA')         
+                        selected
+                    @endif
+                    value="NINGUNA"
+                >NINGUNA</option>
             </select>
         </div>
     </div>
@@ -57,12 +75,6 @@
                     @endif
                     value="VEHICULO"
                 >VEHICULO</option>
-                <option 
-                    @if($student->transporte =='BUS')         
-                        selected
-                    @endif
-                    value="BUS"
-                >BUS</option>
             </select>
         </div>
     </div>

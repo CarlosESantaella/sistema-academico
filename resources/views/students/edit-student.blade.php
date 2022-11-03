@@ -12,7 +12,7 @@
                     ¿Desea matricularse en el siguiente periodo escolar?
                 </p>
                 <div class="d-flex justify-content-between">
-                    <button type="button" class="btn btn-secondary btn-no" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger btn-no" data-bs-dismiss="modal">No</button>
                     <button type="button" class="btn btn-primary btn-si">Si</button>
                 </div>
             </div>
