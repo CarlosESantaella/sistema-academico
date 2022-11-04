@@ -19,27 +19,24 @@ $(document).ready(function(){
             }
         ).then(res => window.location.reload());
     }
-
-    let id_estudiante = "{{$student->codigo}}";
-    let estado = "{{$student->estado}}";
     
     if (estado == "-1") {
         Swal.fire({
-            title: '¿Desea matricularse en el siguiente periodo escolar?',
-            icon: 'question',
+            title: '¿Desea continuar sus estudios en la institución la siguiente gestión?',
+            imageUrl: "/images/logo-salle-2.png",
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si!',
+            confirmButtonColor: '#101f34',
+            cancelButtonColor: '#101f34',
+            confirmButtonText: 'Si',
             cancelButtonText: 'No'
         }).then((result) => {
             if (result.isConfirmed) {
                 changeStatus(id_estudiante, "1")
             }else{
                 changeStatus(id_estudiante, "0")
-
             }
         })
+        $(".swal2-image").attr("style", "margin: 0; width: 100%")
     }
 
     // Provincias

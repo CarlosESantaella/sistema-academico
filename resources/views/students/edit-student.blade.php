@@ -3,24 +3,7 @@
 @section('content')
 <main>
 
-    @if ($student->estado == '-1')
-    <div class="modal fade" id="verifyModel" tabindex="-1" aria-labelledby="verifyModelLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p class="mb-4">
-                    ¿Desea matricularse en el siguiente periodo escolar?
-                </p>
-                <div class="d-flex justify-content-between">
-                    <button type="button" class="btn btn-danger btn-no" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-primary-custom btn-si">Si</button>
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
-
-    @elseif ($student->estado != '1')
+    @if ($student->estado != '1')
         <div class="container-fluid">
             <p>Esta sección esta bloqueada</p>
         </div>
@@ -40,4 +23,10 @@
 </main>
 @endsection
 
+@push('scripts')
+    <script>
+        var id_estudiante = "{{$student->codigo}}";
+        var estado = "{{$student->estado}}";
+    </script>
+@endpush
 @vite('resources/js/edit-students.js')
