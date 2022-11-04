@@ -24,7 +24,7 @@
                         <x-students.edit.social-aspects :student="$student"/>
                     </div>
                     <div class="col-md-4 d-flex justify-content-end pe-0 mt-3 mt-md-0">
-                        <button class="btn btn-primary btn-lg" type="submit">Guardar datos</button>
+                        <button class="btn btn-primary-custom btn-lg" type="submit">Guardar datos</button>
                     </div>
                 </div>
             </div>

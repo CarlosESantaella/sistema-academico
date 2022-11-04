@@ -1,5 +1,5 @@
 <!-- As a link -->
-<header class="p-3 border-bottom     bg-white">
+<header class="p-3 border-bottom bg-primary-custom">
     <div class="container-fluid">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
@@ -19,7 +19,7 @@
             <div class="text-end">
                 @guest
                     {{-- <button type="button" class="btn btn-outline-primary me-2">Login</button> --}}
-                    {{-- <button type="button" class="btn btn-primary">Sign-up</button> --}}
+                    {{-- <button type="button" class="btn btn-primary-custom">Sign-up</button> --}}
                     {{-- <a href="{{ route('login.index') }}" class="btn btn-outline-primary me-2">Login</a> --}}
                 @endguest
                 @auth

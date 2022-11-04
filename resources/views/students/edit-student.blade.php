@@ -13,7 +13,7 @@
                 </p>
                 <div class="d-flex justify-content-between">
                     <button type="button" class="btn btn-danger btn-no" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-primary btn-si">Si</button>
+                    <button type="button" class="btn btn-primary-custom btn-si">Si</button>
                 </div>
             </div>
         </div>

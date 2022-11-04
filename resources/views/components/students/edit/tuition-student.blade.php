@@ -53,6 +53,6 @@
         </div>
     </div>
     <div class="col-12 col-xl-4 my-3 my-xl-0">
-        <button type="button" class="btn btn-primary btn-lg">Nueva Matricula</button>
+        <button type="button" class="btn btn-primary-custom btn-lg">Nueva Matricula</button>
     </div>
 </div>
