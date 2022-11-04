@@ -9,7 +9,7 @@
                 <input type="hidden" id="codigo_1" name="codigo_1" value="{{$responsibles[0]->codigo}}">
                 <label for="relacion_1" class="col-4 col-form-label">Relación: </label>
                 <div class="col-8">
-                    <select name="relacion_1" id="relacion_1" class="form-control">
+                    <select name="relacion_1" id="relacion_1" class="form-select">
                         <option 
                             @if($responsibles[0]->relacion == 'Padre')         
                                 selected
@@ -117,7 +117,7 @@
                 <label for="relacion_2" class="col-4 col-form-label">Relación: </label>
                 <input type="hidden" id="codigo_2" name="codigo_2" value="{{$responsibles[1]->codigo}}">
                 <div class="col-8">
-                    <select name="relacion_2" id="relacion_2" class="form-control">
+                    <select name="relacion_2" id="relacion_2" class="form-select">
                         <option 
                             @if($responsibles[1]->relacion =='Padre')         
                                 selected

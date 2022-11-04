@@ -1,7 +1,7 @@
 @tailwind base;
     @layer base{
-        .form-control {
-            @apply bg-slate-100 !important;
+        .form-control, .form-select {
+            @apply bg-slate-50 !important;
         }
         .btn-primary-custom, 
         .nav-pills .nav-link.active, 

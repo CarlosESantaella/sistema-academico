@@ -6,7 +6,7 @@
             A que nación o pueblo indigena originario campesino pertenece: 
         </label>
         <div class="col-md-4">
-            <select name="etnia" id="etnia" class="form-control">
+            <select name="etnia" id="etnia" class="form-select">
                 <option 
                     @if($student->pertenece =='NO PERTENECE')         
                         selected
@@ -28,7 +28,7 @@
             Cuantas veces fué el estudiante al centro de salud el año pasado: 
         </label>
         <div class="col-md-4">
-            <select name="salud" id="salud" class="form-control">
+            <select name="salud" id="salud" class="form-select">
                 <option 
                     @if($student->nsalud =='1 a 2 veces')         
                         selected
@@ -62,7 +62,7 @@
             Como llegó el estudiante a la Unidad Educativa: 
         </label>
         <div class="col-md-4">
-            <select name="transporte" id="transporte" class="form-control">
+            <select name="transporte" id="transporte" class="form-select">
                 <option 
                     @if($student->transporte =='A PIE')         
                         selected
@@ -84,7 +84,7 @@
             Tiempo máximo que demora llegar a la UE y viceversa: 
         </label>
         <div class="col-md-4">
-            <select name="tiempo" id="tiempo" class="form-control">
+            <select name="tiempo" id="tiempo" class="form-select">
                 <option 
                     @if($student->tiempo =='< a 1/2 hora')         
                         selected

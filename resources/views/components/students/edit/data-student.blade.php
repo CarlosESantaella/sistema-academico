@@ -95,7 +95,7 @@
                     <div class="mb-3 row">
                         <label for="sexo" class="col-sm-4 col-form-label">Sexo :</label>
                         <div class="col-sm-8">
-                            <select class="form-control" id="sexo" name="sexo">
+                            <select class="form-select" id="sexo" name="sexo">
                                 <option 
                                     @if($student->sexo =='M')         
                                         selected

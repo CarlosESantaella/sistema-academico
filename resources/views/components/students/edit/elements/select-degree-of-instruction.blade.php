@@ -1,4 +1,4 @@
-<select class="form-control" id="{{$id}}" name="{{$id}}">
+<select class="form-select" id="{{$id}}" name="{{$id}}">
     <option @if($ginstruccion =='PRIMARIA') selected @endif value="PRIMARIA">PRIMARIA</option>
     <option @if($ginstruccion =='SECUNDARIA') selected @endif value="SECUNDARIA">SECUNDARIA</option>
     <option @if($ginstruccion =='BACHILLER') selected @endif value="BACHILLER">BACHILLER</option>

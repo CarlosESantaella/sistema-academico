@@ -1,4 +1,4 @@
-<select class="form-control" id="{{$id}}" name="{{$id}}">
+<select class="form-select" id="{{$id}}" name="{{$id}}">
     <option @if($exp =='LP La Paz') selected @endif value="LP La Paz">LP La Paz</option>
     <option @if($exp =='CB Cochabamba') selected @endif value="CB Cochabamba">CB Cochabamba</option>
     <option @if($exp =='OR Oruro') selected @endif value="OR Oruro">OR Oruro</option>
