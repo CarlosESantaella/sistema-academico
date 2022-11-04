@@ -162,8 +162,12 @@
                     <div class="mb-3 row">
                         <label for="provincia" class="col-sm-4 col-form-label">Provincia: </label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="provincia" name="nprovincia"
-                                value="{{$student->provnac}}">
+                            <select 
+                                class="form-control provincia-select"
+                                name="provincia" 
+                                id="provincia" 
+                                data-provincia="{{$student->provnac}}"
+                            ></select>
                         </div>
                     </div>
                 </div>
@@ -172,8 +176,12 @@
                     <div class="row">
                         <label for="departamento" class="col-sm-4 col-form-label">Departamento:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="departamento" name="ndepartamento"
-                                value="{{$student->depnac}}">
+                            <select 
+                                class="form-control departamento-select"
+                                name="departamento" 
+                                id="departamento" 
+                                data-departamento="{{$student->depnac}}"
+                            ></select>
                         </div>
                     </div>
                 </div>
