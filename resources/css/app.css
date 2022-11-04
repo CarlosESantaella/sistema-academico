@@ -1,5 +1,8 @@
 @tailwind base;
     @layer base{
+        .form-control[readonly], .form-select[readonly] {
+            @apply bg-slate-200 !important;
+        }
         .form-control, .form-select {
             @apply bg-slate-50 !important;
         }

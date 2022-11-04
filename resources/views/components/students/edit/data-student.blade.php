@@ -7,7 +7,7 @@
             <div class="mb-3 row">
                 <label for="code" class="col-4 col-form-label fw-bold">CÓDIGO</label>
                 <div class="col-8">
-                    <input type="text" disabled class="form-control" id="codigo" name="codigo"
+                    <input type="text" readonly class="form-control" id="codigo" name="codigo"
                         value="{{ $student->codigo }}">
                 </div>
             </div>
