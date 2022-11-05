@@ -19,16 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
-Route::get('/students/certs', [StudentsController::class, 'viewCerts'])->middleware('auth')->name('students.certs');
-Route::resource('students', StudentsController::class);
-
-=======
 Route::get(
     '/students/certs',
     [StudentsController::class, 'viewCerts']
 )->middleware('auth')->name('students.certs');
->>>>>>> 42b7d79147bd0075b9fcf0d6a5680f932df3bfe4
 
 Route::resource('students', StudentsController::class);
 

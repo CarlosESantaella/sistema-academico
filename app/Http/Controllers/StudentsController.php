@@ -115,7 +115,6 @@ class StudentsController extends Controller
         $student->depnac = $request->depnac;
         $student->locnac = $request->locnac;
         $student->provincia = $request->provincia;
-        $student->departamento = $request->departamento;
         $student->zona = $request->zona;
         $student->seccion = $request->seccion;
         $student->calle = $request->calle;
