@@ -96,8 +96,6 @@ class StudentsController extends Controller
         }
         
 
-        die($request->provincia);
-
         // student data
         $student->foto = $file_name;
         $student->appaterno = $request->appaterno;
@@ -112,10 +110,10 @@ class StudentsController extends Controller
         $student->libro = $request->libro_n;
         $student->partida = $request->partida_n;
         $student->folio = $request->folio_n;
-        $student->paisnac = $request->npais;
-        $student->provnac = $request->nprovincia;
-        $student->depnac = $request->ndepartamento;
-        $student->locnac = $request->nlocalidad;
+        $student->paisnac = $request->paisnac;
+        $student->provnac = $request->provnac;
+        $student->depnac = $request->depnac;
+        $student->locnac = $request->locnac;
         $student->provincia = $request->provincia;
         $student->departamento = $request->departamento;
         $student->zona = $request->zona;
@@ -211,7 +209,8 @@ class StudentsController extends Controller
 
     }
 
-    public function viewCerts() {
+    public function viewCerts() 
+    {
         die("DALE WACHOOOO");
         //return view('students.certs');
     }
