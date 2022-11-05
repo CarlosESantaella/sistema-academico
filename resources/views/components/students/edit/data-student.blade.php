@@ -150,9 +150,9 @@
 
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label for="pais" class="col-sm-4 col-form-label">Pais :</label>
+                        <label for="paisnac" class="col-sm-4 col-form-label">Pais :</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="pais" name="npais"
+                            <input type="text" class="form-control" id="paisnac" name="paisnac"
                                 value="{{$student->paisnac}}">
                         </div>
                     </div>
@@ -160,12 +160,12 @@
 
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label for="provincia" class="col-sm-4 col-form-label">Provincia: </label>
+                        <label for="provnac" class="col-sm-4 col-form-label">Provincia: </label>
                         <div class="col-sm-8">
                             <select 
                                 class="form-control provincia-select"
-                                name="provincia" 
-                                id="provincia" 
+                                name="provnac" 
+                                id="provnac" 
                                 data-provincia="{{$student->provnac}}"
                             ></select>
                         </div>
@@ -174,12 +174,12 @@
 
                 <div class="col-6">
                     <div class="row">
-                        <label for="departamento" class="col-sm-4 col-form-label">Departamento:</label>
+                        <label for="depnac" class="col-sm-4 col-form-label">Departamento:</label>
                         <div class="col-sm-8">
                             <select 
                                 class="form-control departamento-select"
-                                name="departamento" 
-                                id="departamento" 
+                                name="depnac" 
+                                id="depnac" 
                                 data-departamento="{{$student->depnac}}"
                             ></select>
                         </div>
@@ -188,9 +188,9 @@
 
                 <div class="col-6">
                     <div class="row">
-                        <label for="localidad" class="col-sm-4 col-form-label">Localidad :</label>
+                        <label for="locnac" class="col-sm-4 col-form-label">Localidad :</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="localidad" name="nlocalidad"
+                            <input type="text" class="form-control" id="locnac" name="locnac"
                                 value="{{$student->locnac}}">
                         </div>
                     </div>
