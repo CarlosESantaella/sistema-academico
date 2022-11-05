@@ -19,12 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('students', StudentsController::class);
-
 Route::get(
     '/students/certs',
     [StudentsController::class, 'viewCerts']
 )->middleware('auth')->name('students.certs');
+
+Route::resource('students', StudentsController::class);
 
 Route::controller(LoginController::class)->group(function(){
     Route::get('/login', 'index')->middleware('guest')->name('login.index');
