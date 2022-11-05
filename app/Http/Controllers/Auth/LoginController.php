@@ -27,7 +27,6 @@ class LoginController extends Controller
         $request->validate([
             'nombres' => 'required',
             'clave' => 'required',
-            'user_type' => 'required'
         ]);
         
         $nombres = $request->nombres;
@@ -35,8 +34,8 @@ class LoginController extends Controller
         // $user_type = $request->user_type;
         
         
-        die('hola mundo');
         $user = User::where('clave', $clave)->first();
+
         if($user){
             $username_a = explode(' ', $user->nombres);
             $first_letter_names = '';

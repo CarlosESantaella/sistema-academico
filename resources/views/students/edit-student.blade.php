@@ -28,5 +28,5 @@
         var id_estudiante = "{{$student->codigo}}";
         var estado = "{{$student->estado}}";
     </script>
+    @vite('resources/js/edit-students.js')
 @endpush
-@vite('resources/js/edit-students.js')

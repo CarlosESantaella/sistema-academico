@@ -94,6 +94,9 @@ class StudentsController extends Controller
         }else{
             $file_name = $student->foto;
         }
+        
+
+        die($request->provincia);
 
         // student data
         $student->foto = $file_name;
@@ -114,6 +117,7 @@ class StudentsController extends Controller
         $student->depnac = $request->ndepartamento;
         $student->locnac = $request->nlocalidad;
         $student->provincia = $request->provincia;
+        $student->departamento = $request->departamento;
         $student->zona = $request->zona;
         $student->seccion = $request->seccion;
         $student->calle = $request->calle;
