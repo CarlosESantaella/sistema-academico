@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\Auth\LoginController;
@@ -22,6 +23,11 @@ Route::get('/', function () {
 Route::get(
     '/students/certs',
     [StudentsController::class, 'viewCerts']
+)->middleware('auth')->name('students.certs');
+
+Route::get(
+    '/dashboard/license-plates',
+    [AdminController::class, 'viewLicencePlates']
 )->middleware('auth')->name('students.certs');
 
 Route::resource('students', StudentsController::class);

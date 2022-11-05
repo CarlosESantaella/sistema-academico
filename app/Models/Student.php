@@ -18,7 +18,9 @@ class Student extends Model
     {
         return $this->belongsToMany(Responsible::class, 'ra', 'codalumno', 'codresponsable');
     }
+
     public function user(){
         return $this->belongsToMany(User::class, 'matricula', 'codalumno', 'codusuario');
     }
+
 }
