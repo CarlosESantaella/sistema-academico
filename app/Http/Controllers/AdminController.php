@@ -24,7 +24,7 @@ class AdminController extends Controller
         // }
         // echo json_encode($students_arr);
 
-        $students = LicensePlate::with(["course", "student"])->get();
+        $students = LicensePlate::with(["student", "course"])->get();
 
 
         die();

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\LicensePlate;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
 {
@@ -14,6 +15,6 @@ class Course extends Model
     protected $table = 'curso';
     
     public function license_plate() {
-        return $this->belongsTo(LicensePlate::class, 'codcurso', 'codigo');
+        return $this->hasOne(LicensePlate::class, 'codcurso', 'codigo');
     }
 }
