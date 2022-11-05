@@ -100,7 +100,7 @@ $(document).ready(function(){
     }
 
     function findDepartamentos(claseProvincia, claseSubProvincia, setSelected) {
-        const departamentoSeleccionado = $(claseProvincia).data('provincia');
+        const departamentoSeleccionado = $(claseSubProvincia).data('departamento');
         let provincia = $(claseProvincia).val();
         if (provincia != "") {
             let optionsDepartamentos = "";
