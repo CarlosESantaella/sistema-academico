@@ -20,6 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::controller(AdminController::class)->group(function(){
+    Route::get('/dashboard', 'index')->middleware('auth')->name('admins.index');
+    Route::get('/dashboard/license-plates', 'viewLicencePlates')->middleware('auth')->name('admins.lp');
+
+});
+
 Route::get(
     '/students/certs',
     [StudentsController::class, 'viewCerts']

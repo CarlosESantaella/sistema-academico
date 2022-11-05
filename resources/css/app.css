@@ -1,38 +1,56 @@
 @tailwind base;
     @layer base{
         .form-control[readonly], .form-select[readonly] {
-            @apply bg-slate-200 !important;
+            @apply tw-bg-slate-200 !important;
         }
         .form-control, .form-select {
-            @apply bg-slate-50 !important;
+            @apply tw-bg-slate-50 !important;
         }
         .btn-primary-custom, 
         .nav-pills .nav-link.active, 
         .nav-pills .show>.nav-link {
-            @apply bg-[#101f34];
-            @apply border-[#101f34];
-            @apply text-white !important;
+            @apply tw-bg-[#101f34];
+            @apply tw-border-[#101f34];
+            @apply tw-text-white !important;
         }
         .btn-outline-primary {
-            @apply text-[#101f34];
-            @apply border-[#101f34];
+            @apply tw-text-[#101f34];
+            @apply tw-border-[#101f34];
         }
         .btn.btn-primary-custom:hover, .btn.btn-outline-primary:hover,
         .btn.btn-primary-custom:focus, .btn.btn-outline-primary:focus,
         .btn.btn-primary-custom:active, .btn.btn-outline-primary:active {
-            @apply bg-[#001840];
-            @apply border-[#001840];
+            @apply tw-bg-[#001840];
+            @apply tw-border-[#001840];
         }
         .btn-danger-custom {
-            @apply bg-[#fc0122]
+            @apply tw-bg-[#fc0122]
         }
         .nav-link-custom, .text-primary-custom {
-            @apply text-[#101f34] !important
+            @apply tw-text-[#101f34] !important
         }
         .bg-primary-custom {
-            @apply bg-[#101f34]
+            @apply tw-bg-[#101f34]
         }
     }
 @tailwind components;
 @tailwind utilities;
 
+:root{
+    --color-primary: #101f34;
+}
+
+*{
+    box-sizing: border-box;
+}
+.nav-link.active{
+    border-bottom: 2px solid white;
+    /* padding-bottom: .4rem; */
+}
+/* .dropdown-item.active{
+    background: var(--color-primary);
+    color: white;
+} */
+main{
+    min-height: 100vh;
+}

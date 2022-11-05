@@ -61,7 +61,7 @@ class LoginController extends Controller
                 }else if(auth()->user()->tipo == 1){
                     echo 'eres un profesor';
                 }else if(auth()->user()->tipo == 0){
-                    echo 'eres un administrador';
+                    return redirect()->route('admins.index');
                 }
 
 
