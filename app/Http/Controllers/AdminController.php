@@ -10,27 +10,23 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         return view('admins.index');
     }
-    public function viewLicencePlates() {
-        // $students_arr = [];
-        // $students = User::get();
-        // foreach ($students as $key => $student) {
-        //     $matricula = $student->student();
-        //     $student["matricula"] = $matricula;
-        //     $students_arr[] = $student;
-        // }
-        // echo json_encode($students_arr);
 
-        $students = LicensePlate::with(["student", "course"])->get();
+    public function viewLicencePlates($startDate=false, $endDate=false) {
+        $students = LicensePlate::with(["student", "course"]);
 
-        echo $students[0];
-        die();
+        // Filter by date
+        if ($startDate && $endDate) {
+            $students = LicensePlate::with(["student", "course"])
+                ->where('finscripcion', '>=', $startDate)
+                ->where('finscripcion', '<=', $endDate)->get();
+        }else {
+            $students = LicensePlate::with(["student", "course"])->get();
+        }
 
-        return view('admins.lp', ['students' => $students]);
+        return view('admins.licenses-plates', ['students' => $students]);
     }
-
 
 }
