@@ -16,6 +16,6 @@ class LicensePlate extends Model
 
     public function student()
     {
-        return $this->belongsTo(Student::class, 'codalumno', 'codigo');
+        return $this->hasOne(Student::class, 'codalumno', 'codigo');
     }
 }
