@@ -14,8 +14,11 @@ class LicensePlate extends Model
     protected $primaryKey = 'codigo';
     protected $table = 'matricula';
 
-    public function student()
-    {
+    public function student() {
         return $this->belongsTo(Student::class, 'codalumno', 'codigo');
+    }
+
+    public function course() {
+        return $this->hasOne(Course::class, 'codcurso', 'codigo');
     }
 }
