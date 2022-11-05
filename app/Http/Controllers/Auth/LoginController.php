@@ -29,12 +29,13 @@ class LoginController extends Controller
             'clave' => 'required',
             'user_type' => 'required'
         ]);
-
+        
         $nombres = $request->nombres;
         $clave = $request->clave;
-        $user_type = $request->user_type;
+        // $user_type = $request->user_type;
         
-            
+        
+        die('hola mundo');
         $user = User::where('clave', $clave)->first();
         if($user){
             $username_a = explode(' ', $user->nombres);
@@ -46,7 +47,7 @@ class LoginController extends Controller
             }
             
             $correct_username = $first_letter_names.$user->appaterno;
-            // die($correct_username);
+            
             if($correct_username == $nombres){
                 //PRUEBA1 PRUEBA2
                 //777777CLS
