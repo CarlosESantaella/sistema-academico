@@ -9,9 +9,9 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 @auth
                     @if(auth()->user()->tipo == 3)
-                        <li><a href="#" class="nav-link px-2 text-dark">Inicio</a></li>
-                        <li><a href="#" class="nav-link px-2 text-dark">Alumnos</a></li>
-                        <li><a href="#" class="nav-link px-2 text-dark">Notas</a></li>
+                        <li><a href="#" class="nav-link px-2 text-light">Inicio</a></li>
+                        <li><a href="#" class="nav-link px-2 text-light">Alumnos</a></li>
+                        <li><a href="#" class="nav-link px-2 text-light">Notas</a></li>
                     @endif
                 @endauth
             </ul>
@@ -26,7 +26,7 @@
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
 
-                        <button type="submit" class="text-primary">Logout</button>
+                        <button type="submit" class="text-danger">Logout</button>
                     </form>
                 @endauth
             </div>
