@@ -26,7 +26,7 @@ class AdminController extends Controller
 
         $students = LicensePlate::with(["student", "course"])->get();
 
-
+        echo $students[0];
         die();
 
         return view('admins.lp', ['students' => $students]);

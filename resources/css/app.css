@@ -9,28 +9,28 @@
         .btn-primary-custom, 
         .nav-pills .nav-link.active, 
         .nav-pills .show>.nav-link {
-            @apply tw-bg-[#101f34];
-            @apply tw-border-[#101f34];
+            @apply tw-bg-[#101f34] !important;
+            @apply tw-border-[#101f34] !important;
             @apply tw-text-white !important;
         }
         .btn-outline-primary {
-            @apply tw-text-[#101f34];
-            @apply tw-border-[#101f34];
+            @apply tw-text-[#101f34] !important;
+            @apply tw-border-[#101f34] !important;
         }
         .btn.btn-primary-custom:hover, .btn.btn-outline-primary:hover,
         .btn.btn-primary-custom:focus, .btn.btn-outline-primary:focus,
         .btn.btn-primary-custom:active, .btn.btn-outline-primary:active {
-            @apply tw-bg-[#001840];
-            @apply tw-border-[#001840];
+            @apply tw-bg-[#001840] !important;
+            @apply tw-border-[#001840] !important;
         }
         .btn-danger-custom {
             @apply tw-bg-[#fc0122]
         }
         .nav-link-custom, .text-primary-custom {
-            @apply tw-text-[#101f34] !important
+            @apply tw-text-[#101f34] !important;
         }
         .bg-primary-custom {
-            @apply tw-bg-[#101f34]
+            @apply tw-bg-[#101f34] !important;
         }
     }
 @tailwind components;
