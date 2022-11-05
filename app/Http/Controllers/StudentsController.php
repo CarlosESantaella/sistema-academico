@@ -210,4 +210,9 @@ class StudentsController extends Controller
 
 
     }
+
+    public function viewCerts() {
+        die("DALE WACHOOOO");
+        //return view('students.certs');
+    }
 }
