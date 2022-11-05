@@ -18,4 +18,8 @@ class LicensePlate extends Model
     {
         return $this->hasOne(Student::class, 'codalumno', 'codigo');
     }
+
+    public function course() {
+        return $this->hasOne(Course::class, 'codcurso', 'codigo');
+    }
 }
