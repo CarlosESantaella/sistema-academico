@@ -10,14 +10,23 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         return view('admins.index');
     }
-    public function viewLicencePlates() {
-        $students = LicensePlate::with(["student", "course"])->get();
+
+    public function viewLicencePlates($startDate=false, $endDate=false) {
+        $students = LicensePlate::with(["student", "course"]);
+
+        // Filter by date
+        if ($startDate && $endDate) {
+            $students = LicensePlate::with(["student", "course"])
+                ->where('finscripcion', '>=', $startDate)
+                ->where('finscripcion', '<=', $endDate)->get();
+        }else {
+            $students = LicensePlate::with(["student", "course"])->get();
+        }
+
         return view('admins.licenses-plates', ['students' => $students]);
     }
-
 
 }
