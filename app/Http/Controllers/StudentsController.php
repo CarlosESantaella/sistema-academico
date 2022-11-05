@@ -95,7 +95,7 @@ class StudentsController extends Controller
             $file_name = $student->foto;
         }
         
-
+        // die($request->depnac);
         // student data
         $student->foto = $file_name;
         $student->appaterno = $request->appaterno;
