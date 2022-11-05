@@ -2,16 +2,31 @@
 <header class="p-3 border-bottom bg-primary-custom">
     <div class="container-fluid">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 me-3 text-dark text-decoration-none">
                 <img src="{{asset('images/logo-salle.png')}}" alt="Logo la salle" width="30px" class="mr-2">
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 @auth
                     @if(auth()->user()->tipo == 3)
-                        <li><a href="#" class="nav-link px-2 text-light">Inicio</a></li>
-                        <li><a href="#" class="nav-link px-2 text-light">Alumnos</a></li>
-                        <li><a href="#" class="nav-link px-2 text-light">Notas</a></li>
+                        <x-nav-link 
+                            :href="route('students.edit', ['student'=>auth()->user()->clave])" 
+                            :active="request()->routeIs('students.edit')"
+                        >
+                            Inicio
+                        </x-nav-link>
+                        {{-- <x-nav-link 
+                            :href="route('students.edit', ['student'=>auth()->user()->codigo])" 
+                            :active="request()->routeIs('students.edit')"
+                        >
+                            Notas
+                        </x-nav-link> --}}
+                        <x-nav-link 
+                            :href="route('students.certs')" 
+                            :active="request()->routeIs('students.certs')"
+                        >
+                            Certificados
+                        </x-nav-link>
                     @endif
                 @endauth
             </ul>
