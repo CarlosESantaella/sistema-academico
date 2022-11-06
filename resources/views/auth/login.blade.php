@@ -1,9 +1,9 @@
 @extends('layouts.layout')
 @section('title', 'Login')
 @section('content')
-<main class="h-screen d-flex justify-content-center align-items-center" style="height: calc(100vh - 80px)">
+<main class="tw-h-screen d-flex justify-content-center align-items-center" style="height: calc(100vh - 80px)">
 
-        <div class="card p-0 max-w-md w-100">
+        <div class="card p-0 tw-max-w-md w-100">
             <img src="{{asset('images/logo-salle-2.png')}}" alt="Logo salle" class="w-100">
             <div class="p-5">
                 @if(session('message'))
