@@ -28,7 +28,7 @@
                 <td>{{ $student->course->nivel }}</td>
                 <td>{{ $student->course->turno }}</td>
                 <td>{{ ($student->student->sexo == "M")? 'Masculino' : 'Femenino' }}</td>
-                <td>{{ $student->student->responsible[0]?->nombres }} {{ $student->student->responsible[0]?->appaterno }} {{ $student->student->responsible[0]?->apmaterno }}</td>
+                <td>{{ $student->student->responsibles[0]?->nombres }} {{ $student->student->responsibles[0]?->appaterno }} {{ $student->student->responsibles[0]?->apmaterno }}</td>
             </tr>
         @endforeach
        

@@ -17,7 +17,7 @@ class AdminController extends Controller
     }
 
     public function viewLicencePlates($startDate=false, $endDate=false) {
-        $students = LicensePlate::with(["student", "course"]);
+        $students = LicensePlate::with(["student", "course", "student.responsibles"]);
 
         // Filter by date
         if ($startDate && $endDate) {
@@ -25,7 +25,7 @@ class AdminController extends Controller
                 ->where('finscripcion', '>=', $startDate)
                 ->where('finscripcion', '<=', $endDate)->get();
         }else {
-            $students = LicensePlate::with(["course", "student.responsibles"])->get();
+            $students = LicensePlate::with(["course", "student", "student.responsibles"])->get();
         }
 
 
