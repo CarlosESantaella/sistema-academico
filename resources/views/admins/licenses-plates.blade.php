@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="d-flex align-items-center">
-                <a href="{{ route('students.license-plates-export', ['startDate' => $startDate, 'endDate' => $endDate]) }}" class="btn btn-success me-1 text-break">Exportar Excel</a>
+                <a href="{{ route('students.license-plates-export', ['startDate' => $startDate, 'endDate' => $endDate, 'curso' => $curso, 'nivel' => $nivel, 'turno' => $turno]) }}" class="btn btn-success me-1 text-break">Exportar Excel</a>
                 <button type="submit" class="btn btn-primary-custom search-table">Buscar</button>
             </div>
         </div>

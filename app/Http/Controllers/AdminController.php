@@ -73,8 +73,9 @@ class AdminController extends Controller
         ]);
     }
 
-    public function exportLicensePlates($startDate=false, $endDate=false) {
-        return Excel::download(new LicensesPlatesExport($startDate, $endDate), 'matriculas.xlsx');
+    public function exportLicensePlates(Request $request) {
+        $students = $this->getLicencePlatesByFilter($request);
+        return Excel::download(new LicensesPlatesExport($students), 'matriculas.xlsx');
     }
 
 }

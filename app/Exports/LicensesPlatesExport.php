@@ -12,22 +12,13 @@ class LicensesPlatesExport implements FromCollection
     * @return \Illuminate\Support\Collection
     */
 
-    public function __construct($startDate, $endDate)
+    public function __construct($students)
     {
-        $this->startDate = $startDate;
-        $this->endDate = $endDate;
+        $this->students = $students;
     }
 
     public function collection()
     {
-        // Filter by date
-        if ($this->startDate && $this->endDate) {
-            $students = LicensePlate::with(["student", "course", "student.responsibles"])
-                ->where('finscripcion', '>=', $this->startDate)
-                ->where('finscripcion', '<=', $this->endDate)->get();
-        }else {
-            $students = LicensePlate::with(["student", "course", "student.responsibles"])->get();
-        }
 
         $students_arr = [];
         $students_arr[] = [
@@ -50,7 +41,7 @@ class LicensesPlatesExport implements FromCollection
         $students_arr = collect($students_arr);
 
 
-        foreach ($students as $key => $s) {
+        foreach ($this->students as $key => $s) {
             
             $responsible_1 = isset($s->student->responsibles[0]) ? $s->student->responsibles[0]: [];
             $responsible_2 = isset($s->student->responsibles[1]) ? $s->student->responsibles[1]: [];
