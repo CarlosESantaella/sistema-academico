@@ -11,9 +11,9 @@
                         value="{{ $student->codigo }}">
                 </div>
             </div>
-            <p class="mb-2">
+            {{-- <p class="mb-2">
                 <b>Apellidos y Nombres</b>
-            </p>
+            </p> --}}
             <div class="mb-3 row">
                 <label for="appaterno" class="col-4 col-form-label">Ap. Paterno</label>
                 <div class="col-8">
@@ -27,7 +27,7 @@
                     <input type="text" class="form-control" id="apmaterno" name="apmaterno"
                         value="{{$student->apmaterno}}">
                 </div>
-            </div>
+            </div> 
             <div class="mb-3 row">
                 <label for="nombres" class="col-4 col-form-label">Nombres</label>
                 <div class="col-8">

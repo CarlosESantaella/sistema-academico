@@ -45,7 +45,7 @@
                     <tr>
                         <td>{{ $student->student->codigo }}</td>
                         <td>{{ $student->student->nombres }} {{ $student->student->appaterno }} {{ $student->student->apmaterno }}</td>
-                        <td>{{ $student->course->grumeral }} {{ $student->course->paralelo }}</td>
+                        <td>{{ $student->course->gnumeral }} {{ $student->course->paralelo }}</td>
                         <td>{{ $student->course->nivel }}</td>
                         <td>{{ $student->course->turno }}</td>
                         <td>{{ ($student->student->sexo == "M")? 'Masculino' : 'Femenino' }}</td>
