@@ -32,9 +32,9 @@ Route::get(
 )->middleware('auth')->name('students.certs');
 
 Route::get(
-    '/dashboard/license-plates/{startDate?}/{endDate?}',
+    '/dashboard/licenses-plates/{startDate?}/{endDate?}',
     [AdminController::class, 'viewLicencePlates']
-)->middleware('auth')->name('students.certs');
+)->middleware('auth')->name('admins.lp');
 
 Route::resource('students', StudentsController::class);
 

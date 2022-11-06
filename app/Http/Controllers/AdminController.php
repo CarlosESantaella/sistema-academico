@@ -19,12 +19,14 @@ class AdminController extends Controller
 
         // Filter by date
         if ($startDate && $endDate) {
-            $students = LicensePlate::with(["student", "course"])
+            $students = LicensePlate::with(["student", "course"])->parents()
                 ->where('finscripcion', '>=', $startDate)
                 ->where('finscripcion', '<=', $endDate)->get();
         }else {
-            $students = LicensePlate::with(["student", "course"])->get();
+            $students = LicensePlate::with(["course", "student.responsibles"])->get();
         }
+
+
 
         return view('admins.licenses-plates', ['students' => $students]);
     }

@@ -26,7 +26,7 @@
                 Buscar...
             </x-nav-link>
         </li>
-        <li class="">
+        <li>
             <x-nav-link
                 href="#"
                 :active="false"
@@ -36,7 +36,7 @@
                 Registrar Nuevo
             </x-nav-link>
         </li>
-        <li class="">
+        <li>
             <x-nav-link
                 href="#"
                 :active="false"
@@ -49,12 +49,11 @@
         <li>
             <hr class="dropdown-divider">
         </li>
-        <li class="">
+        <li>
             <x-nav-link
-                href="#"
-                :active="false"
+                :href="route('admins.lp')"
+                :active="request()->routeIs('admins.lp')"
                 class="dropdown-item"
-
             >
                 Inscripciones por día
             </x-nav-link>
