@@ -2,46 +2,25 @@
 
 namespace App\Exports;
 
-use App\Models\Student;
-use App\Models\LicensePlate;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx as Writer;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx as Reader;
 
-class LicensesPlatesExport implements FromCollection
-{
-    /**
-    * @return \Illuminate\Support\Collection
-    */
+class LicensesPlatesExport {
 
-    public function __construct($students)
+    public static function export($students)
     {
-        $this->students = $students;
-    }
 
-    public function collection()
-    {
+        $reader = new Reader();
+        $spreadsheet = $reader->load("template-historial-matriculas.xlsx");
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $writer = new Writer($spreadsheet);
+
+        header("Content-Disposition: attachment; filename=historial-matriculas.xlsx");
 
         $students_arr = [];
-        $students_arr[] = [
-            "CODIGO", "RUDE", "CI", "EXP", "PASAPORTE", "AP. PATERNO", "AP. MATERNO", "NOMBRE",
-            "APELLIDOS Y NOMBRES", "SEXO", "CORREO", "CORREO INST.", "CELULAR", "PAIS NAC.", 
-            "DEP NAC.", "PROV NAC.", "LOC NAC.", "F. NAC", "OFICIALIA", "LIBRO", "PARTIDA",
-            "FOLIO", "PROVINCIA", "SECCION", "LOCALIDAD", "ZONA", "CALLE", "NUMERO", "TELEFONO",
-            "PERTENECE", "N. SALUD", "TRANSPORTE", "TIEMPO", "ESTADO", "SIE", "NOMBRE NIT",
-            "NIT", 
 
-            "CODIGO", "CI", "EXP", "NOMBRE", "AP. PATERNO", "AP.MATERNO", "F. NAC",
-            "IDIOMA", "OCUPACION", "G. INSTRUCCION", "CELULAR", "TELEFONO", "EMAIL", "RELACION",
-
-            "CODIGO", "CI", "EXP", "NOMBRE", "AP. PATERNO", "AP.MATERNO", "F. NAC",
-            "IDIOMA", "OCUPACION", "G. INSTRUCCION", "CELULAR", "TELEFONO", "EMAIL", "RELACION",
-
-            "CURSO", "TURNO", "NIVEL"
-
-        ];
-        $students_arr = collect($students_arr);
-
-
-        foreach ($this->students as $key => $s) {
+        foreach ($students as $key => $s) {
             
             $responsible_1 = isset($s->student->responsibles[0]) ? $s->student->responsibles[0]: [];
             $responsible_2 = isset($s->student->responsibles[1]) ? $s->student->responsibles[1]: [];
@@ -50,7 +29,7 @@ class LicensesPlatesExport implements FromCollection
                 $s->student->codigo, $s->student->rude, $s->student->ci, $s->student->exp_ci, 
                 $s->student->pasaporte, $s->student->appaterno, $s->student->apmaterno,
                 $s->student->nombres,  $s->student->appaterno ." ". $s->student->apmaterno ." ". $s->student->nombres,
-                $s->student->sexo, $s->student->correo_institucional, $s->correo_institucional, 
+                $s->student->sexo, $s->student->correo_institucional,
                 $s->student->celular, $s->student->paisnac, $s->student->depnac, 
                 $s->student->provnac, $s->student->locnac, $s->student->fnacimiento, 
                 $s->student->oficialia, $s->student->libro, $s->student->partida, 
@@ -79,7 +58,11 @@ class LicensesPlatesExport implements FromCollection
                 $s->course->paralelo, $s->course->turno, $s->course->nivel
             ];
         }
+        
+        $sheet->fromArray($students_arr, NULL, 'A2');
 
-        return $students_arr;
+        $writer->save("historial-matriculas.xlsx");
+        $content = file_get_contents("historial-matriculas.xlsx");
+        exit($content);
     }
 }
