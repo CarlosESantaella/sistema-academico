@@ -36,8 +36,9 @@ Route::get(
     [AdminController::class, 'exportLicensePlates']
 )->middleware('auth')->name('students.license-plates-export');
 
-Route::get(
-    '/dashboard/license-plates/{startDate?}/{endDate?}',
+Route::match(
+    ['get', 'post'],
+    '/dashboard/license-plates',
     [AdminController::class, 'viewLicencePlates']
 )->middleware('auth')->name('admins.licenses_plates');
 

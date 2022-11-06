@@ -16,22 +16,61 @@ class AdminController extends Controller
         return view('admins.index');
     }
 
-    public function viewLicencePlates($startDate=false, $endDate=false) {
-        
-        $students = LicensePlate::with(["student", "course", "student.responsibles"]);
+    public function getLicencePlatesByFilter(Request $request) {
+        $startDate = $request->startDate ?? false;
+        $endDate = $request->endDate ?? false;
+        $curso = $request->curso ?? false;
+        $curso_parse = [];
+        if ($curso) {
+            $curso_parse = explode(" ", $curso);
+        }
+        $nivel = $request->nivel ?? false;
+        $turno = $request->turno ?? false;
+        $students = LicensePlate::with([
+            "course",
+            "student",
+            "student.responsibles"
+        ])->when(
+            $startDate,
+            function ($query) use ($startDate) {
+                return $query->where('finscripcion', '>=', $startDate);
+            }
+        )->when(
+            $endDate,
+            function ($query) use ($endDate) {
+                return $query->where('finscripcion', '<=', $endDate);
+            }
+        )->get();
 
-        // Filter by date
-        if ($startDate && $endDate) {
-            $students = LicensePlate::with(["course", "student", "student.responsibles"])
-                ->where('finscripcion', '>=', $startDate)
-                ->where('finscripcion', '<=', $endDate)->get();
-        }else {
-            $students = LicensePlate::with(["course", "student", "student.responsibles"])->get();
+        $results = [];
+
+        // Filter
+        foreach ($students as $key => $student) {
+            if ($curso) {
+                if ($student->course->gnumeral != $curso_parse[0] || 
+                    $student->course->paralelo != $curso_parse[1]) {
+                        continue;       
+                }
+            }
+            if ($nivel) {
+                if ($student->course->nivel != $nivel) continue;
+            }
+            if ($turno) {
+                if ($student->course->turno != $turno) continue;
+            }
+            $results[] = $student;
         }
 
+        return $results;
+    }
 
-
-        return view('admins.licenses-plates', ['students' => $students, 'startDate' => $startDate, 'endDate' => $endDate]);
+    public function viewLicencePlates(Request $request) {
+        $students = $this->getLicencePlatesByFilter($request);
+        return view('admins.licenses-plates', [
+            'students' => $students, 'startDate' => $request->startDate, 
+            'endDate' => $request->endDate, 'curso' => $request->curso,
+            'nivel' => $request->nivel, 'turno' => $request->turno
+        ]);
     }
 
     public function exportLicensePlates($startDate=false, $endDate=false) {
