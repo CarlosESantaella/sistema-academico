@@ -4,7 +4,7 @@
     <div class="row mt-3">
 
         <!-- Familiar 1 -->
-        <div class="col-md-6 pe-md-3">
+        <div class="col-md-6 pe-md-3 {{$responsibles[0]->relacion == 'Padre' ? 'order-2': 'order-1'}}">
             <div class="mb-3 row">
                 <input type="hidden" id="codigo_1" name="codigo_1" value="{{$responsibles[0]->codigo}}">
                 <label for="relacion_1" class="col-4 col-form-label">Relación: </label>
@@ -120,7 +120,7 @@
         <hr class="my-4 d-block d-md-none">
 
         <!-- Familiar 2 -->
-        <div class="border-start-md ps-md-3 col-md-6">
+        <div class="border-start-md ps-md-3 col-md-6 {{$responsibles[1]->relacion == 'Padre' ? 'order-2': 'order-1'}}">
             <div class="mb-3 row">
                 <label for="relacion_2" class="col-4 col-form-label">Relación: </label>
                 <input type="hidden" id="codigo_2" name="codigo_2" value="{{$responsibles[1]->codigo}}">

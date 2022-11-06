@@ -80,7 +80,8 @@ $(document).ready(function(){
         ],
         "Pando": [
             "Nicolas Suarez", "Manuripi", "Madre de Dios", "Abuna", "Gral. Federico Roman",
-        ]
+        ],
+        "Ninguno": ["Ninguno"] 
     };
 
     function initSelectDepartamento(clase) {
