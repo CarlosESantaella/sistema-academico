@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Student;
 use App\Models\LicensePlate;
 use Illuminate\Http\Request;
+use App\Exports\LicensesPlatesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -29,6 +31,10 @@ class AdminController extends Controller
 
 
         return view('admins.licenses-plates', ['students' => $students]);
+    }
+
+    public function exportLicensePlates($startDate=false, $endDate=false) {
+        return Excel::download(new LicensesPlatesExport($startDate, $endDate), 'matriculas.xlsx');
     }
 
 }

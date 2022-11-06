@@ -32,9 +32,14 @@ Route::get(
 )->middleware('auth')->name('students.certs');
 
 Route::get(
-    '/dashboard/licenses-plates/{startDate?}/{endDate?}',
+    '/dashboard/license-plates/export/{startDate?}/{endDate?}',
+    [AdminController::class, 'exportLicensePlates']
+)->middleware('auth')->name('students.license-plates-export');
+
+Route::get(
+    '/dashboard/license-plates/{startDate?}/{endDate?}',
     [AdminController::class, 'viewLicencePlates']
-)->middleware('auth')->name('admins.lp');
+)->middleware('auth')->name('admins.licenses_plates');
 
 Route::resource('students', StudentsController::class);
 

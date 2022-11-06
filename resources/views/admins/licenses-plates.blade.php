@@ -4,7 +4,7 @@
 @endpush
 @section('content')
 @php
-    die($students[0]);
+    // die($students[0]);
 @endphp
 
 <table id="example" class="table table-striped table-bordered" style="width:100%">

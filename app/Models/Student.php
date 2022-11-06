@@ -15,8 +15,7 @@ class Student extends Model
     protected $primaryKey = 'codigo';
     protected $table = 'alumno';
 
-    public function responsibles()
-    {
+    public function responsibles() {
         return $this->belongsToMany(Responsible::class, 'ra', 'codalumno', 'codresponsable');
     }
 
