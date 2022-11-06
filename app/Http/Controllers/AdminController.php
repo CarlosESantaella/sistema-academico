@@ -17,11 +17,12 @@ class AdminController extends Controller
     }
 
     public function viewLicencePlates($startDate=false, $endDate=false) {
+        
         $students = LicensePlate::with(["student", "course", "student.responsibles"]);
 
         // Filter by date
         if ($startDate && $endDate) {
-            $students = LicensePlate::with(["student", "course"])->parents()
+            $students = LicensePlate::with(["course", "student", "student.responsibles"])
                 ->where('finscripcion', '>=', $startDate)
                 ->where('finscripcion', '<=', $endDate)->get();
         }else {
@@ -30,7 +31,7 @@ class AdminController extends Controller
 
 
 
-        return view('admins.licenses-plates', ['students' => $students]);
+        return view('admins.licenses-plates', ['students' => $students, 'startDate' => $startDate, 'endDate' => $endDate]);
     }
 
     public function exportLicensePlates($startDate=false, $endDate=false) {

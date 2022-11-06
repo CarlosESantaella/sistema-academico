@@ -51,8 +51,8 @@
         </li>
         <li>
             <x-nav-link
-                :href="route('admins.lp')"
-                :active="request()->routeIs('admins.lp')"
+                :href="route('admins.licenses_plates')"
+                :active="request()->routeIs('admins.licenses_plates')"
                 class="dropdown-item"
             >
                 Inscripciones por día
