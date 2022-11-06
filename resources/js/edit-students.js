@@ -39,8 +39,8 @@ $(document).ready(function(){
         $(".swal2-image").attr("style", "margin: 0; width: 100%")
     }
 
-    // Provincias
-    const provincias = {
+    // Departamentos
+    const departamentos = {
         "Chuquisaca": [
             "Oropeza", "Azurduy", "Zudanez", "Tomina", "Hernando Siles", "Yamparaez",
             "Nor Cinti", "Belisario Boeto", "Sud Cinti", "Luis Calvo" 
@@ -83,45 +83,45 @@ $(document).ready(function(){
         ]
     };
 
-    function initSelectProvincia(clase) {
-        const provinciaSeleccionada = $(clase).data('provincia');
+    function initSelectDepartamento(clase) {
+        const departamentoSeleccionada = $(clase).data('departamento');
 
-        let optionsProvincias = "";
+        let optionsDepartamentos = "";
         let i = 0;
-        for (let provincia of Object.keys(provincias)) {
+        for (let departamento of Object.keys(departamentos)) {
             let helper = "";
-            if (provincia == provinciaSeleccionada) helper = "selected";
-            optionsProvincias += `
-                <option value="${provincia}" ${(i == 0)? 'selected' : '' } ${helper} >${provincia}</option>
+            if (departamento == departamentoSeleccionada) helper = "selected";
+            optionsDepartamentos += `
+                <option value="${departamento}" ${(i == 0)? 'selected' : '' } ${helper} >${departamento}</option>
             `;
             i++;
         }
-        $(clase).html(optionsProvincias);
+        $(clase).html(optionsDepartamentos);
     }
 
-    function findDepartamentos(claseProvincia, claseSubProvincia, setSelected) {
-        const departamentoSeleccionado = $(claseSubProvincia).data('departamento');
-        let provincia = $(claseProvincia).val();
-        if (provincia != "") {
-            let optionsDepartamentos = "";
-            provincias[provincia].forEach(function (departamento, i) {
+    function findProvincias(claseDepartamento, claseProvincia, setSelected) {
+        const provinciaSeleccionada = $(claseProvincia).data('provincia');
+        let departamento = $(claseDepartamento).val();
+        if (departamento != "") {
+            let optionsProvincias = "";
+            departamentos[departamento].forEach(function (provincia, i) {
                 let helper = "";
-                if (departamento == departamentoSeleccionado && setSelected) {
+                if (provincia == provinciaSeleccionada && setSelected) {
                     helper = "selected"
                 };
-                optionsDepartamentos += `
-                    <option value="${departamento}" ${helper}>${departamento}</option>
+                optionsProvincias += `
+                    <option value="${provincia}" ${helper}>${provincia}</option>
                 `;
             })
-            $(claseSubProvincia).html(optionsDepartamentos);
+            $(claseProvincia).html(optionsProvincias);
         }
     }
 
     // Provincia y departamento de alumnos
-    initSelectProvincia(".provincia-select");
-    findDepartamentos(".provincia-select", ".departamento-select", true);
-    $(".provincia-select").change(function () {
-        findDepartamentos(".provincia-select", ".departamento-select", false);
+    initSelectDepartamento(".departamento-select");
+    findProvincias(".departamento-select", ".provincia-select", true);
+    $(".departamento-select").change(function () {
+        findProvincias(".departamento-select", ".provincia-select", false);
     })
 
 });

@@ -60,7 +60,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark btn-primary-custom " id="main_navbar">
     <div class="container-fluid">
     <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 me-3 text-dark text-decoration-none">
-        <img src="{{asset('images/logo-salle.png')}}" alt="Logo la salle" width="30px" class="mr-2">
+        <img src="{{asset('images/logo-salle.png')}}" alt="Logo la salle" width="50px" class="mr-2">
     </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

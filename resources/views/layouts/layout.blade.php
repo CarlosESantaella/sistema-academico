@@ -4,6 +4,8 @@
         <title>Sistema Académico | @yield('title')</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta>
+        <link rel="icon" type="image/png" href="{{asset('images/logo-salle.png')}}">
         @vite('resources/css/app.css')
         <link
             rel="stylesheet"
@@ -15,8 +17,6 @@
             href="https://cdn.jsdelivr.net/gh/kmlpandey77/bootnavbar@v1.1.1/css/bootnavbar.css"
         />
         @stack('styles')
-        <style>
-        </style>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         @livewireStyles
     </head>

@@ -113,6 +113,26 @@
                     </div>
                 </div>
 
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label for="celular_alumno" class="col-sm-4 col-form-label">Celular: </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="celular_alumno" name="celular_alumno"
+                                value="{{$student->celular}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label for="correo_institucional" class="col-sm-4 col-form-label">Correo institucional :</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="correo_institucional" name="correo_institucional"
+                                value="{{$student->correo_institucional}}">
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -163,7 +183,7 @@
                         <label for="provnac" class="col-sm-4 col-form-label">Provincia: </label>
                         <div class="col-sm-8">
                             <select 
-                                class="form-control provincia-select"
+                                class="form-select provincia-select"
                                 name="provnac" 
                                 id="provnac" 
                                 data-provincia="{{$student->provnac}}"
@@ -177,7 +197,7 @@
                         <label for="depnac" class="col-sm-4 col-form-label">Departamento:</label>
                         <div class="col-sm-8">
                             <select 
-                                class="form-control departamento-select"
+                                class="form-select departamento-select"
                                 name="depnac" 
                                 id="depnac" 
                                 data-departamento="{{$student->depnac}}"
@@ -239,7 +259,7 @@
 
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 mb-3">
                             <div class="row">
                                 <label for="calle" class="col-sm-4 col-form-label">Callle :</label>
                                 <div class="col-sm-8">
@@ -285,35 +305,4 @@
 
     </div>
     
-    <!-- Datos de contacto -->
-    <div class="card p-3 mt-3">
-        <div class="">
-            <label class="label fw-bold mb-2">Datos de contacto</label>
-            <div class="row">
-
-                <div class="col-6">
-                    <div class="mb-3 row">
-                        <label for="correo_institucional" class="col-sm-4 col-form-label">Correo institucional :</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="correo_institucional" name="correo_institucional"
-                                value="{{$student->correo_institucional}}">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <div class="mb-3 row">
-                        <label for="celular_alumno" class="col-sm-4 col-form-label">Celular: </label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="celular_alumno" name="celular_alumno"
-                                value="{{$student->celular}}">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
 </div>
