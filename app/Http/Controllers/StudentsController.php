@@ -61,10 +61,10 @@ class StudentsController extends Controller
     public function edit($id)
     {
         // $student = Student::where('codigo', $id)->get();
+        // die($id);
         $student = User::where('clave', $id)->firstOrFail()->student()->firstOrFail();
         // $student = User::where('clave', $id)->firstOrFail();
         // echo $student;
-        // die();
         if($student->estado == 0){
             
             Auth::logout();
@@ -216,14 +216,14 @@ class StudentsController extends Controller
         $newFiles = [];
 
         foreach($files as $file){
-            $file = basename($file);
+            $file = $file;
             if(strpos($file, auth()->user()->codigo) !== false){
                 $newFiles[] = $file;
             }
         }
 
         echo json_encode($newFiles);
-        
+
         return view('students.certs');
     }
 }

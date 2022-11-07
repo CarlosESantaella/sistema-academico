@@ -2,9 +2,14 @@
     <label class="label fw-bold mb-2">Información Familiar</label>
 
     <div class="row mt-3">
-
+        
         <!-- Familiar 1 -->
+        @isset($responsibles[0])
         <div class="col-md-6 pe-md-3 {{$responsibles[0]->relacion == 'Padre' ? 'order-2': 'order-1'}}">
+        @else
+        <div class="col-md-6 pe-md-3">
+
+        @endif
             <div class="mb-3 row">
                 <input type="hidden" id="codigo_1" name="codigo_1" value="{{$responsibles[0]->codigo ?? ''}}">
                 <label for="relacion_1" class="col-4 col-form-label">Relación: </label>
@@ -17,23 +22,10 @@
                         readonly
                         value="{{$responsibles[0]->relacion ?? ''}}"
                     >
-                    {{--<select name="relacion_1" id="relacion_1" class="form-select" readonly>
-                        <option 
-                            @if($responsibles[0]->relacion == 'Padre')         
-                                selected
-                            @endif
-                            value="Padre"
-                        >Padre</option>
-                        <option 
-                            @if($responsibles[0]->relacion == 'Madre')         
-                                selected
-                            @endif
-                            value="Madre"
-                        >Madre</option>--}}
                     </select>
                 </div>
-            </div>
-            <div class="mb-3 row">
+            </div> 
+             <div class="mb-3 row">
                 <label for="ci_1" class="col-4 col-form-label">C.I: </label>
                 <div class="col-8">
                     <input type="text" class="form-control" id="ci_1" name="ci_1" value="{{$responsibles[0]->ci ?? ''}}">
@@ -124,7 +116,12 @@
         <hr class="my-4 d-block d-md-none">
 
         <!-- Familiar 2 -->
-        <div class="border-start-md ps-md-3 col-md-6 {{$responsibles[1]->relacion == 'Padre' ? 'order-2': 'order-1'}}">
+        @isset($responsibles[0])
+        <div class="border-start-md ps-md-3 col-md-6  {{$responsibles[1]->relacion == 'Padre' ? 'order-2': 'order-1'}}">
+        @else
+        <div class="border-start-md ps-md-3 col-md-6 ">
+
+        @endif
             <div class="mb-3 row">
                 <label for="relacion_2" class="col-4 col-form-label">Relación: </label>
                 <input type="hidden" id="codigo_2" name="codigo_2" value="{{$responsibles[1]->codigo ?? ''}}">
