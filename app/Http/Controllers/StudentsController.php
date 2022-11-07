@@ -62,6 +62,9 @@ class StudentsController extends Controller
     {
         // $student = Student::where('codigo', $id)->get();
         $student = User::where('clave', $id)->firstOrFail()->student()->firstOrFail();
+        // $student = User::where('clave', $id)->firstOrFail();
+        // echo $student;
+        // die();
         if($student->estado == 0){
             
             Auth::logout();
@@ -209,6 +212,18 @@ class StudentsController extends Controller
     }
 
     public function viewCerts() {
+        $files = Storage::files('public/students/certs');
+        $newFiles = [];
+
+        foreach($files as $file){
+            $file = basename($file);
+            if(strpos($file, auth()->user()->codigo) !== false){
+                $newFiles[] = $file;
+            }
+        }
+
+        echo json_encode($newFiles);
+        
         return view('students.certs');
     }
 }

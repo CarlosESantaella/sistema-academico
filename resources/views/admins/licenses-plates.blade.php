@@ -7,7 +7,7 @@
 @endpush
 @section('content')
 @php
-    // die($students[0]->student->responsibles[0]->nombres);
+    // die($students[0]);
 @endphp
 <div class="container-table mx-auto mt-5" style="max-width: 1200px; width: 95%;">
 

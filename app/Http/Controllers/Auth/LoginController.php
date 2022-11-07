@@ -18,6 +18,36 @@ class LoginController extends Controller
     }
     public function index()
     {
+
+        // $students = Student::all();
+        // foreach($students as $student){
+        //     $usuario = User::firstOrCreate([
+        //         'codigo' => $student->codigo,
+        //         'appaterno' => $student->appaterno,
+        //         'apmaterno' => $student->apmaterno,
+        //         'nombres' => $student->nombres,
+        //         'clave' => $student->codigo.'CLS',
+        //         'fnacimiento' => $student->fnacimiento,
+        //         'tipo' => 3,
+        //         'ci' => $student->ci,
+        //     ]);
+
+        //     $student = Student::find($usuario->codigo);
+
+            
+
+        //     $student->usuario_fk = $usuario->codigo;
+            
+
+
+        //     $student->save();
+        // }
+
+
+        // die();
+
+
+
         return view('auth.login');
     }
 

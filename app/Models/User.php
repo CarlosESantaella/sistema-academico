@@ -44,7 +44,7 @@ class User extends Authenticatable
     // ];
 
     public function student(){
-        return $this->belongsToMany(Student::class, 'matricula', 'codusuario', 'codalumno');
+        return $this->hasOne(Student::class, 'usuario_fk', 'codigo');
 
     }
 

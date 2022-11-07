@@ -20,7 +20,7 @@ class Student extends Model
     }
 
     public function user(){
-        return $this->belongsToMany(User::class, 'matricula', 'codalumno', 'codusuario');
+        return $this->belongsTo(User::class, 'usuario_fk', 'codigo');
     }
 
     public function licenses_plates(){
