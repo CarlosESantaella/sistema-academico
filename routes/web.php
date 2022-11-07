@@ -51,3 +51,5 @@ Route::controller(LoginController::class)->group(function(){
 });
 
 Route::put('/students/{student}/changeState', [StudentsController::class, 'changeState'])->name('students.changestate');
+
+Route::delete('students/delete/ra/{id}', [StudentsController::class, 'deleteRA'])->name('students.delete.ra');

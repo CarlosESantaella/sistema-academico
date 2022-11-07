@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Student;
 use App\Models\Responsible;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -101,38 +102,38 @@ class StudentsController extends Controller
         // die($request->depnac);
         // student data
         $student->foto = $file_name;
-        $student->appaterno = $request->appaterno;
-        $student->apmaterno = $request->apmaterno;
-        $student->nombres = $request->nombres;
-        $student->ci = $request->documento;
-        $student->exp_ci = $request->expedido_del_ci;
-        $student->pasaporte = $request->pasaporte;
+        $student->appaterno = strtoupper($request->appaterno);
+        $student->apmaterno = strtoupper($request->apmaterno);
+        $student->nombres = strtoupper($request->nombres);
+        $student->ci = strtoupper($request->documento);
+        $student->exp_ci = strtoupper($request->expedido_del_ci);
+        $student->pasaporte = strtoupper($request->pasaporte);
         $student->fnacimiento = $request->fecha_nacimiento;
-        $student->sexo = $request->sexo;
-        $student->oficialia = $request->oficialia_n;
-        $student->libro = $request->libro_n;
-        $student->partida = $request->partida_n;
-        $student->folio = $request->folio_n;
-        $student->paisnac = $request->paisnac;
-        $student->provnac = $request->provnac;
-        $student->depnac = $request->depnac;
-        $student->locnac = $request->locnac;
-        $student->provincia = $request->provincia;
-        $student->zona = $request->zona;
-        $student->seccion = $request->seccion;
-        $student->calle = $request->calle;
-        $student->numero = $request->numero;
-        $student->localidad = $request->localidad;
-        $student->telefono = $request->telefono;
-        $student->sie = $request->sie;
-        $student->correo_institucional = $request->correo_institucional;
-        $student->celular = $request->celular_alumno;
+        $student->sexo = strtoupper($request->sexo);
+        $student->oficialia = strtoupper($request->oficialia_n);
+        $student->libro = strtoupper($request->libro_n);
+        $student->partida = strtoupper($request->partida_n);
+        $student->folio = strtoupper($request->folio_n);
+        $student->paisnac = strtoupper($request->paisnac);
+        $student->provnac = strtoupper($request->provnac);
+        $student->depnac = strtoupper($request->depnac);
+        $student->locnac = strtoupper($request->locnac);
+        $student->provincia = strtoupper($request->provincia);
+        $student->zona = strtoupper($request->zona);
+        $student->seccion = strtoupper($request->seccion);
+        $student->calle = strtoupper($request->calle);
+        $student->numero = strtoupper($request->numero);
+        $student->localidad = strtoupper($request->localidad);
+        $student->telefono = strtoupper($request->telefono);
+        $student->sie = strtoupper($request->sie);
+        $student->correo_institucional = strtoupper($request->correo_institucional);
+        $student->celular =$request->celular_alumno;
 
         //social aspects
-        $student->pertenece = $request->etnia;
-        $student->nsalud = $request->salud;
-        $student->transporte = $request->transporte;
-        $student->tiempo = $request->tiempo;
+        $student->pertenece = strtoupper($request->etnia);
+        $student->nsalud = strtoupper($request->salud);
+        $student->transporte = strtoupper($request->transporte);
+        $student->tiempo = strtoupper($request->tiempo);
 
         // institution of origin
 
@@ -148,40 +149,42 @@ class StudentsController extends Controller
         $responsible_1 = Responsible::find($request->codigo_1);
         $responsible_2 = Responsible::find($request->codigo_2);
 
-        $responsible_1->relacion = $request->relacion_1;
-        $responsible_1->ci = $request->ci_1;
-        $responsible_1->exp_ci = $request->expedido_del_ci_1;
-        $responsible_1->appaterno = $request->appaterno_1;
-        $responsible_1->apmaterno = $request->apmaterno_1;
-        $responsible_1->nombres = $request->nombres_1;
-        $responsible_1->idioma = $request->idioma_1;
-        $responsible_1->ocupacion = $request->ocupacion_1;
-        $responsible_1->ginstruccion = $request->ginstruccion_1;
-        $responsible_1->telefono = $request->telefono_1;
-        $responsible_1->celular = $request->celular_1;
-        $responsible_1->mail = $request->email_1;
-        $responsible_1->fnacimiento = $request->fecha_de_nacimiento_1;
-        
-        $responsible_2->relacion = $request->relacion_2;
-        $responsible_2->ci = $request->ci_2;
-        $responsible_2->exp_ci = $request->expedido_del_ci_2;
-        $responsible_2->appaterno = $request->appaterno_2;
-        $responsible_2->apmaterno = $request->apmaterno_2;
-        $responsible_2->nombres = $request->nombres_2;
-        $responsible_2->idioma = $request->idioma_2;
-        $responsible_2->ocupacion = $request->ocupacion_2;
-        $responsible_2->ginstruccion = $request->ginstruccion_2;
-        $responsible_2->telefono = $request->telefono_2;
-        $responsible_2->celular = $request->celular_2;
-        $responsible_2->mail = $request->email_2;
-        $responsible_2->fnacimiento = $request->fecha_de_nacimiento_2;
-        
+        if($responsible_1){
 
+            $responsible_1->relacion = strtoupper($request->relacion_1);
+            $responsible_1->ci = strtoupper($request->ci_1);
+            $responsible_1->exp_ci = strtoupper($request->expedido_del_ci_1);
+            $responsible_1->appaterno = strtoupper($request->appaterno_1);
+            $responsible_1->apmaterno = strtoupper($request->apmaterno_1);
+            $responsible_1->nombres = strtoupper($request->nombres_1);
+            $responsible_1->idioma = strtoupper($request->idioma_1);
+            $responsible_1->ocupacion = strtoupper($request->ocupacion_1);
+            $responsible_1->ginstruccion = strtoupper($request->ginstruccion_1);
+            $responsible_1->telefono = strtoupper($request->telefono_1);
+            $responsible_1->celular = strtoupper($request->celular_1);
+            $responsible_1->mail = strtoupper($request->email_1);
+            $responsible_1->fnacimiento = $request->fecha_de_nacimiento_1;
+            $responsible_1->save();
+        }
+        if($responsible_2){
 
+            $responsible_2->relacion = strtoupper($request->relacion_2);
+            $responsible_2->ci = strtoupper($request->ci_2);
+            $responsible_2->exp_ci = strtoupper($request->expedido_del_ci_2);
+            $responsible_2->appaterno = strtoupper($request->appaterno_2);
+            $responsible_2->apmaterno = strtoupper($request->apmaterno_2);
+            $responsible_2->nombres = strtoupper($request->nombres_2);
+            $responsible_2->idioma = strtoupper($request->idioma_2);
+            $responsible_2->ocupacion = strtoupper($request->ocupacion_2);
+            $responsible_2->ginstruccion = strtoupper($request->ginstruccion_2);
+            $responsible_2->telefono = strtoupper($request->telefono_2);
+            $responsible_2->celular = strtoupper($request->celular_2);
+            $responsible_2->mail = strtoupper($request->email_2);
+            $responsible_2->fnacimiento = $request->fecha_de_nacimiento_2;
+            $responsible_2->save();
+        }
 
         $student->save();
-        $responsible_1->save();
-        $responsible_2->save();
         
         return redirect()->route('students.edit', ['student' => $student->codigo.'CLS'])->with('message', 'Información actualizada correctamente');
 
@@ -211,7 +214,8 @@ class StudentsController extends Controller
 
     }
 
-    public function viewCerts() {
+    public function viewCerts() 
+    {
         $files = Storage::files('public/students/certs');
         $newFiles = [];
 
@@ -225,5 +229,12 @@ class StudentsController extends Controller
         // echo json_encode($newFiles);
 
         return view('students.certs');
+    }
+
+    public function deleteRA($id)
+    {
+        DB::table('ra')->where('id', $id)->delete();
+
+        
     }
 }
