@@ -222,7 +222,7 @@ class StudentsController extends Controller
             }
         }
 
-        echo json_encode($newFiles);
+        // echo json_encode($newFiles);
 
         return view('students.certs');
     }
