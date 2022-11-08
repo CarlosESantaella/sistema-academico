@@ -101,7 +101,7 @@
                 <label for="fecha_de_nacimiento_1" class="col-4 col-form-label">Fecha de nacimiento: </label>
                 <div class="col-8">
                     @isset($responsibles[0])
-                        <input type="date" class="form-control" id="fecha_de_nacimiento_1" name="fecha_de_nacimiento_1" value="{{$responsibles[0]->fnacimiento->format('Y-m-d')}}">
+                        <input type="date" class="form-control" id="fecha_de_nacimiento_1" name="fecha_de_nacimiento_1" value="{{$responsibles[0]->fnacimiento ? $responsibles[0]->fnacimiento->format('Y-m-d'): $responsibles[0]->fnacimiento}}">
                     @else
                         <input type="date" class="form-control" id="fecha_de_nacimiento_1" name="fecha_de_nacimiento_1" value="">
                     @endif
