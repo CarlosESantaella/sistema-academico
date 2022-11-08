@@ -21,7 +21,7 @@ $(document).ready(function(){
         
         if (deleteResponse.status == 200) {
             Swal.fire({
-                title: 'Responsable eliminado del estudainte',
+                title: 'Responsable eliminado del estudiante',
             })
             setTimeout(() => {
                 window.location.reload();
