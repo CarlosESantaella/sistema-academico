@@ -4,6 +4,37 @@ $(document).ready(function(){
         $('.alert').slideUp();
     }, 3000);
 
+    $(".delete-student").click(async function() {
+        let codalumno = $(this).data("codalumno");
+        let codresponsable = $(this).data("codresponsable");
+
+        const response = await fetch('/responsible_student/'+codresponsable+'/'+codalumno);
+        const res = await response.json();
+
+        const deleteResponse = await fetch('/responsible_student/'+res.id, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+        });
+        
+        if (deleteResponse.status == 200) {
+            Swal.fire({
+                title: 'Responsable eliminado del estudainte',
+            })
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
+        }else {
+            Swal.fire({
+                title: 'Ha habido un error al elminair responsable',
+            })
+        }
+        $(".swal2-image").attr("style", "margin: 0; width: 100%")
+
+    })
+
     function changeStatus(id_estudiante, estado) {
         fetch(
             "/students/"+id_estudiante+"/changeState",
@@ -41,6 +72,7 @@ $(document).ready(function(){
 
     // Departamentos
     const departamentos = {
+        "Ninguno": ["Ninguno"] ,
         "Chuquisaca": [
             "Oropeza", "Azurduy", "Zudanez", "Tomina", "Hernando Siles", "Yamparaez",
             "Nor Cinti", "Belisario Boeto", "Sud Cinti", "Luis Calvo" 
@@ -81,7 +113,6 @@ $(document).ready(function(){
         "Pando": [
             "Nicolas Suarez", "Manuripi", "Madre de Dios", "Abuna", "Gral. Federico Roman",
         ],
-        "Ninguno": ["Ninguno"] 
     };
 
     function initSelectDepartamento(clase) {
@@ -91,7 +122,7 @@ $(document).ready(function(){
         let i = 0;
         for (let departamento of Object.keys(departamentos)) {
             let helper = "";
-            if (departamento == departamentoSeleccionada) helper = "selected";
+            if (departamento.toUpperCase() == departamentoSeleccionada.toUpperCase()) helper = "selected";
             optionsDepartamentos += `
                 <option value="${departamento}" ${(i == 0)? 'selected' : '' } ${helper} >${departamento}</option>
             `;
@@ -107,7 +138,7 @@ $(document).ready(function(){
             let optionsProvincias = "";
             departamentos[departamento].forEach(function (provincia, i) {
                 let helper = "";
-                if (provincia == provinciaSeleccionada && setSelected) {
+                if (provincia.toUpperCase() == provinciaSeleccionada.toUpperCase() && setSelected) {
                     helper = "selected"
                 };
                 optionsProvincias += `

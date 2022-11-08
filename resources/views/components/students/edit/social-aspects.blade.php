@@ -35,22 +35,22 @@
             <select name="salud" id="salud" class="form-select">
                 @isset($student)
                 <option 
-                    @if($student->nsalud =='1 a 2 veces')         
+                    @if($student->nsalud =='1 A 2 VECES')         
                         selected
                     @endif
-                    value="1 a 2 veces"
+                    value="1 A 2 VECES"
                 >1 a 2 veces</option>
                 <option 
-                    @if($student->nsalud =='3 a 5 veces')         
+                    @if($student->nsalud =='3 A 5 VECES')         
                         selected
                     @endif
-                    value="3 a 5 veces"
+                    value="3 A 5 VECES"
                 >3 a 5 veces</option>
                 <option 
-                    @if($student->nsalud =='6 a mas veces')         
+                    @if($student->nsalud =='6 A MAS VECES')         
                         selected
                     @endif
-                    value="6 a mas veces"
+                    value="6 A MAS VECES"
                 >6 a mas veces</option>
                 <option 
                     @if($student->nsalud =='NINGUNA')         
@@ -99,22 +99,22 @@
             <select name="tiempo" id="tiempo" class="form-select">
                 @isset($student)
                 <option 
-                    @if($student->tiempo =='< a 1/2 hora')         
+                    @if($student->tiempo =='< A 1/2 HORA')         
                         selected
                     @endif
-                    value="1/2 a 1 hora"
+                    value="< A 1/2 HORA"
                 >1/2 a 1 hora</option>
                 <option 
-                    @if($student->tiempo =='1 a 2 horas')         
+                    @if($student->tiempo =='1 A 2 HORAS')         
                         selected
                     @endif
-                    value="1 a 2 horas"
+                    value="1 A 2 HORAS"
                 >1 a 2 horas</option>
                 <option 
-                    @if($student->tiempo =='2 a 3 horas')         
+                    @if($student->tiempo =='2 A 3 HORAS')         
                         selected
                     @endif
-                    value="2 a 3 horas"
+                    value="2 A 3 HORAS"
                 >2 a 3 horas</option>
                 @else
 

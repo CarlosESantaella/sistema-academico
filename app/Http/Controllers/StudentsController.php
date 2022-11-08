@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Student;
 use App\Models\Responsible;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -231,10 +230,4 @@ class StudentsController extends Controller
         return view('students.certs');
     }
 
-    public function deleteRA($id)
-    {
-        DB::table('ra')->where('id', $id)->delete();
-
-        
-    }
 }

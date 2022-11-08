@@ -14,6 +14,7 @@
                 <input type="hidden" id="codigo_1" name="codigo_1" value="{{$responsibles[0]->codigo ?? ''}}">
                 <label for="relacion_1" class="col-4 col-form-label">Relación: </label>
                 <div class="col-8">
+                    @isset($responsible[0])
                     <input 
                         type="text" 
                         name="relacion_1" 
@@ -22,7 +23,17 @@
                         readonly
                         value="{{$responsibles[0]->relacion ?? ''}}"
                     >
-                    </select>
+                    @else
+                    <select name="relacion_1" id="relacion_1" class="form-select">
+                        <option value="">--</option>
+                        <option 
+                            value="PADRE"
+                        >Padre</option>
+                        <option 
+                            value="MADRE"
+                        >Madre</option>
+                    </select>   
+                    @endisset
                 </div>
             </div> 
              <div class="mb-3 row">
@@ -109,23 +120,25 @@
             </div>
             <div class="d-flex justify-content-between">
                 <button class="btn btn-success">Guardar</button>
-                <button class="btn btn-danger">Eliminar</button>
+                @isset($responsibles[1])
+                <button class="btn btn-danger delete-student" data-codalumno="{{$responsibles[0]->pivot->codalumno}}" data-codresponsable="{{$responsibles[0]->pivot->codresponsable}}" type="button">Eliminar</button>
+                @endif
             </div>
         </div>
 
         <hr class="my-4 d-block d-md-none">
 
         <!-- Familiar 2 -->
-        @isset($responsibles[0])
+        @isset($responsibles[1])
         <div class="border-start-md ps-md-3 col-md-6  {{$responsibles[1]->relacion == 'Padre' ? 'order-2': 'order-1'}}">
         @else
         <div class="border-start-md ps-md-3 col-md-6 ">
-
         @endif
             <div class="mb-3 row">
                 <label for="relacion_2" class="col-4 col-form-label">Relación: </label>
                 <input type="hidden" id="codigo_2" name="codigo_2" value="{{$responsibles[1]->codigo ?? ''}}">
                 <div class="col-8">
+                    @isset($responsible[1])
                     <input 
                         type="text" 
                         name="relacion_2" 
@@ -134,7 +147,17 @@
                         readonly
                         value="{{$responsibles[1]->relacion ?? ''}}"
                     >
-
+                    @else   
+                    <select name="relacion_2" id="relacion_2" class="form-select">
+                        <option value="">--</option>
+                        <option 
+                            value="PADRE"
+                        >Padre</option>
+                        <option 
+                            value="MADRE"
+                        >Madre</option>
+                    </select>
+                    @endisset
                 </div>
             </div>
             <div class="mb-3 row">
@@ -221,7 +244,9 @@
             </div>
             <div class="d-flex justify-content-between">
                 <button class="btn btn-success">Guardar</button>
-                <button class="btn btn-danger">Eliminar</button>
+                @isset($responsibles[1])
+                <button class="btn btn-danger delete-student" data-codalumno="{{$responsibles[1]->pivot->codalumno}}" data-codresponsable="{{$responsibles[1]->pivot->codresponsable}}" type="button">Eliminar</button>
+                @endif
             </div>
         </div>
 

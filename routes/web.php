@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ResponsibleStudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,12 +42,18 @@ Route::get(
     [StudentsController::class, 'viewCerts']
 )->middleware('auth')->name('students.certs');
 
-
-
-
 Route::resource('students', StudentsController::class);
 
 
 Route::put('/students/{student}/changeState', [StudentsController::class, 'changeState'])->name('students.changestate');
 
-Route::delete('students/delete/ra/{id}', [StudentsController::class, 'deleteRA'])->name('students.delete.ra');
+
+Route::get(
+    '/responsible_student/{cod_reponsible}/{cod_student}',
+    [ResponsibleStudentController::class, 'getByResponsibleAndStudent']
+)->middleware('auth')->name('responsible_student.get_by_ra');
+    
+Route::delete(
+    'responsible_student/{id}', 
+    [ResponsibleStudentController::class, 'delete']
+)->name('responsible_student.delete');
