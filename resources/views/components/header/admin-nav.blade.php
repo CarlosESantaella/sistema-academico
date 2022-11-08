@@ -19,8 +19,8 @@
     <ul class="dropdown-menu animate__animated animate__fadeIn">
         <li class="nav-item">
             <x-nav-link
-                href="#"
-                :active="false"
+                :href="route('admins.search_students')"
+                :active="request()->routeIs('admins.search_students')"
                 class="dropdown-item"
             >
                 Buscar...
@@ -28,8 +28,8 @@
         </li>
         <li>
             <x-nav-link
-                href="#"
-                :active="false"
+                :href="route('admins.create_student')"
+                :active="request()->routeIs('admins.create_student')"
                 class="dropdown-item"
 
             >

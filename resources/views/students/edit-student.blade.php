@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 @section('title', 'Home')
 @section('content')
-<main>
 
     @if ($student->estado != '1')
         <div class="container-fluid">
@@ -20,7 +19,6 @@
             </form>
         </div>
     @endif
-</main>
 @endsection
 
 @push('scripts')

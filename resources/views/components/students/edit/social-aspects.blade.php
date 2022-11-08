@@ -7,6 +7,7 @@
         </label>
         <div class="col-md-4">
             <select name="etnia" id="etnia" class="form-select">
+                @isset($student)
                 <option 
                     @if($student->pertenece =='NO PERTENECE')         
                         selected
@@ -19,6 +20,9 @@
                     @endif
                     value="MESTIZO"
                 >MESTIZO</option>
+                @else
+
+                @endif
             </select>
         </div>
     </div>
@@ -29,6 +33,7 @@
         </label>
         <div class="col-md-4">
             <select name="salud" id="salud" class="form-select">
+                @isset($student)
                 <option 
                     @if($student->nsalud =='1 a 2 veces')         
                         selected
@@ -54,6 +59,9 @@
                     value="NINGUNA"
                 >NINGUNA</option>
             </select>
+            @else
+
+            @endif
         </div>
     </div>
 
@@ -63,6 +71,7 @@
         </label>
         <div class="col-md-4">
             <select name="transporte" id="transporte" class="form-select">
+                @isset($student)
                 <option 
                     @if($student->transporte =='A PIE')         
                         selected
@@ -75,6 +84,9 @@
                     @endif
                     value="VEHICULO"
                 >VEHICULO</option>
+                @else
+
+                @endif
             </select>
         </div>
     </div>
@@ -85,6 +97,7 @@
         </label>
         <div class="col-md-4">
             <select name="tiempo" id="tiempo" class="form-select">
+                @isset($student)
                 <option 
                     @if($student->tiempo =='< a 1/2 hora')         
                         selected
@@ -103,6 +116,9 @@
                     @endif
                     value="2 a 3 horas"
                 >2 a 3 horas</option>
+                @else
+
+                @endif
             </select>
         </div>
     </div>

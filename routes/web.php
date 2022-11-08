@@ -23,32 +23,29 @@ Route::get('/', function () {
 Route::controller(AdminController::class)->group(function(){
     Route::get('/dashboard', 'index')->middleware('auth')->name('admins.index');
     Route::get('/dashboard/license-plates', 'viewLicencePlates')->middleware('auth')->name('admins.lp');
-
+    Route::get('/dashboard/license-plates/export', 'exportLicensePlates')->middleware('auth')->name('students.license-plates-export');
+    Route::match(['get', 'post'],'/dashboard/license-plates', 'viewLicencePlates')->middleware('auth')->name('admins.licenses_plates');
+    Route::get('/dashboard/search-students', 'searchStudents')->middleware('auth')->name('admins.search_students');
+    Route::get('/dashboard/create-student', 'createStudent')->middleware('auth')->name('admins.create_student');
 });
 
-Route::get(
-    '/students/certs',
-    [StudentsController::class, 'viewCerts']
-)->middleware('auth')->name('students.certs');
 
-Route::get(
-    '/dashboard/license-plates/export',
-    [AdminController::class, 'exportLicensePlates']
-)->middleware('auth')->name('students.license-plates-export');
-
-Route::match(
-    ['get', 'post'],
-    '/dashboard/license-plates',
-    [AdminController::class, 'viewLicencePlates']
-)->middleware('auth')->name('admins.licenses_plates');
-
-Route::resource('students', StudentsController::class);
 
 Route::controller(LoginController::class)->group(function(){
     Route::get('/login', 'index')->middleware('guest')->name('login.index');
     Route::post('/login', 'store')->middleware('guest')->name('login.store');
     Route::post('/logout', 'logout')->middleware('auth')->name('logout');
 });
+Route::get(
+    '/students/certs',
+    [StudentsController::class, 'viewCerts']
+)->middleware('auth')->name('students.certs');
+
+
+
+
+Route::resource('students', StudentsController::class);
+
 
 Route::put('/students/{student}/changeState', [StudentsController::class, 'changeState'])->name('students.changestate');
 

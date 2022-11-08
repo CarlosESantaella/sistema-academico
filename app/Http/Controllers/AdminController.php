@@ -77,4 +77,15 @@ class AdminController extends Controller
         return LicensesPlatesExport::export($students);
     }
 
+    public function searchStudents()
+    {
+
+        return view('admins.search-students');
+    }
+
+    public function createStudent()
+    {
+        return view('admins.create-student');
+    }
+
 }
