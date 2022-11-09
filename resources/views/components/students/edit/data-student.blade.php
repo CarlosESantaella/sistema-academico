@@ -64,7 +64,7 @@
                         <label for="expedido_del_ci" class="col-sm-4 col-form-label">Exp. CI. :</label>
                         <div class="col-sm-8">
                             <x-students.edit.elements.select-exp-ci 
-                                id="expedido_del_ci ?? '' " 
+                                id="expedido_del_ci" 
                                 :exp="$student->exp_ci ?? '' "
                             />
                         </div>
