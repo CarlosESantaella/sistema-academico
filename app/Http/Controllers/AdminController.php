@@ -65,6 +65,7 @@ class AdminController extends Controller
 
     public function viewLicencePlates(Request $request) {
         $students = $this->getLicencePlatesByFilter($request);
+        
         return view('admins.licenses-plates', [
             'students' => $students, 'startDate' => $request->startDate, 
             'endDate' => $request->endDate, 'curso' => $request->curso,
@@ -74,6 +75,7 @@ class AdminController extends Controller
 
     public function exportLicensePlates(Request $request) {
         $students = $this->getLicencePlatesByFilter($request);
+
         return LicensesPlatesExport::export($students);
     }
 

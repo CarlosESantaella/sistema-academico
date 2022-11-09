@@ -37,12 +37,19 @@
                     </div>
                 </div>
                 <div class=" d-flex align-items-center ">
-                    <label for="gestion">Gestión: </label>
 
-                    <input class="form-control m-0 ms-1 mt-1" style="width: 90px" name="gestion" type="number" id="gestion">
+                    <div class="">
+                        <label for="gestion">Gestión: </label>
+    
+                        <input class="form-control m-0 ms-1 mt-1" style="width: 90px" name="gestion" type="number" id="gestion">
+                    </div>
+                    <div>
+    
+                        <input class="form-control m-0 ms-1 mt-1" style="width: 90px" name="" value="Buscar" type="submit" id="search-button">
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
         <table id="students" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
