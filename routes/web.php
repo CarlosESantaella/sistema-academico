@@ -44,7 +44,6 @@ Route::get(
 
 Route::resource('students', StudentsController::class);
 
-
 Route::put('/students/{student}/changeState', [StudentsController::class, 'changeState'])->name('students.changestate');
 
 
