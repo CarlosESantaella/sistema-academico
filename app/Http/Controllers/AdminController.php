@@ -66,10 +66,8 @@ class AdminController extends Controller
             if ($turno) {
                 if ($student->course->turno != $turno) continue;
             }
-            if ($search_by) {
-                if ($search_value) {
-                    if ($student->student->$search_by != $search_value) continue;
-                }
+            if ($search_by && $search_value) {
+                if ($student->student->$search_by != $search_value) continue;
             }
             $results[] = $student;
         }
