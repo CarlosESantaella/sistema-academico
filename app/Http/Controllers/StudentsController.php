@@ -87,21 +87,27 @@ class StudentsController extends Controller
         // Parents
         if($request->relacion_1){
 
-            $responsible_1 = Responsible::create([
-                "relacion" => strtoupper($request->relacion_1),
-                "ci" => strtoupper($request->ci_1),
-                "exp_ci" => strtoupper($request->expedido_del_ci_1),
-                "appaterno" => strtoupper($request->appaterno_1),
-                "apmaterno" => strtoupper($request->apmaterno_1),
-                "nombres" => strtoupper($request->nombres_1),
-                "idioma" => strtoupper($request->idioma_1),
-                "ocupacion" => strtoupper($request->ocupacion_1),
-                "ginstruccion" => strtoupper($request->ginstruccion_1),
-                "telefono" => strtoupper($request->telefono_1),
-                "celular" => strtoupper($request->celular_1),
-                "mail" => strtoupper($request->email_1),
-                "fnacimiento" => $request->fecha_de_nacimiento_1
-            ]);
+            // Verificar si ya existe el responsable
+
+            $responsible_1 = Responsible::updateOrCreate(
+                [
+                    "ci" => strtoupper($request->ci_1)
+                ],
+                [
+                    "relacion" => strtoupper($request->relacion_1),
+                    "exp_ci" => strtoupper($request->expedido_del_ci_1),
+                    "appaterno" => strtoupper($request->appaterno_1),
+                    "apmaterno" => strtoupper($request->apmaterno_1),
+                    "nombres" => strtoupper($request->nombres_1),
+                    "idioma" => strtoupper($request->idioma_1),
+                    "ocupacion" => strtoupper($request->ocupacion_1),
+                    "ginstruccion" => strtoupper($request->ginstruccion_1),
+                    "telefono" => strtoupper($request->telefono_1),
+                    "celular" => strtoupper($request->celular_1),
+                    "mail" => strtoupper($request->email_1),
+                    "fnacimiento" => $request->fecha_de_nacimiento_1
+                ]
+            );
 
             ResponsibleStudent::create([
                 "codalumno" => $student->id,
@@ -111,28 +117,32 @@ class StudentsController extends Controller
 
         if($request->relacion_2){
 
-            $responsible_2 = Responsible::create([
-                "relacion" => strtoupper($request->relacion_2),
-                "ci" => strtoupper($request->ci_2),
-                "exp_ci" => strtoupper($request->expedido_del_ci_2),
-                "appaterno" => strtoupper($request->appaterno_2),
-                "apmaterno" => strtoupper($request->apmaterno_2),
-                "nombres" => strtoupper($request->nombres_2),
-                "idioma" => strtoupper($request->idioma_2),
-                "ocupacion" => strtoupper($request->ocupacion_2),
-                "ginstruccion" => strtoupper($request->ginstruccion_2),
-                "telefono" => strtoupper($request->telefono_2),
-                "celular" => strtoupper($request->celular_2),
-                "mail" => strtoupper($request->email_2),
-                "fnacimiento" => $request->fecha_de_nacimiento_2
-            ]);
+            $responsible_2 = Responsible::updateOrCreate(
+                [
+                    "ci" => strtoupper($request->ci_2)
+                ],
+                [
+                    "relacion" => strtoupper($request->relacion_2),
+                    "exp_ci" => strtoupper($request->expedido_del_ci_2),
+                    "appaterno" => strtoupper($request->appaterno_2),
+                    "apmaterno" => strtoupper($request->apmaterno_2),
+                    "nombres" => strtoupper($request->nombres_2),
+                    "idioma" => strtoupper($request->idioma_2),
+                    "ocupacion" => strtoupper($request->ocupacion_2),
+                    "ginstruccion" => strtoupper($request->ginstruccion_2),
+                    "telefono" => strtoupper($request->telefono_2),
+                    "celular" => strtoupper($request->celular_2),
+                    "mail" => strtoupper($request->email_2),
+                    "fnacimiento" => $request->fecha_de_nacimiento_2
+                ]
+            );
 
             ResponsibleStudent::create([
                 "codalumno" => $student->id,
                 "codresponsable" => $responsible_2->id
             ]);
         }
-        
+
         return redirect()->route('students.edit', ['student' => $student->codigo.'CLS'])->with('message', 'Información actualizada correctamente');
     }
 
