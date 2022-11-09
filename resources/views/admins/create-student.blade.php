@@ -20,9 +20,5 @@
 @endsection
 
 @push('scripts')
-    <script>
-        // var id_estudiante = "";
-        var estado = "";
-    </script>
-    @vite('resources/js/edit-students.js')
+    @vite('resources/js/select-departamento-provincia.js')
 @endpush
