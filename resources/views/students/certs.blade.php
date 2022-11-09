@@ -8,11 +8,14 @@
 
             <div>
                 @foreach ($files as $file)
-                <a target="_blank" href="{{asset($file)}}" class="card p-3 mb-3">
+                @php
+                    $file = basename($file);
+                @endphp
+                <a target="_blank" href="{{asset('storage/students/certs/'.$file)}}" class="card p-3 mb-3">
                     <div class="d-flex align-items-center">
                         <img src="{{asset('images/pdf.png')}}" width="30" class="me-3">
                         <span>
-                            {{explode("/",$file)[count(explode("/",$file))-1]}}
+                            {{$file}}
                         </span>
                     </div>
                 </a>
