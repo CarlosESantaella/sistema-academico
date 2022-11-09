@@ -6,7 +6,7 @@
 
     </style>
 @endpush
-@section('content')
+@section('content')f
 @php
     // die($students[0]);
 @endphp

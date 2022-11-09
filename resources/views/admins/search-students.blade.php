@@ -12,40 +12,104 @@
     <div class="table-responsive">
         <form action="" method="POST" class="filters-table d-flex justify-content-between flex-wrap">
             @csrf
-            <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
+            <div class="d-flex flex-wrap align-items-center justify-content-between w-100 mb-4">
                 <div class="d-flex flex-wrap align-items-center">
 
                     <span class="d-block me-3">Buscar por:</span>
                     <div class=" d-flex align-items-center me-2">
                         <label for="codigo">Código</label>
-                        <input class="m-0 ms-1 mt-1" name="search_students" type="radio" id="codigo">
+                        <input 
+                            class="m-0 ms-1 mt-1" 
+                            name="search_by" 
+                            type="radio" 
+                            id="codigo" 
+                            value="codigo"
+                            @if ($search_by == 'codigo')
+                                checked
+                            @endif
+                        >
                     </div>
-                    <div class=" d-flex align-items-center me-2">
-                        <label for="ci">CI/Pasaporte</label>
-                        <input class="m-0 ms-1 mt-1" name="search_students" type="radio" id="ci">
+                    <div class=" d-flex align-items-center me-3">
+                        <label for="ci">CI</label>
+                        <input 
+                            class="m-0 ms-1 mt-1" 
+                            name="search_by" 
+                            type="radio" 
+                            id="ci" 
+                            value="ci"
+                            @if ($search_by == 'ci')
+                                checked
+                            @endif
+                        >
                     </div>
-                    <div class=" d-flex align-items-center me-2">
+                    <div class=" d-flex align-items-center me-3">
+                        <label for="pasaporte">Pasaporte</label>
+                        <input 
+                            class="m-0 ms-1 mt-1" 
+                            name="search_by" 
+                            type="radio" 
+                            id="pasaporte" 
+                            value="pasaporte"
+                            @if ($search_by == 'pasaporte')
+                                checked
+                            @endif
+                        >
+                    </div>
+                    <div class=" d-flex align-items-center me-3">
                         <label for="appaterno">Ap. Paterno</label>
-                        <input class="m-0 ms-1 mt-1" name="search_students" type="radio" id="appaterno">
+                        <input 
+                            class="m-0 ms-1 mt-1" 
+                            name="search_by" 
+                            type="radio" 
+                            id="appaterno" 
+                            value="appaterno"
+                            @if ($search_by == 'appaterno')
+                                checked
+                            @endif
+                        >
                     </div>
-                    <div class=" d-flex align-items-center me-2">
+                    <div class=" d-flex align-items-center me-3">
                         <label for="apmaterno">Ap. Materno</label>
-                        <input class="m-0 ms-1 mt-1" name="search_students" type="radio" id="apmaterno">
+                        <input 
+                            class="m-0 ms-1 mt-1" 
+                            name="search_by" 
+                            type="radio" 
+                            id="apmaterno" 
+                            value="apmaterno"
+                            @if ($search_by == 'apmaterno')
+                                checked
+                            @endif
+                        >
                     </div>
-                    <div class=" d-flex align-items-center me-2">
-                        <input class="form-control m-0 ms-1 mt-1" name="search_students" type="text" id="search-box">
+                    <div class=" d-flex align-items-center me-3">
+                        <input 
+                            class="form-control m-0 ms-1 mt-1" 
+                            name="search_value" 
+                            type="text" 
+                            id="search-box"
+                            @if ($search_value)
+                            value="{{$search_value}}"
+                            @endif
+                        >
                     </div>
                 </div>
                 <div class=" d-flex align-items-center ">
 
-                    <div class="">
+                    <div class="d-flex align-items-center me-3">
                         <label for="gestion">Gestión: </label>
-    
-                        <input class="form-control m-0 ms-1 mt-1" style="width: 90px" name="gestion" type="number" id="gestion">
+                        <input 
+                            class="form-control m-0 ms-1 mt-1" 
+                            style="width: 90px" 
+                            name="gestion" 
+                            type="number" 
+                            id="gestion"
+                            @if($gestion)
+                            value="{{$gestion}}"
+                            @endif
+                        >
                     </div>
                     <div>
-    
-                        <input class="form-control m-0 ms-1 mt-1" style="width: 90px" name="" value="Buscar" type="submit" id="search-button">
+                        <input class="btn btn-primary-custom" style="width: 90px" name="" value="Buscar" type="submit" id="search-button">
                     </div>
                 </div>
             </div>
