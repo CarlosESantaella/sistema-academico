@@ -20,6 +20,5 @@
 @endsection
 
 @push('scripts')
-    <script>
-    </script>
+    @vite('resources/js/select-departamento-provincia.js')
 @endpush

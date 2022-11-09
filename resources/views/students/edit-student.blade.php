@@ -27,4 +27,5 @@
         var estado = "{{$student->estado}}";
     </script>
     @vite('resources/js/edit-students.js')
+    @vite('resources/js/select-departamento-provincia.js')
 @endpush
