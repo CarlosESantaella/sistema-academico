@@ -16,7 +16,8 @@ class AdminController extends Controller
         return view('admins.index');
     }
 
-    public function getLicencePlatesByFilter(Request $request) {
+    public function getLicencePlatesByFilter(Request $request, $year=false) {
+        $year = $request->gestion ? $request->gestion : $year;
         $startDate = $request->startDate ?? false;
         $endDate = $request->endDate ?? false;
         $curso = $request->curso ?? false;
@@ -26,7 +27,8 @@ class AdminController extends Controller
         }
         $nivel = $request->nivel ?? false;
         $turno = $request->turno ?? false;
-        $year = date('Y', strtotime(date('Y')));
+        $search_by = $request->search_by ?? false;
+        $search_value = $request->search_value ?? false;
         $students = LicensePlate::with([
             "course",
             "student",
@@ -42,7 +44,7 @@ class AdminController extends Controller
                 return $query->where('finscripcion', '<=', $endDate);
             }
         )->when(
-            !$startDate,
+            !$startDate && $year,
             function ($query) use ($year) {
                 return $query->whereYear('finscripcion', $year);
             }
@@ -64,6 +66,9 @@ class AdminController extends Controller
             if ($turno) {
                 if ($student->course->turno != $turno) continue;
             }
+            if ($search_by && $search_value) {
+                if ($student->student->$search_by != $search_value) continue;
+            }
             $results[] = $student;
         }
 
@@ -71,8 +76,8 @@ class AdminController extends Controller
     }
 
     public function viewLicencePlates(Request $request) {
-        $students = $this->getLicencePlatesByFilter($request);
-        
+        $year = date('Y', strtotime(date('Y')));
+        $students = $this->getLicencePlatesByFilter($request, $year);
         return view('admins.licenses-plates', [
             'students' => $students, 'startDate' => $request->startDate, 
             'endDate' => $request->endDate, 'curso' => $request->curso,
@@ -81,21 +86,18 @@ class AdminController extends Controller
     }
 
     public function exportLicensePlates(Request $request) {
-        $students = $this->getLicencePlatesByFilter($request);
-
+        $year = date('Y', strtotime(date('Y')));
+        $students = $this->getLicencePlatesByFilter($request, $year);
         return LicensesPlatesExport::export($students);
     }
 
-    public function searchStudents()
+    public function searchStudents(Request $request)
     {
-
-        $students = LicensePlate::with([
-            "course",
-            "student",
-            "student.responsibles"
-        ])->get();
-
-        return view('admins.search-students', ["students" => $students]);
+        $students = $this->getLicencePlatesByFilter($request);
+        return view('admins.search-students', [
+            "students" => $students, "search_by" => $request->search_by, 
+            "search_value" => $request->search_value, "gestion" => $request->gestion
+        ]);
     }
 
     public function createStudent()

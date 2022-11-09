@@ -26,7 +26,7 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/dashboard/license-plates', 'viewLicencePlates')->middleware('auth')->name('admins.lp');
     Route::get('/dashboard/license-plates/export', 'exportLicensePlates')->middleware('auth')->name('students.license-plates-export');
     Route::match(['get', 'post'],'/dashboard/license-plates', 'viewLicencePlates')->middleware('auth')->name('admins.licenses_plates');
-    Route::get('/dashboard/search-students', 'searchStudents')->middleware('auth')->name('admins.search_students');
+    Route::match(['get', 'post'],'/dashboard/search-students', 'searchStudents')->middleware('auth')->name('admins.search_students');
     Route::get('/dashboard/create-student', 'createStudent')->middleware('auth')->name('admins.create_student');
 });
 
