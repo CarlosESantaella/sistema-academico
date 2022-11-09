@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use DateTime;
 
+use App\Models\User;
 use App\Models\Student;
 use App\Models\LicensePlate;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class AdminController extends Controller
         }
         $nivel = $request->nivel ?? false;
         $turno = $request->turno ?? false;
+        $year = date('Y', strtotime(date('Y')));
         $students = LicensePlate::with([
             "course",
             "student",
@@ -38,6 +40,11 @@ class AdminController extends Controller
             $endDate,
             function ($query) use ($endDate) {
                 return $query->where('finscripcion', '<=', $endDate);
+            }
+        )->when(
+            !$startDate,
+            function ($query) use ($year) {
+                return $query->whereYear('finscripcion', $year);
             }
         )->get();
 
@@ -80,7 +87,13 @@ class AdminController extends Controller
     public function searchStudents()
     {
 
-        return view('admins.search-students');
+        $students = LicensePlate::with([
+            "course",
+            "student",
+            "student.responsibles"
+        ])->get();
+
+        return view('admins.search-students', ["students" => $students]);
     }
 
     public function createStudent()
