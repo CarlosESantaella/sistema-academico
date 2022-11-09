@@ -49,9 +49,11 @@ class StudentsController extends Controller
             $file_name = $request->foto;
         }
 
+        $codigo_alumno = rand(100000, 999999);
+
         // Students
         $student = Student::create([
-            "codigo" => 321321321,
+            "codigo" => $codigo_alumno,
             "rude" => $request->codigo_estudiantil_rude,
             "foto" => $file_name,
             "appaterno" => strtoupper($request->appaterno),
@@ -114,8 +116,8 @@ class StudentsController extends Controller
             );
 
             ResponsibleStudent::create([
-                "codalumno" => $student->id,
-                "codresponsable" => $responsible_1->id
+                "codalumno" => $codigo_alumno,
+                "codresponsable" => $responsible_1->codigo
             ]);
         }
 
@@ -142,12 +144,12 @@ class StudentsController extends Controller
             );
 
             ResponsibleStudent::create([
-                "codalumno" => $student->id,
-                "codresponsable" => $responsible_2->id
+                "codalumno" => $codigo_alumno,
+                "codresponsable" => $responsible_2->codigo
             ]);
         }
 
-        return redirect()->route('students.edit', ['student' => $student->codigo.'CLS'])->with('message', 'Información actualizada correctamente');
+        return redirect()->back()->with('message', 'Alumno creado correctamente');
     }
 
     /**
