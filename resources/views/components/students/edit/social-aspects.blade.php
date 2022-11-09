@@ -21,7 +21,12 @@
                     value="MESTIZO"
                 >MESTIZO</option>
                 @else
-
+                    <option 
+                        value="NO PERTENECE"
+                    >NO PERTENECE</option>
+                    <option 
+                        value="MESTIZO"
+                    >MESTIZO</option>
                 @endif
             </select>
         </div>
@@ -34,34 +39,45 @@
         <div class="col-md-4">
             <select name="salud" id="salud" class="form-select">
                 @isset($student)
-                <option 
-                    @if($student->nsalud =='1 A 2 VECES')         
-                        selected
-                    @endif
+                    <option 
+                        @if($student->nsalud =='1 A 2 VECES')         
+                            selected
+                        @endif
+                        value="1 A 2 VECES"
+                    >1 a 2 veces</option>
+                    <option 
+                        @if($student->nsalud =='3 A 5 VECES')         
+                            selected
+                        @endif
+                        value="3 A 5 VECES"
+                    >3 a 5 veces</option>
+                    <option 
+                        @if($student->nsalud =='6 A MAS VECES')         
+                            selected
+                        @endif
+                        value="6 A MAS VECES"
+                    >6 a mas veces</option>
+                    <option 
+                        @if($student->nsalud =='NINGUNA')         
+                            selected
+                        @endif
+                        value="NINGUNA"
+                    >NINGUNA</option>
+                @else
+                    <option 
                     value="1 A 2 VECES"
-                >1 a 2 veces</option>
-                <option 
-                    @if($student->nsalud =='3 A 5 VECES')         
-                        selected
-                    @endif
-                    value="3 A 5 VECES"
-                >3 a 5 veces</option>
-                <option 
-                    @if($student->nsalud =='6 A MAS VECES')         
-                        selected
-                    @endif
-                    value="6 A MAS VECES"
-                >6 a mas veces</option>
-                <option 
-                    @if($student->nsalud =='NINGUNA')         
-                        selected
-                    @endif
-                    value="NINGUNA"
-                >NINGUNA</option>
+                    >1 a 2 veces</option>
+                    <option 
+                        value="3 A 5 VECES"
+                    >3 a 5 veces</option>
+                    <option 
+                        value="6 A MAS VECES"
+                    >6 a mas veces</option>
+                    <option 
+                        value="NINGUNA"
+                    >NINGUNA</option>
+                @endif
             </select>
-            @else
-
-            @endif
         </div>
     </div>
 
@@ -72,20 +88,25 @@
         <div class="col-md-4">
             <select name="transporte" id="transporte" class="form-select">
                 @isset($student)
-                <option 
-                    @if($student->transporte =='A PIE')         
-                        selected
-                    @endif
-                    value="A PIE"
-                >A PIE</option>
-                <option 
-                    @if($student->transporte =='VEHICULO')         
-                        selected
-                    @endif
-                    value="VEHICULO"
-                >VEHICULO</option>
+                    <option 
+                        @if($student->transporte =='A PIE')         
+                            selected
+                        @endif
+                        value="A PIE"
+                    >A PIE</option>
+                    <option 
+                        @if($student->transporte =='VEHICULO')         
+                            selected
+                        @endif
+                        value="VEHICULO"
+                    >VEHICULO</option>
                 @else
-
+                    <option 
+                    value="A PIE"
+                    >A PIE</option>
+                    <option 
+                        value="VEHICULO"
+                    >VEHICULO</option>
                 @endif
             </select>
         </div>
@@ -98,26 +119,34 @@
         <div class="col-md-4">
             <select name="tiempo" id="tiempo" class="form-select">
                 @isset($student)
-                <option 
-                    @if($student->tiempo =='< A 1/2 HORA')         
-                        selected
-                    @endif
-                    value="< A 1/2 HORA"
-                >1/2 a 1 hora</option>
-                <option 
-                    @if($student->tiempo =='1 A 2 HORAS')         
-                        selected
-                    @endif
-                    value="1 A 2 HORAS"
-                >1 a 2 horas</option>
-                <option 
-                    @if($student->tiempo =='2 A 3 HORAS')         
-                        selected
-                    @endif
-                    value="2 A 3 HORAS"
-                >2 a 3 horas</option>
+                    <option 
+                        @if($student->tiempo =='< A 1/2 HORA')         
+                            selected
+                        @endif
+                        value="< A 1/2 HORA"
+                    >1/2 a 1 hora</option>
+                    <option 
+                        @if($student->tiempo =='1 A 2 HORAS')         
+                            selected
+                        @endif
+                        value="1 A 2 HORAS"
+                    >1 a 2 horas</option>
+                    <option 
+                        @if($student->tiempo =='2 A 3 HORAS')         
+                            selected
+                        @endif
+                        value="2 A 3 HORAS"
+                    >2 a 3 horas</option>
                 @else
-
+                    <option 
+                        value="< A 1/2 HORA"
+                    >1/2 a 1 hora</option>
+                    <option 
+                        value="1 A 2 HORAS"
+                    >1 a 2 horas</option>
+                    <option 
+                        value="2 A 3 HORAS"
+                    >2 a 3 horas</option>
                 @endif
             </select>
         </div>
