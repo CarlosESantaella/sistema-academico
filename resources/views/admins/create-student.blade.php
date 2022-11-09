@@ -11,7 +11,7 @@
             <x-alert color="success" message="{{ session('message') }}" classes="mt-4 text-center" />
         @endif
 
-        <form method="POST" action=""  enctype="multipart/form-data">
+        <form method="POST" action="{{ route('students.store') }}"  enctype="multipart/form-data">
             @csrf
             @method('POST')
             <x-admins.create-student />
