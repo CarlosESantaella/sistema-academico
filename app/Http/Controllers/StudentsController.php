@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Student;
 use App\Models\Responsible;
+use App\Models\ResponsibleStudent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -38,7 +39,101 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->hasFile('image')){
+            $img_path = $request->file('image')->store('public/students/img');
+            $file_name = str_replace('public/students/img/', '', $img_path);
+            if(Storage::exists('public/students/img/'.$request->foto)){
+                Storage::delete('public/students/img/'.$request->foto);
+            }
+        }else{
+            $file_name = $request->foto;
+        }
+
+        // Students
+        $student = Student::create([
+            "foto" => $file_name,
+            "appaterno" => strtoupper($request->appaterno),
+            "apmaterno" => strtoupper($request->apmaterno),
+            "nombres" => strtoupper($request->nombres),
+            "ci" => strtoupper($request->documento),
+            "exp_ci" => strtoupper($request->expedido_del_ci),
+            "pasaporte" => strtoupper($request->pasaporte),
+            "fnacimiento" => $request->fecha_nacimiento,
+            "sexo" => strtoupper($request->sexo),
+            "oficialia" => strtoupper($request->oficialia_n),
+            "libro" => strtoupper($request->libro_n),
+            "partida" => strtoupper($request->partida_n),
+            "folio" => strtoupper($request->folio_n),
+            "paisnac" => strtoupper($request->paisnac),
+            "provnac" => strtoupper($request->provnac),
+            "depnac" => strtoupper($request->depnac),
+            "locnac" => strtoupper($request->locnac),
+            "provincia" => strtoupper($request->provincia),
+            "zona" => strtoupper($request->zona),
+            "seccion" => strtoupper($request->seccion),
+            "calle" => strtoupper($request->calle),
+            "numero" => strtoupper($request->numero),
+            "localidad" => strtoupper($request->localidad),
+            "telefono" => strtoupper($request->telefono),
+            "sie" => strtoupper($request->sie),
+            "correo_institucional" => strtoupper($request->correo_institucional),
+            "celular" => $request->celular_alumno,
+            "pertenece" => strtoupper($request->etnia),
+            "nsalud" => strtoupper($request->salud),
+            "transporte" => strtoupper($request->transporte),
+            "tiempo" => strtoupper($request->tiempo)
+        ]);
+
+        // Parents
+        if($request->relacion_1){
+
+            $responsible_1 = Responsible::create([
+                "relacion" => strtoupper($request->relacion_1),
+                "ci" => strtoupper($request->ci_1),
+                "exp_ci" => strtoupper($request->expedido_del_ci_1),
+                "appaterno" => strtoupper($request->appaterno_1),
+                "apmaterno" => strtoupper($request->apmaterno_1),
+                "nombres" => strtoupper($request->nombres_1),
+                "idioma" => strtoupper($request->idioma_1),
+                "ocupacion" => strtoupper($request->ocupacion_1),
+                "ginstruccion" => strtoupper($request->ginstruccion_1),
+                "telefono" => strtoupper($request->telefono_1),
+                "celular" => strtoupper($request->celular_1),
+                "mail" => strtoupper($request->email_1),
+                "fnacimiento" => $request->fecha_de_nacimiento_1
+            ]);
+
+            ResponsibleStudent::create([
+                "codalumno" => $student->id,
+                "codresponsable" => $responsible_1->id
+            ]);
+        }
+
+        if($request->relacion_2){
+
+            $responsible_2 = Responsible::create([
+                "relacion" => strtoupper($request->relacion_2),
+                "ci" => strtoupper($request->ci_2),
+                "exp_ci" => strtoupper($request->expedido_del_ci_2),
+                "appaterno" => strtoupper($request->appaterno_2),
+                "apmaterno" => strtoupper($request->apmaterno_2),
+                "nombres" => strtoupper($request->nombres_2),
+                "idioma" => strtoupper($request->idioma_2),
+                "ocupacion" => strtoupper($request->ocupacion_2),
+                "ginstruccion" => strtoupper($request->ginstruccion_2),
+                "telefono" => strtoupper($request->telefono_2),
+                "celular" => strtoupper($request->celular_2),
+                "mail" => strtoupper($request->email_2),
+                "fnacimiento" => $request->fecha_de_nacimiento_2
+            ]);
+
+            ResponsibleStudent::create([
+                "codalumno" => $student->id,
+                "codresponsable" => $responsible_2->id
+            ]);
+        }
+        
+        return redirect()->route('students.edit', ['student' => $student->codigo.'CLS'])->with('message', 'Información actualizada correctamente');
     }
 
     /**
