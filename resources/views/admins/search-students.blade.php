@@ -63,7 +63,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- @foreach($students as $student)
+                @foreach($students as $student)
                     <tr>
                         <td>{{ $student->student->codigo }}</td>
                         <td>{{ $student->student->nombres }} {{ $student->student->appaterno }} {{ $student->student->apmaterno }}</td>
@@ -73,8 +73,7 @@
                         <td>{{ ($student->student->sexo == "M") ? 'Masculino' : 'Femenino' }}</td>
                         <td>{{ $student->student->responsibles[0]->nombres ?? ''  }} {{ $student->student->responsibles[0]->appaterno ?? '' }} {{ $student->student->responsibles[0]->apmaterno ?? '' }}</td>
                     </tr>
-                @endforeach --}}
-            
+                @endforeach
             </tbody>
         </table>
         <div class="d-flex flex-wrap justify-content-between mt-2">
