@@ -51,8 +51,8 @@ class StudentsController extends Controller
 
         // Students
         $student = Student::create([
-            "codigo" => 123321456,
-            "rude" => $request->rude,
+            "codigo" => 321321321,
+            "rude" => $request->codigo_estudiantil_rude,
             "foto" => $file_name,
             "appaterno" => strtoupper($request->appaterno),
             "apmaterno" => strtoupper($request->apmaterno),
