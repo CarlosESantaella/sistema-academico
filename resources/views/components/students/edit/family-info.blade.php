@@ -143,8 +143,7 @@
                         type="text" 
                         name="relacion_2" 
                         id="relacion_2" 
-                        class="form-control" 
-                        readonly
+                        class="form-control"
                         value="{{$responsibles[1]->relacion ?? ''}}"
                     >
                     @else   
