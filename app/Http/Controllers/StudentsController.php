@@ -173,7 +173,7 @@ class StudentsController extends Controller
     {
         // $student = Student::where('codigo', $id)->get();
         // die($id);
-        $student = User::where('clave', $id)->firstOrFail()->student()->firstOrFail();
+        $student = User::where('clave', $id)->first()->student()->first();
         // $student = User::where('clave', $id)->firstOrFail();
         // echo $student;
         if($student->estado == 0){
