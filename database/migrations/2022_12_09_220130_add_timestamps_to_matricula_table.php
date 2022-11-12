@@ -13,10 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('preinscripciones', function (Blueprint $table) {
-            $table->id();   
-            $table->integer('fk_alumno')->index()->nullable();
-            $table->foreign('fk_alumno')->references('codigo')->on('alumno')->onDelete('cascade')->onUpdate('cascade');
+        Schema::table('matricula', function (Blueprint $table) {
             $table->timestamps();
         });
     }
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('preinscripciones');
+        Schema::table('matricula', function (Blueprint $table) {
+            $table->dropColumn(['created_at', 'updated_at']);
+        });
     }
 };
