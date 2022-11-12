@@ -30,13 +30,12 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/dashboard/create-student', 'createStudent')->middleware('auth')->name('admins.create_student');
 });
 
-
-
 Route::controller(LoginController::class)->group(function(){
     Route::get('/login', 'index')->middleware('guest')->name('login.index');
     Route::post('/login', 'store')->middleware('guest')->name('login.store');
     Route::post('/logout', 'logout')->middleware('auth')->name('logout');
 });
+
 Route::get(
     '/students/certs',
     [StudentsController::class, 'viewCerts']
@@ -44,8 +43,8 @@ Route::get(
 
 Route::resource('students', StudentsController::class);
 
+Route::get('/students/{student}/license-plates', [StudentsController::class, 'getLicensePlatesByStudent'])->name('students.lp');
 Route::put('/students/{student}/changeState', [StudentsController::class, 'changeState'])->name('students.changestate');
-
 
 Route::get(
     '/responsible_student/{cod_reponsible}/{cod_student}',
