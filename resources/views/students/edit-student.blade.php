@@ -11,11 +11,13 @@
             @if(session('message'))
                 <x-alert color="success" message="Alumno actualizado correctamente!" classes="mt-4 text-center" />
             @endif
-
             <form method="POST" action="/students/{{$student->codigo}}"  enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <x-students.edit.edit-student :student="$student" :responsibles="$responsibles"/>
+                <x-students.edit.edit-student 
+                    :student="$student" 
+                    :responsibles="$responsibles" 
+                    :licenseplates="$license_plates"/>
             </form>
         </div>
     @endif

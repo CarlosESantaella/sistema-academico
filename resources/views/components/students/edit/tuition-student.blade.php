@@ -45,24 +45,14 @@
                     <span class="input-group-text">SIE: </span>
                     <input type="text" name="sie" value="{{$student->sie ?? '' }}" class="form-control">
                 </div>
-            </div>
+            </div> 
             <div class="tab-pane fade p-4" id="historial-tab-pane" role="tabpanel" aria-labelledby="historial-tab"
                 tabindex="0">
+                @foreach ($licenseplates as $licenseplate)
                 <p class="mb-0">
-                    Código: 541357 | Fecha de inscripción: La Paz, 10 de enero de 2022 | Gestión 2022
+                    Código: {{$licenseplate->codigo}} | Fecha de inscripción: {{$licenseplate->finscripcion}} | Gestión {{explode("-", $licenseplate->finscripcion)[0]}}
                 </p>
-                <p class="mb-0">
-                    Código: 543214 | Fecha de inscripción: La Paz, 7 de enero de 2021 | Gestión 2021
-                </p>
-                <p class="mb-0">
-                    Código: 213215 | Fecha de inscripción: La Paz, 23 de enero de 2020 | Gestión 2020
-                </p>
-                <p class="mb-0">
-                    Código: 873645 | Fecha de inscripción: La Paz, 14 de enero de 2019 | Gestión 2019
-                </p>
-                <p class="mb-0">
-                    Código: 549876 | Fecha de inscripción: La Paz, 09 de enero de 2018 | Gestión 2018
-                </p>
+                @endforeach
             </div>
             <div class="tab-pane fade p-4" id="facturacion-tab-pane" role="tabpanel" aria-labelledby="facturacion-tab"
                 tabindex="0">

@@ -201,8 +201,13 @@ class StudentsController extends Controller
             return redirect()->route('login.index')->with('message', 'Su cuenta se escuentra deshabilitada, gracias por haberse matriculado en periodos anteriores!');
         }   
         $responsibles = Student::findOrFail($student->codigo)->responsibles()->get();
+        $license_plates = Student::findOrFail($student->codigo)->licenses_plates()->get();
 
-        return view('students.edit-student', ["student" => $student, "responsibles" => $responsibles]);
+        return view('students.edit-student', [
+            "student" => $student,
+            "responsibles" => $responsibles,
+            "license_plates" => $license_plates
+        ]);
     }
 
     /**

@@ -10,7 +10,7 @@
         <div class="col-md-6 px-4">
             <div class="p-4 p-md-0">
                 <div class="row">
-                    <x-students.edit.tuition-student :student="$student"/>
+                    <x-students.edit.tuition-student :licenseplates="$licenseplates" :student="$student"/>
                 </div>
                 
                 <div class="row mt-3">
