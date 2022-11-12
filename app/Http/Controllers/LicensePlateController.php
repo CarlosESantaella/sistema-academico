@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LicensePlate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LicensePlateController extends Controller
 {
@@ -25,5 +26,10 @@ class LicensePlateController extends Controller
         ]);
 
         return $lp;
+    }
+
+    public function destroy($codigo)
+    {
+        return DB::table('matricula')->where('codigo', $codigo)->delete();
     }
 }
