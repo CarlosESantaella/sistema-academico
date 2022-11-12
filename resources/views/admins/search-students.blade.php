@@ -13,7 +13,7 @@
         <form action="" method="POST" class="filters-table d-flex justify-content-between flex-wrap">
             @csrf
             <div class="d-flex flex-wrap align-items-center justify-content-between w-100 mb-4">
-                <div class="d-flex flex-wrap align-items-center">
+                {{-- <div class="d-flex flex-wrap align-items-center">
 
                     <span class="d-block me-3">Buscar por:</span>
                     <div class=" d-flex align-items-center me-2">
@@ -110,7 +110,7 @@
                     </div>
                     <div>
                         <input class="btn btn-primary-custom" style="width: 90px" name="" value="Buscar" type="submit" id="search-button">
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </form>
@@ -119,23 +119,22 @@
                 <tr>
                     <th>Cod. Estudiante</th>
                     <th>Estudiante</th>
-                    <th>Curso</th>
-                    <th>Nivel</th>
-                    <th>Turno</th>
+                    {{-- <th>Nivel</th>
+                    <th>Turno</th> --}}
                     <th>Sexo</th>
-                    <th>Responsable</th>
+                    <th>Matriculación</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($students as $student)
                     <tr>
-                        <td>{{ $student->student->codigo }}</td>
-                        <td>{{ $student->student->nombres }} {{ $student->student->appaterno }} {{ $student->student->apmaterno }}</td>
-                        <td>{{ $student->course->gnumeral ?? '' }} {{ $student->course->paralelo ?? '' }}</td>
-                        <td>{{ $student->course->nivel ?? '' }}</td>
-                        <td>{{ $student->course->turno ?? '' }}</td>
-                        <td>{{ ($student->student->sexo == "M") ? 'Masculino' : 'Femenino' }}</td>
-                        <td>{{ $student->student->responsibles[0]->nombres ?? ''  }} {{ $student->student->responsibles[0]->appaterno ?? '' }} {{ $student->student->responsibles[0]->apmaterno ?? '' }}</td>
+                        <td>{{ $student->codigo }}</td>
+                        <td>{{ $student->nombres }} {{ $student->appaterno }} {{ $student->apmaterno }}</td>
+                        {{-- <td>{{ $curso_procesado ?? '' }}</td> --}}
+                        {{-- <td>{{ $student->course->nivel ?? '' }}</td>
+                        <td>{{ $student->course->turno ?? '' }}</td> --}}
+                        <td>{{ ($student->sexo == "M") ? 'Masculino' : 'Femenino' }}</td>
+                        <td></td>
                     </tr>
                 @endforeach
             </tbody>
@@ -163,8 +162,7 @@
         $(document).ready(function () {
             $('#students').DataTable({
                 lengthChange: false,
-                searching: false,
-
+                // searching: false,
             });
         });
     </script>

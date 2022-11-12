@@ -5,8 +5,8 @@
         <livewire:change-image-student :student="$student ?? ''"/>
         <div class="col-xl-8">
             <div class="mb-3 row">
-                <label for="code" class="col-4 col-form-label fw-bold">CÓDIGO</label>
-                <div class="col-8">
+                <label for="code" class="col-12 fw-bold">CÓDIGO</label>
+                <div class="col-12">
                     <input type="text" readonly class="form-control" id="codigo" name="codigo"
                         value="{{ $student->codigo ?? '' }}">
                 </div>
@@ -15,22 +15,22 @@
                 <b>Apellidos y Nombres</b>
             </p> --}}
             <div class="mb-3 row">
-                <label for="appaterno" class="col-4 col-form-label">Ap. Paterno</label>
-                <div class="col-8">
+                <label for="appaterno" class="col-12 col-form-label">Ap. Paterno</label>
+                <div class="col-12">
                     <input type="text" class="form-control" id="appaterno" name="appaterno"
                         value="{{$student->appaterno ?? '' }}">
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="apmaterno" class="col-4 col-form-label">Ap. Materno</label>
-                <div class="col-8">
+                <label for="apmaterno" class="col-12 col-form-label">Ap. Materno</label>
+                <div class="col-12">
                     <input type="text" class="form-control" id="apmaterno" name="apmaterno"
                         value="{{$student->apmaterno ?? '' }}">
                 </div>
             </div> 
             <div class="mb-3 row">
-                <label for="nombres" class="col-4 col-form-label">Nombres</label>
-                <div class="col-8">
+                <label for="nombres" class="col-12 col-form-label">Nombres</label>
+                <div class="col-12">
                     <input type="text" class="form-control" id="nombres" name="nombres"
                         value="{{$student->nombres ?? '' }}">
                 </div>
@@ -44,6 +44,9 @@
             <label for="codigo_estudiantil_rude" class="label fw-bold mb-2">Código estudiantil RUDE</label>
             <input type="text" class="form-control" name="codigo_estudiantil_rude"
                 id="codigo_estudiantil_rude" value="{{$student->rude ?? '' }}">
+            @error('codigo_estudiantil_rude')
+                <p class="text-danger w-100">Este campo es obligatorio</p>
+            @enderror
         </div>
         <div class="mb-3">
             <label class="label fw-bold mb-2">Documento de identificación</label>
@@ -51,8 +54,8 @@
 
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label for="documento" class="col-sm-4 col-form-label">C.I :</label>
-                        <div class="col-sm-8">
+                        <label for="documento" class="col-12 col-form-label">C.I :</label>
+                        <div class="col-12">
                             <input type="text" class="form-control" id="documento" name="documento"
                                 value="{{$student->ci ?? '' }}">
                         </div>
@@ -61,8 +64,8 @@
 
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label for="expedido_del_ci" class="col-sm-4 col-form-label">Exp. CI. :</label>
-                        <div class="col-sm-8">
+                        <label for="expedido_del_ci" class="col-12 col-form-label">Exp. CI. :</label>
+                        <div class="col-12">
                             <x-students.edit.elements.select-exp-ci 
                                 id="expedido_del_ci" 
                                 :exp="$student->exp_ci ?? '' "
@@ -73,8 +76,8 @@
 
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label for="pasaporte" class="col-sm-4 col-form-label">Pasaporte</label>
-                        <div class="col-sm-8">
+                        <label for="pasaporte" class="col-12 col-form-label">Pasaporte</label>
+                        <div class="col-12">
                             <input type="text" class="form-control" id="pasaporte" name="pasaporte"
                                 value="{{$student->pasaporte ?? '' }}">
                         </div>
@@ -83,18 +86,21 @@
 
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label for="fecha_nacimiento" class="col-sm-4 col-form-label">Fec. Nac. :</label>
-                        <div class="col-sm-8">
+                        <label for="fecha_nacimiento" class="col-12 col-form-label">Fec. Nac. :</label>
+                        <div class="col-12">
                             <input type="date" class="form-control" id="fecha_nacimiento"
                                 name="fecha_nacimiento" value="{{$student->fnacimiento ?? '' }}"> 
+                            @error('fecha_nacimiento')
+                                <p class="text-danger w-100">Este campo es obligatorio</p>
+                            @enderror
                         </div>
                     </div>
                 </div>
 
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label for="sexo" class="col-sm-4 col-form-label">Sexo :</label>
-                        <div class="col-sm-8">
+                        <label for="sexo" class="col-12 col-form-label">Sexo :</label>
+                        <div class="col-12">
                             <select class="form-select" id="sexo" name="sexo">
                                 @isset($student)
                                     <option 
@@ -121,18 +127,18 @@
 
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label for="celular_alumno" class="col-sm-4 col-form-label">Celular: </label>
-                        <div class="col-sm-8">
+                        <label for="celular_alumno" class="col-12 col-form-label">Celular: </label>
+                        <div class="col-12">
                             <input type="text" class="form-control" id="celular_alumno" name="celular_alumno"
                                 value="{{$student->celular ?? '' }}">
                         </div>
                     </div>
                 </div>
 
-                <div class="col-6">
+                <div class="col-12">
                     <div class="mb-3 row">
-                        <label for="correo_institucional" class="col-sm-4 col-form-label">Correo institucional :</label>
-                        <div class="col-sm-8">
+                        <label for="correo_institucional" class="col-12 col-form-label">Correo institucional :</label>
+                        <div class="col-12">
                             <input type="text" class="form-control" id="correo_institucional" name="correo_institucional"
                                 value="{{$student->correo_institucional ?? '' }}">
                         </div>
@@ -176,8 +182,8 @@
 
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label for="paisnac" class="col-sm-4 col-form-label">Pais :</label>
-                        <div class="col-sm-8">
+                        <label for="paisnac" class="col-12 col-form-label">Pais :</label>
+                        <div class="col-12">
                             <input type="text" class="form-control" id="paisnac" name="paisnac"
                                 value="{{$student->paisnac ?? '' }}">
                         </div>
@@ -186,8 +192,8 @@
 
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label for="provnac" class="col-sm-4 col-form-label">Provincia: </label>
-                        <div class="col-sm-8">
+                        <label for="provnac" class="col-12 col-form-label">Provincia: </label>
+                        <div class="col-12">
                             <select 
                                 class="form-select provincia-select"
                                 name="provnac" 
@@ -200,8 +206,8 @@
 
                 <div class="col-6">
                     <div class="row">
-                        <label for="depnac" class="col-sm-4 col-form-label">Departamento:</label>
-                        <div class="col-sm-8">
+                        <label for="depnac" class="col-12 col-form-label">Departamento:</label>
+                        <div class="col-12">
                             <select 
                                 class="form-select departamento-select"
                                 name="depnac" 
@@ -214,8 +220,8 @@
 
                 <div class="col-6">
                     <div class="row">
-                        <label for="locnac" class="col-sm-4 col-form-label">Localidad :</label>
-                        <div class="col-sm-8">
+                        <label for="locnac" class="col-12 col-form-label">Localidad :</label>
+                        <div class="col-12">
                             <input type="text" class="form-control" id="locnac" name="locnac"
                                 value="{{$student->locnac ?? '' }}">
                         </div>
@@ -235,8 +241,8 @@
 
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label for="provincia" class="col-sm-4 col-form-label">Provincia :</label>
-                        <div class="col-sm-8">
+                        <label for="provincia" class="col-12 col-form-label">Provincia :</label>
+                        <div class="col-12">
                             <input type="text" class="form-control" id="provincia" name="provincia"
                                 value="{{$student->provincia ?? '' }}">
                         </div>
@@ -245,8 +251,8 @@
 
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label for="zona" class="col-sm-4 col-form-label">Zona/Villa: </label>
-                        <div class="col-sm-8">
+                        <label for="zona" class="col-12 col-form-label">Zona/Villa: </label>
+                        <div class="col-12">
                             <input type="text" class="form-control" id="zona" name="zona"
                                 value="{{$student->zona ?? '' }}">
                         </div>
@@ -255,8 +261,8 @@
 
                 <div class="col-6">
                     <div class="row">
-                        <label for="seccion" class="col-sm-4 col-form-label">Sección:</label>
-                        <div class="col-sm-8">
+                        <label for="seccion" class="col-12 col-form-label">Sección:</label>
+                        <div class="col-12">
                             <input type="text" class="form-control" id="seccion" name="seccion"
                                 value="{{$student->seccion ?? '' }}">
                         </div>
@@ -265,19 +271,19 @@
 
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-12 mb-3">
+                        <div class="col-6 mb-3">
                             <div class="row">
-                                <label for="calle" class="col-sm-4 col-form-label">Callle :</label>
-                                <div class="col-sm-8">
+                                <label for="calle" class="col-12 col-form-label">Callle :</label>
+                                <div class="col-12">
                                     <input type="text" class="form-control" id="calle" name="calle"
                                         value="{{$student->calle ?? '' }}">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 mb-3">
+                        <div class="col-6 mb-3">
                             <div class="row">
-                                <label for="numero" class="col-sm-4 col-form-label">N" :</label>
-                                <div class="col-sm-8">
+                                <label for="numero" class="col-12 col-form-label">N" :</label>
+                                <div class="col-12">
                                     <input type="text" class="form-control" id="numero" name="numero"
                                         value="{{$student->numero ?? '' }}">
                                 </div>
@@ -288,8 +294,8 @@
 
                 <div class="col-6">
                     <div class="mb-3 row">
-                        <label for="localidad" class="col-sm-4 col-form-label">Localidad: </label>
-                        <div class="col-sm-8">
+                        <label for="localidad" class="col-12 col-form-label">Localidad: </label>
+                        <div class="col-12">
                             <input type="text" class="form-control" id="localidad" name="localidad"
                                 value="{{$student->localidad ?? '' }}">
                         </div>
@@ -298,8 +304,8 @@
 
                 <div class="col-6">
                     <div class="row">
-                        <label for="telefono" class="col-sm-4 col-form-label">Telefono:</label>
-                        <div class="col-sm-8">
+                        <label for="telefono" class="col-12 col-form-label">Telefono:</label>
+                        <div class="col-12">
                             <input type="text" class="form-control" id="telefono" name="telefono"
                                 value="{{$student->telefono ?? '' }}">
                         </div>

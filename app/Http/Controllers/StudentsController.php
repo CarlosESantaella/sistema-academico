@@ -39,6 +39,12 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'nit' => 'required',
+            'codigo_estudiantil_rude' => 'required',
+            'fecha_nacimiento' => 'required'
+        ]);
+
         if($request->hasFile('image')){
             $img_path = $request->file('image')->store('public/students/img');
             $file_name = str_replace('public/students/img/', '', $img_path);
@@ -52,6 +58,16 @@ class StudentsController extends Controller
         $codigo_alumno = rand(100000, 999999);
 
         // Students
+        $user = User::create([
+            "codigo" => $codigo_alumno,
+            "appaterno" => strtoupper($request->appaterno),
+            "apmaterno" => strtoupper($request->apmaterno),
+            "nombres" => strtoupper($request->nombres),
+            "clave" => $codigo_alumno.'CLS',
+            "fnacimiento" => $request->fecha_nacimiento,
+            "tipo" => 3,
+            "ci" => strtoupper($request->documento),
+        ]);
         $student = Student::create([
             "codigo" => $codigo_alumno,
             "rude" => $request->codigo_estudiantil_rude,
@@ -87,7 +103,8 @@ class StudentsController extends Controller
             "pertenece" => strtoupper($request->etnia),
             "nsalud" => strtoupper($request->salud),
             "transporte" => strtoupper($request->transporte),
-            "tiempo" => strtoupper($request->tiempo)
+            "tiempo" => strtoupper($request->tiempo),
+            "usuario_fk" => $codigo_alumno,
         ]);
 
         // Parents

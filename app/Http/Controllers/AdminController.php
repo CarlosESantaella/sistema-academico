@@ -49,6 +49,7 @@ class AdminController extends Controller
                 return $query->whereYear('finscripcion', $year);
             }
         )->get();
+        $students = $students->where('student.estado', 1);
 
         $results = [];
 
@@ -93,7 +94,7 @@ class AdminController extends Controller
 
     public function searchStudents(Request $request)
     {
-        $students = $this->getLicencePlatesByFilter($request);
+        $students = Student::all();
         return view('admins.search-students', [
             "students" => $students, "search_by" => $request->search_by, 
             "search_value" => $request->search_value, "gestion" => $request->gestion
