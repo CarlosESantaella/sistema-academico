@@ -58,6 +58,13 @@
                 <button type="submit" class="btn btn-primary-custom search-table">Buscar</button>
             </div>
         </div>
+        @php
+            $cursos = [
+                "Inicial" => "K",
+                "Primario" => "P",
+                "Secundaria" => "S"
+            ];
+        @endphp
         <table id="students" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
@@ -72,10 +79,21 @@
             </thead>
             <tbody>
                 @foreach($students as $student)
+                    @php
+                    $gnumeral = match($student->course->gnumeral){
+                        "Kinder" => '1',
+                        "Prekinder" => '2',
+                        " Prekinder" => '2',
+                        default => $student->course->gnumeral
+                    };
+                    
+                    $curso_procesado = $cursos[$student->course->nivel] . str_replace("°", "", $gnumeral).$student->course->paralelo;
+                @endphp
                     <tr>
                         <td>{{ $student->student->codigo }}</td>
                         <td>{{ $student->student->nombres }} {{ $student->student->appaterno }} {{ $student->student->apmaterno }}</td>
-                        <td>{{ $student->course->gnumeral ?? '' }} {{ $student->course->paralelo ?? '' }}</td>
+                        {{-- <td>{{ $student->course->gnumeral ?? '' }} {{ $student->course->paralelo ?? '' }}</td> --}}
+                        <td>{{ $curso_procesado ?? '' }}</td>
                         <td>{{ $student->course->nivel ?? '' }}</td>
                         <td>{{ $student->course->turno ?? '' }}</td>
                         <td>{{ ($student->student->sexo == "M") ? 'Masculino' : 'Femenino' }}</td>

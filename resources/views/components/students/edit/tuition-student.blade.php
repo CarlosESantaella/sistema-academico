@@ -63,6 +63,9 @@
                 <div class="input-group">
                     <span class="input-group-text">NIT: </span>
                     <input type="text" name="nit" value="{{$student->nit ?? '' }}" class="form-control">
+                    @error('nit')
+                        <p class="text-danger w-100">Este campo es requerido</p>
+                    @enderror
                 </div>
             </div>
         </div>
