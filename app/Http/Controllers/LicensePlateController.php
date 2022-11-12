@@ -17,6 +17,7 @@ class LicensePlateController extends Controller
         ]);
 
         $lp = LicensePlate::create([
+            "finscripcion" => date('Y-m-d h:i:s'),
             "gestion" => $request->gestion,
             "codalumno" => $request->codalumno,
             "codcurso" => $request->codcurso,
