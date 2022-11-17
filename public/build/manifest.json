@@ -9,6 +9,11 @@
     "src": "resources/js/select-departamento-provincia.js",
     "isEntry": true
   },
+  "resources/js/edit-students.js": {
+    "file": "assets/edit-students.9a95ae45.js",
+    "src": "resources/js/edit-students.js",
+    "isEntry": true
+  },
   "resources/css/app.css": {
     "file": "assets/app.61c1188e.css",
     "src": "resources/css/app.css",
