@@ -20,5 +20,5 @@
 @endsection
 
 @push('scripts')
-    @vite('resources/js/select-departamento-provincia.js')
+    @vite('/resources/js/select-departamento-provincia.js')
 @endpush
