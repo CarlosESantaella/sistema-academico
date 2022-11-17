@@ -187,4 +187,11 @@ class AdminController extends Controller
         ]);
     }
 
+    public function registration(Request $request)
+    {
+        
+        
+        return view('admins.registration');
+    }
+
 }

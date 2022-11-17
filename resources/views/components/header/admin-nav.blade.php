@@ -38,8 +38,8 @@
         </li>
         <li>
             <x-nav-link
-                href="#"
-                :active="false"
+                :href="route('admins.registration')"
+                :active="request()->routeIs('admins.registration')"
                 class="dropdown-item"
 
             >
