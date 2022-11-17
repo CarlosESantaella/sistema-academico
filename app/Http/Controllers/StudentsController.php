@@ -380,4 +380,9 @@ class StudentsController extends Controller
         return view('students.certs', ["files" => $newFiles]);
     }
 
+    public function getLicensePlatesByStudent($codigo) {
+        $license_plates = Student::where('codigo', $codigo)->firstOrFail()->licenses_plates()->get();
+        return $license_plates;
+    }
+
 }
