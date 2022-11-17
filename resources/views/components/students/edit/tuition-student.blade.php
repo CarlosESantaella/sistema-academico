@@ -48,11 +48,14 @@
             </div> 
             <div class="tab-pane fade p-4" id="historial-tab-pane" role="tabpanel" aria-labelledby="historial-tab"
                 tabindex="0">
+                @if(isset($licenseplates))
                 @foreach ($licenseplates as $licenseplate)
                 <p class="mb-0">
                     Código: {{$licenseplate->codigo}} | Fecha de inscripción: {{$licenseplate->finscripcion}} | Gestión {{explode("-", $licenseplate->finscripcion)[0]}}
                 </p>
                 @endforeach
+                @endif
+                
             </div>
             <div class="tab-pane fade p-4" id="facturacion-tab-pane" role="tabpanel" aria-labelledby="facturacion-tab"
                 tabindex="0">

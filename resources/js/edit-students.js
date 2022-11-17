@@ -28,7 +28,7 @@ $(document).ready(function(){
             }, 3000);
         }else {
             Swal.fire({
-                title: 'Ha habido un error al elminair responsable',
+                title: 'Ha habido un error al eliminar responsable',
             })
         }
         $(".swal2-image").attr("style", "margin: 0; width: 100%")

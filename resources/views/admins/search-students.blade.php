@@ -3,7 +3,16 @@
 @push('styles')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.12.1/r-2.3.0/datatables.min.css"/>
     <style>
-
+        #students > tbody > tr{
+            cursor: pointer;
+        }
+        #students > tbody > tr.active{
+            background: var(--color-primary);
+            color: white;
+        }
+        #students > tbody > tr.active > td{
+            color: white !important;
+        }
     </style>
 @endpush
 @section('content')
@@ -127,7 +136,7 @@
             </thead>
             <tbody>
                 @foreach($students as $student)
-                    <tr>
+                    <tr data-id="{{ $student->codigo }}">
                         <td>{{ $student->codigo }}</td>
                         <td>{{ $student->nombres }} {{ $student->appaterno }} {{ $student->apmaterno }}</td>
                         {{-- <td>{{ $curso_procesado ?? '' }}</td> --}}
@@ -141,14 +150,25 @@
         </table>
         <div class="d-flex flex-wrap justify-content-between mt-2">
             <div class="d-flex flex-wrap">
-                <button class="btn btn-primary-custom me-1">Editar Registro</button>
+                <a class="link-edit-student" href="#" target="_blank">
+                    <button class="btn btn-primary-custom me-1">Editar Registro</button>
+                </a>
+
                 <button class="btn btn-primary-custom me-1">Matricular</button>
-                <button class="btn btn-primary-custom me-1">Registro Nuevo</button>
-                <button class="btn btn-primary-custom me-1">Deshabilitar</button>
+
+                <a href="{{ route('admins.create_student') }}" target="_blank">
+                    <button class="btn btn-primary-custom me-1">Registro Nuevo</button>
+                </a>
+
+                <a class="link-disabled-student" data-id="" href="#" >
+                    <button class="btn btn-primary-custom me-1">Deshabilitar</button>
+                </a>
 
             </div>
             <div>
-                <button class="btn btn-primary-custom">Eliminar Registro</button>
+                <a class="link-delete-student" href="#" data-id="">
+                    <button class="btn btn-primary-custom">Eliminar Registro</button>
+                </a>
             </div>
         </div>
         
@@ -158,12 +178,96 @@
 
 @push('scripts')
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.12.1/r-2.3.0/datatables.min.js"></script>
-    <script>
+    <script type="module">
         $(document).ready(function () {
             $('#students').DataTable({
                 lengthChange: false,
                 // searching: false,
             });
+            $('body').on('click', '#students > tbody > tr', function(){
+                let id = $(this).attr('data-id');
+                $('#students > tbody > tr').removeClass('active');
+                $(this).addClass('active');
+
+                $('.link-edit-student').attr('href', '/dashboard/students/'+id+'CLS/edit');
+
+                $('.link-disabled-student').attr('data-id', id);
+                $('.link-delete-student').attr('data-id', id);
+
+                
+            });
+
+            function changeStatus2(id_estudiante, estado) {
+                fetch(
+                    "/students/"+id_estudiante+"/changeState2",
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify({
+                            'estado': estado
+                        }) 
+                    }
+                )
+                .then(res => res.text())
+                .then(data => {
+                    Swal.fire({
+                        title: 'Usuario Deshabilitado',
+                        imageUrl: "/images/logo-salle-2.png",
+                        confirmButtonColor: '#101f34',
+                        confirmButtonText: 'Ok',
+                    });
+                });
+            }
+
+            $('.link-disabled-student').on('click', function(){
+                let id_student = $(this).attr('data-id');
+                let estado = "0";
+
+                if(id_student.trim() != ''){
+                    changeStatus2(id_student, estado);
+                }
+            })
+            function deleteStudent(id_estudiante) {
+                fetch(
+                    "/students/"+id_estudiante,
+                    {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        }
+                        // body: JSON.stringify({
+                        //     'estado': estado
+                        // }) 
+                    }
+                )
+                .then(res => res.text())
+                .then(data => {
+                    Swal.fire({
+                        title: 'Usuario Eliminado',
+                        imageUrl: "/images/logo-salle-2.png",
+                        confirmButtonColor: '#101f34',
+                        confirmButtonText: 'Ok',
+                    })
+                    .then(result => {
+                        if(result.isConfirmed){
+                            $(`table > tbody > tr[data-id="${id_estudiante}"]`).remove();
+                        }
+                    });
+                });
+            }
+            $('.link-delete-student').on('click', function(){
+                let id_student = $(this).attr('data-id');
+
+                if(id_student.trim() != ''){
+                    deleteStudent(id_student);
+                }
+            })
+
+
         });
     </script>
 @endpush

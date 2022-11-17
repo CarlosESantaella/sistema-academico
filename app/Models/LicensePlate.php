@@ -14,6 +14,7 @@ class LicensePlate extends Model
     protected $guarded = [];
     protected $primaryKey = 'codigo';
     protected $table = 'matricula';
+    const CREATED_AT = 'finscripcion';
 
     public function student() {
         return $this->belongsTo(Student::class, 'codalumno', 'codigo');

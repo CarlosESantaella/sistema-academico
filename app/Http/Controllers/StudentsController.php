@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PreRegistration;
 use App\Models\User;
 use App\Models\Student;
 use App\Models\Responsible;
@@ -330,20 +331,38 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = Student::find($id);
+
+        $student->delete();
+        
     }
 
     public function changeState(Request $request, $id)
     {
 
-
         $student = Student::find($id);
         
+        PreRegistration::create([
+            'fk_alumno' => $id
+        ]);
+
         $student->estado = $request->estado;
 
         $student->save();
+    }
 
+    public function changeState2(Request $request, $id)
+    {
 
+        $student = Student::find($id);
+        
+        // PreRegistration::create([
+        //     'fk_alumno' => $id
+        // ]);
+
+        $student->estado = $request->estado;
+
+        $student->save();
     }
 
     public function viewCerts() 

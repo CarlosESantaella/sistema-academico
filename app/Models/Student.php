@@ -27,4 +27,14 @@ class Student extends Model
         return $this->hasMany(LicensePlate::class, 'codalumno', 'codigo');
     }
 
+    public function pre_registrations()
+    {
+        return $this->hasMany(PreRegistration::class, 'fk_alumno', 'codigo');
+    }
+
+    public function lastest_preregistration()
+    {
+        return $this->hasOne(PreRegistration::class, 'fk_alumno', 'codigo')->lastestOfMany();
+    }
+
 }

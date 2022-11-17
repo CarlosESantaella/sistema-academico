@@ -25,10 +25,14 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/dashboard', 'index')->middleware('auth')->name('admins.index');
     Route::get('/dashboard/license-plates', 'viewLicencePlates')->middleware('auth')->name('admins.lp');
     Route::get('/dashboard/license-plates/export', 'exportLicensePlates')->middleware('auth')->name('students.license-plates-export');
+    Route::get('/dashboard/pre-registrations/export', 'exportPreRegistrations')->middleware('auth')->name('students.pre-registrations-export');
     Route::match(['get', 'post'],'/dashboard/license-plates', 'viewLicencePlates')->middleware('auth')->name('admins.licenses_plates');
     Route::match(['get', 'post'],'/dashboard/search-students', 'searchStudents')->middleware('auth')->name('admins.search_students');
     Route::get('/dashboard/create-student', 'createStudent')->middleware('auth')->name('admins.create_student');
+    Route::get('/dashboard/preregistrations', 'preregistrations')->middleware('auth')->name('admins.preregistrations');
 });
+Route::get('/dashboard/students/{student}/edit', [StudentsController::class, 'edit'])->middleware('auth')->name('admins.edit.student');
+Route::put('/students/{student}/changeState2', [StudentsController::class, 'changeState2'])->name('students.changestate.two');
 
 
 

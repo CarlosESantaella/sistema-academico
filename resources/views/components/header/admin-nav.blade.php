@@ -58,5 +58,14 @@
                 Inscripciones por día
             </x-nav-link>
         </li>
+        <li>
+            <x-nav-link
+                :href="route('admins.preregistrations')"
+                :active="request()->routeIs('admins.preregistrations')"
+                class="dropdown-item"
+            >
+                Pre-inscripciones por día
+            </x-nav-link>
+        </li>
     </ul>
 </li>
