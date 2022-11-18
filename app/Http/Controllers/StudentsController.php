@@ -200,14 +200,27 @@ class StudentsController extends Controller
             session()->invalidate();
             session()->regenerateToken();
             return redirect()->route('login.index')->with('message', 'Su cuenta se escuentra deshabilitada, gracias por haberse matriculado en periodos anteriores!');
-        }   
+        }
+        $password = $student->codigo.'CLS';
+        $username_a = explode(' ', $student->nombres);
+        $first_letter_names = '';
+
+        foreach($username_a as $letter){
+            $letter_a = str_split($letter, 1);
+            $first_letter_names .= $letter_a[0];
+        }
+        
+        $correct_username = $first_letter_names.$student->appaterno;
+        $username = $correct_username;
         $responsibles = Student::findOrFail($student->codigo)->responsibles()->get();
         $license_plates = Student::findOrFail($student->codigo)->licenses_plates()->get();
 
         return view('students.edit-student', [
             "student" => $student,
             "responsibles" => $responsibles,
-            "license_plates" => $license_plates
+            "license_plates" => $license_plates,
+            "password" => $password,
+            "username" => $username,
         ]);
     }
 

@@ -172,6 +172,7 @@ class AdminController extends Controller
 
     public function createStudent()
     {
+        
         return view('admins.create-student');
     }
     public function preregistrations(Request $request)
