@@ -17,7 +17,10 @@
                 <x-students.edit.edit-student 
                     :student="$student" 
                     :responsibles="$responsibles" 
-                    :licenseplates="$license_plates"/>
+                    :licenseplates="$license_plates"
+                    :password="$password"
+                    :username="$username"
+                />
             </form>
         </div>
     @endif

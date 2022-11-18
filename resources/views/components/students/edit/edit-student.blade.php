@@ -3,7 +3,7 @@
         <input type="hidden" name="prueba" value="hola mundo">
         <div class="col-md-6 px-4">
             <div class="card p-4">
-                <x-students.edit.data-student :student="$student"/>
+                <x-students.edit.data-student :student="$student" :password="$password" :username="$username"/>
             </div>
         </div>
     

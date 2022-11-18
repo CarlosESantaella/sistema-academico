@@ -31,9 +31,9 @@ class LicensesPlatesExport {
             $responsible_1 = isset($s->student->responsibles[0]) ? $s->student->responsibles[0]: [];
             $responsible_2 = isset($s->student->responsibles[1]) ? $s->student->responsibles[1]: [];
             $gnumeral = $s->course->gnumeral;
-            if ($gnumeral == "Kinder") $gnumeral = "1"; 
-            if ($gnumeral == "Prekinder") $gnumeral = "2"; 
-            if ($gnumeral == " Prekinder") $gnumeral = "2"; 
+            if ($gnumeral == "Kinder") $gnumeral = "2"; 
+            if ($gnumeral == "Prekinder") $gnumeral = "1"; 
+            if ($gnumeral == " Prekinder") $gnumeral = "1"; 
             $curso_procesado = $cursos[$s->course->nivel] . str_replace("°", "", $gnumeral).$s->course->paralelo;
             $students_arr[] = [
                 $s->student->codigo, $s->student->rude, $s->student->ci, explode(" ", $s->student->exp_ci)[0], 
@@ -103,9 +103,9 @@ class LicensesPlatesExport {
                 $course = $last_lp->course()->first();
                 
                 $gnumeral = match($course->gnumeral){
-                    "Kinder" => '1',
-                    "Prekinder" => '2',
-                    " Prekinder" => '2',
+                    "Kinder" => '2',
+                    "Prekinder" => '1',
+                    " Prekinder" => '1',
                     default => $course->gnumeral
                 };
                 

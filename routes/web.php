@@ -35,9 +35,12 @@ Route::controller(AdminController::class)->group(function(){
     Route::match(['get', 'post'],'/dashboard/search-students', 'searchStudents')->middleware('auth')->name('admins.search_students');
     Route::get('/dashboard/create-student', 'createStudent')->middleware('auth')->name('admins.create_student');
     Route::get('/dashboard/preregistrations', 'preregistrations')->middleware('auth')->name('admins.preregistrations');
+    Route::get('/dashboard/registration', 'registration')->middleware('auth')->name('admins.registration');
 });
 Route::get('/dashboard/students/{student}/edit', [StudentsController::class, 'edit'])->middleware('auth')->name('admins.edit.student');
 Route::put('/students/{student}/changeState2', [StudentsController::class, 'changeState2'])->name('students.changestate.two');
+
+
 
 // Auth
 Route::controller(LoginController::class)->group(function(){

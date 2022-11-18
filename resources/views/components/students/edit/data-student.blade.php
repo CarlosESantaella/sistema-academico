@@ -89,7 +89,7 @@
                         <label for="fecha_nacimiento" class="col-12 col-form-label">Fec. Nac. :</label>
                         <div class="col-12">
                             <input type="date" class="form-control" id="fecha_nacimiento"
-                                name="fecha_nacimiento" value="{{$student->fnacimiento ?? '' }}"> 
+                                name="fecha_nacimiento" value="{{$student->fnacimiento ?? '' }}">
                             @error('fecha_nacimiento')
                                 <p class="text-danger w-100">Este campo es obligatorio</p>
                             @enderror
@@ -316,5 +316,40 @@
         </div>
 
     </div>
+
+    @if(auth()->user()->tipo == '0' and request()->routeIs('admins.edit.student'))
+    {{-- credenciales --}}
+
+    <div class="card p-3 mt-3">
+        <div class="">
+            <label class="label fw-bold mb-2">Credenciales</label>
+            <div class="row">
+
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label for="username" class="col-12 col-form-label">Usuario :</label>
+                        <div class="col-12">
+                            <input type="text" readonly class="form-control" id="username" 
+                                value="{{$username }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="mb-3 row">
+                        <label for="password" class="col-12 col-form-label">Contraseña: </label>
+                        <div class="col-12">
+                            <input type="text" readonly class="form-control" id="password" name="password"
+                                value="{{ $password }}">
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </div>
+    </div>
+    @endif
     
 </div>
