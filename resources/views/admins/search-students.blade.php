@@ -13,6 +13,18 @@
         #students > tbody > tr.active > td{
             color: white !important;
         }
+        table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+bottom: .5em;
+}
     </style>
 @endpush
 @section('content')
@@ -123,7 +135,8 @@
                 </div>
             </div>
         </form>
-        <table id="students" class="table table-striped table-bordered" style="width:100%">
+        <table id="students" class="table table-striped table-bordered table-sm" cellspacing="0"
+        width="100%">
             <thead>
                 <tr>
                     <th>Cod. Estudiante</th>
@@ -180,10 +193,21 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.12.1/r-2.3.0/datatables.min.js"></script>
     <script type="module">
         $(document).ready(function () {
+            // $('#students').DataTable({
+            //     lengthChange: false,
+            //     paging: false,
+            //     info: false,
+            //     // searching: false,
+            // });
             $('#students').DataTable({
-                lengthChange: false,
-                // searching: false,
+                "scrollY": "50vh",
+                "scrollCollapse": true,
+                "lengthChange": false,
+                "paging": false,
+                // "info": false,
             });
+            $('.dataTables_length').addClass('bs-select');
+
             $('body').on('click', '#students > tbody > tr', function(){
                 let id = $(this).attr('data-id');
                 $('#students > tbody > tr').removeClass('active');
