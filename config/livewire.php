@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'asset_url' => "https://sistema-academico-production.up.railway.app",
+    'asset_url' => null,
 
     /*
     |--------------------------------------------------------------------------
