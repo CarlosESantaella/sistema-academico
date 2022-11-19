@@ -19,7 +19,9 @@ class TemporaryUploadedFile extends UploadedFile
         $this->storage = Storage::disk($this->disk);
         $this->path = FileUploadConfiguration::path($path, false);
 
-        $tmpFile = tmpfile();
+        // $tmpFile = tmpfile();
+        $tmpfname = tempnam(sys_get_temp_dir(), '');
+        $tmpFile = fopen($tmpfname, 'w');
 
         parent::__construct(stream_get_meta_data($tmpFile)['uri'], $this->path);
     }
