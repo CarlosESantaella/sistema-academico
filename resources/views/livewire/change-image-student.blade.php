@@ -10,7 +10,7 @@
                     src="{{asset('storage/students/img/'.$student->foto)}}"
                 @else
                     src="{{asset('images/user.png')}}"
-                @endif
+                @endif 
             >
         </label>
     </div>
