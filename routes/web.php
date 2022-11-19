@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LicensePlateController;
@@ -23,6 +24,9 @@ Route::get('/', function () {
 });
 Route::get('/testform', function () {
     return view('testform');
+});
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
 });
 
 // Dashboard
