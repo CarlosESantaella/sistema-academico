@@ -19,7 +19,7 @@
                         type="text" 
                         name="relacion_1" 
                         id="relacion_1" 
-                        class="form-control" 
+                        class="form-control " 
                         readonly
                         value="{{$responsibles[0]->relacion ?? ''}}"
                     >
@@ -40,7 +40,7 @@
                 <div class="col-md-6">
                     <label for="ci_1" class="col-12 col-form-label">C.I: </label>
                     <div class="col-12">
-                        <input type="text" class="form-control" id="ci_1" name="ci_1" value="{{$responsibles[0]->ci ?? ''}}">
+                        <input type="text" class="form-control tw-uppercase" id="ci_1" name="ci_1" value="{{$responsibles[0]->ci ?? ''}}">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -56,31 +56,31 @@
             <div class="mb-3 row">
                 <label for="appaterno_1" class="col-12 col-form-label">Ap. Paterno: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="appaterno_1" name="appaterno_1" value="{{$responsibles[0]->appaterno ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="appaterno_1" name="appaterno_1" value="{{$responsibles[0]->appaterno ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="apmaterno_1" class="col-12 col-form-label">Ap. Materno: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="apmaterno_1" name="apmaterno_1" value="{{$responsibles[0]->apmaterno ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="apmaterno_1" name="apmaterno_1" value="{{$responsibles[0]->apmaterno ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="nombres_1" class="col-12 col-form-label">Nombre(s): </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="nombres_1" name="nombres_1" value="{{$responsibles[0]->nombres ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="nombres_1" name="nombres_1" value="{{$responsibles[0]->nombres ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="idioma_1" class="col-12 col-form-label">Idioma: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="idioma_1" name="idioma_1" value="{{$responsibles[0]->idioma ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="idioma_1" name="idioma_1" value="{{$responsibles[0]->idioma ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="ocupacion_1" class="col-12 col-form-label">Ocupación: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="ocupacion_1" name="ocupacion_1" value="{{$responsibles[0]->ocupacion ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="ocupacion_1" name="ocupacion_1" value="{{$responsibles[0]->ocupacion ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
@@ -95,19 +95,19 @@
             <div class="mb-3 row">
                 <label for="telefono_1" class="col-12 col-form-label">Teléfono: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" name="telefono_1" id="telefono_1" value="{{$responsibles[0]->telefono ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" name="telefono_1" id="telefono_1" value="{{$responsibles[0]->telefono ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="celular_1" class="col-12 col-form-label">Celular: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="celular_1" name="celular_1" value="{{$responsibles[0]->celular ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="celular_1" name="celular_1" value="{{$responsibles[0]->celular ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="email_1" class="col-12 col-form-label">Email: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="email_1" name="email_1" value="{{$responsibles[0]->mail ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="email_1" name="email_1" value="{{$responsibles[0]->mail ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
@@ -166,7 +166,7 @@
 
                     <label for="ci_2" class="col-12 col-form-label">C.I: </label>
                     <div class="col-12">
-                        <input type="text" class="form-control" id="ci_2" name="ci_2" value="{{$responsibles[1]->ci ?? ''}}">
+                        <input type="text" class="form-control tw-uppercase" id="ci_2" name="ci_2" value="{{$responsibles[1]->ci ?? ''}}">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -182,31 +182,31 @@
             <div class="mb-3 row">
                 <label for="appaterno_2" class="col-12 col-form-label">Ap. Paterno: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="appaterno_2" name="appaterno_2" value="{{$responsibles[1]->appaterno ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="appaterno_2" name="appaterno_2" value="{{$responsibles[1]->appaterno ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="apmaterno_2" class="col-12 col-form-label">Ap. Materno: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="apmaterno_2" name="apmaterno_2" value="{{$responsibles[1]->apmaterno ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="apmaterno_2" name="apmaterno_2" value="{{$responsibles[1]->apmaterno ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="nombres_2" class="col-12 col-form-label">Nombre(s): </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="nombres_2" name="nombres_2" value="{{$responsibles[1]->nombres ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="nombres_2" name="nombres_2" value="{{$responsibles[1]->nombres ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="idioma_2" class="col-12 col-form-label">Idioma: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="idioma_2" name="idioma_2" value="{{$responsibles[1]->idioma ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="idioma_2" name="idioma_2" value="{{$responsibles[1]->idioma ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="ocupacion_2" class="col-12 col-form-label">Ocupación: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="ocupacion_2" name="ocupacion_2" value="{{$responsibles[1]->ocupacion ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="ocupacion_2" name="ocupacion_2" value="{{$responsibles[1]->ocupacion ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
@@ -221,19 +221,19 @@
             <div class="mb-3 row">
                 <label for="telefono_2" class="col-12 col-form-label">Teléfono: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="telefono_2" name="telefono_2" value="{{$responsibles[1]->telefono ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="telefono_2" name="telefono_2" value="{{$responsibles[1]->telefono ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="celular_2" class="col-12 col-form-label">Celular: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="celular_2" name="celular_2" value="{{$responsibles[1]->celular ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="celular_2" name="celular_2" value="{{$responsibles[1]->celular ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="email_2" class="col-12 col-form-label">Email: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="email_2" name="email_2" value="{{$responsibles[1]->mail ?? ''}}">
+                    <input type="text" class="form-control tw-uppercase" id="email_2" name="email_2" value="{{$responsibles[1]->mail ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">

@@ -7,7 +7,7 @@
             <div class="mb-3 row">
                 <label for="code" class="col-12 fw-bold">CÓDIGO</label>
                 <div class="col-12">
-                    <input type="text" readonly class="form-control" id="codigo" name="codigo"
+                    <input type="text" readonly class="form-control tw-uppercase" id="codigo" name="codigo"
                         value="{{ $student->codigo ?? '' }}">
                 </div>
             </div>
@@ -17,21 +17,21 @@
             <div class="mb-3 row">
                 <label for="appaterno" class="col-12 col-form-label">Ap. Paterno</label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="appaterno" name="appaterno"
+                    <input type="text" class="form-control tw-uppercase" id="appaterno" name="appaterno"
                         value="{{$student->appaterno ?? '' }}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="apmaterno" class="col-12 col-form-label">Ap. Materno</label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="apmaterno" name="apmaterno"
+                    <input type="text" class="form-control tw-uppercase" id="apmaterno" name="apmaterno"
                         value="{{$student->apmaterno ?? '' }}">
                 </div>
             </div> 
             <div class="mb-3 row">
                 <label for="nombres" class="col-12 col-form-label">Nombres</label>
                 <div class="col-12">
-                    <input type="text" class="form-control" id="nombres" name="nombres"
+                    <input type="text" class="form-control tw-uppercase" id="nombres" name="nombres"
                         value="{{$student->nombres ?? '' }}">
                 </div>
             </div>
@@ -42,7 +42,7 @@
     <div class="card p-3">
         <div class="mb-3">
             <label for="codigo_estudiantil_rude" class="label fw-bold mb-2">Código estudiantil RUDE</label>
-            <input type="text" class="form-control" name="codigo_estudiantil_rude"
+            <input type="text" class="form-control tw-uppercase" name="codigo_estudiantil_rude"
                 id="codigo_estudiantil_rude" value="{{$student->rude ?? '' }}">
             @error('codigo_estudiantil_rude')
                 <p class="text-danger w-100">Este campo es obligatorio</p>
@@ -56,7 +56,7 @@
                     <div class="mb-3 row">
                         <label for="documento" class="col-12 col-form-label">C.I :</label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="documento" name="documento"
+                            <input type="text" class="form-control tw-uppercase" id="documento" name="documento"
                                 value="{{$student->ci ?? '' }}">
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                     <div class="mb-3 row">
                         <label for="pasaporte" class="col-12 col-form-label">Pasaporte</label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="pasaporte" name="pasaporte"
+                            <input type="text" class="form-control tw-uppercase" id="pasaporte" name="pasaporte"
                                 value="{{$student->pasaporte ?? '' }}">
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                     <div class="mb-3 row">
                         <label for="celular_alumno" class="col-12 col-form-label">Celular: </label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="celular_alumno" name="celular_alumno"
+                            <input type="text" class="form-control tw-uppercase" id="celular_alumno" name="celular_alumno"
                                 value="{{$student->celular ?? '' }}">
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                     <div class="mb-3 row">
                         <label for="correo_institucional" class="col-12 col-form-label">Correo institucional :</label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="correo_institucional" name="correo_institucional"
+                            <input type="text" class="form-control tw-uppercase" id="correo_institucional" name="correo_institucional"
                                 value="{{$student->correo_institucional ?? '' }}">
                         </div>
                     </div>
@@ -152,22 +152,22 @@
             <div class="row">
                 <div class="col-6 col-md-3">
                     <label for="oficialia_n" class="label fw-bold">Oficialia N</label>
-                    <input type="text" class="form-control" id="oficialia_n" name="oficialia_n"
+                    <input type="text" class="form-control tw-uppercase" id="oficialia_n" name="oficialia_n"
                         value="{{$student->oficialia ?? '' }}">
                 </div>
                 <div class="col-6 col-md-3">
                     <label for="libro_n" class="label fw-bold">Libro N</label>
-                    <input type="text" class="form-control" id="libro_n" name="libro_n"
+                    <input type="text" class="form-control tw-uppercase" id="libro_n" name="libro_n"
                         value="{{$student->libro ?? '' }}">
                 </div>
                 <div class="col-6 col-md-3">
                     <label for="partida_n" class="label fw-bold">Partida N</label>
-                    <input type="text" class="form-control" id="partida_n" name="partida_n"
+                    <input type="text" class="form-control tw-uppercase" id="partida_n" name="partida_n"
                         value="{{$student->partida ?? '' }}">
                 </div>
                 <div class="col-6 col-md-3">
                     <label for="folio_n" class="label fw-bold">Folio N</label>
-                    <input type="text" class="form-control" id="folio_n" name="folio_n"
+                    <input type="text" class="form-control tw-uppercase" id="folio_n" name="folio_n"
                         value="{{$student->folio ?? '' }}">
                 </div>
             </div>
@@ -184,7 +184,7 @@
                     <div class="mb-3 row">
                         <label for="paisnac" class="col-12 col-form-label">Pais :</label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="paisnac" name="paisnac"
+                            <input type="text" class="form-control tw-uppercase" id="paisnac" name="paisnac"
                                 value="{{$student->paisnac ?? '' }}">
                         </div>
                     </div>
@@ -222,7 +222,7 @@
                     <div class="row">
                         <label for="locnac" class="col-12 col-form-label">Localidad :</label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="locnac" name="locnac"
+                            <input type="text" class="form-control tw-uppercase" id="locnac" name="locnac"
                                 value="{{$student->locnac ?? '' }}">
                         </div>
                     </div>
@@ -243,7 +243,7 @@
                     <div class="mb-3 row">
                         <label for="provincia" class="col-12 col-form-label">Provincia :</label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="provincia" name="provincia"
+                            <input type="text" class="form-control tw-uppercase" id="provincia" name="provincia"
                                 value="{{$student->provincia ?? '' }}">
                         </div>
                     </div>
@@ -253,7 +253,7 @@
                     <div class="mb-3 row">
                         <label for="zona" class="col-12 col-form-label">Zona/Villa: </label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="zona" name="zona"
+                            <input type="text" class="form-control tw-uppercase" id="zona" name="zona"
                                 value="{{$student->zona ?? '' }}">
                         </div>
                     </div>
@@ -263,7 +263,7 @@
                     <div class="row">
                         <label for="seccion" class="col-12 col-form-label">Sección:</label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="seccion" name="seccion"
+                            <input type="text" class="form-control tw-uppercase" id="seccion" name="seccion"
                                 value="{{$student->seccion ?? '' }}">
                         </div>
                     </div>
@@ -275,7 +275,7 @@
                             <div class="row">
                                 <label for="calle" class="col-12 col-form-label">Callle :</label>
                                 <div class="col-12">
-                                    <input type="text" class="form-control" id="calle" name="calle"
+                                    <input type="text" class="form-control tw-uppercase" id="calle" name="calle"
                                         value="{{$student->calle ?? '' }}">
                                 </div>
                             </div>
@@ -284,7 +284,7 @@
                             <div class="row">
                                 <label for="numero" class="col-12 col-form-label">N" :</label>
                                 <div class="col-12">
-                                    <input type="text" class="form-control" id="numero" name="numero"
+                                    <input type="text" class="form-control tw-uppercase" id="numero" name="numero"
                                         value="{{$student->numero ?? '' }}">
                                 </div>
                             </div>
@@ -296,7 +296,7 @@
                     <div class="mb-3 row">
                         <label for="localidad" class="col-12 col-form-label">Localidad: </label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="localidad" name="localidad"
+                            <input type="text" class="form-control tw-uppercase" id="localidad" name="localidad"
                                 value="{{$student->localidad ?? '' }}">
                         </div>
                     </div>
@@ -306,7 +306,7 @@
                     <div class="row">
                         <label for="telefono" class="col-12 col-form-label">Telefono:</label>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="telefono" name="telefono"
+                            <input type="text" class="form-control tw-uppercase" id="telefono" name="telefono"
                                 value="{{$student->telefono ?? '' }}">
                         </div>
                     </div>
@@ -329,7 +329,7 @@
                     <div class="mb-3 row">
                         <label for="username" class="col-12 col-form-label">Usuario :</label>
                         <div class="col-12">
-                            <input type="text" readonly class="form-control" id="username" 
+                            <input type="text" readonly class="form-control tw-uppercase" id="username" 
                                 value="{{$username }}">
                         </div>
                     </div>
@@ -339,7 +339,7 @@
                     <div class="mb-3 row">
                         <label for="password" class="col-12 col-form-label">Contraseña: </label>
                         <div class="col-12">
-                            <input type="text" readonly class="form-control" id="password" name="password"
+                            <input type="text" readonly class="form-control tw-uppercase" id="password" name="password"
                                 value="{{ $password }}">
                         </div>
                     </div>
