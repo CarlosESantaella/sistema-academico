@@ -35,8 +35,9 @@ class LicensesPlatesExport {
             if ($gnumeral == "Prekinder") $gnumeral = "1"; 
             if ($gnumeral == " Prekinder") $gnumeral = "1"; 
             $curso_procesado = $cursos[$s->course->nivel] . str_replace("°", "", $gnumeral).$s->course->paralelo;
+            $rude = $s->student->rude." ";
             $students_arr[] = [
-                $s->student->codigo, $s->student->rude, $s->student->ci, explode(" ", $s->student->exp_ci)[0], 
+                $s->student->codigo, $rude, $s->student->ci, explode(" ", $s->student->exp_ci)[0], 
                 $s->student->pasaporte, $s->student->appaterno, $s->student->apmaterno,
                 $s->student->nombres,  $s->student->appaterno ." ". $s->student->apmaterno ." ". $s->student->nombres,
                 $s->student->sexo, $s->student->correo_institucional,
@@ -126,8 +127,9 @@ class LicensesPlatesExport {
             // if ($gnumeral == "Prekinder") $gnumeral = "2"; 
             // if ($gnumeral == " Prekinder") $gnumeral = "2"; 
             // $curso_procesado = $cursos[$course->nivel] . str_replace("°", "", $gnumeral).$course->paralelo;
+            $rude = $student->rude." ";
             $students_arr[] = [
-                $student->codigo, $student->rude, $student->ci, explode(" ", $student->exp_ci)[0], 
+                $student->codigo, $rude, $student->ci, explode(" ", $student->exp_ci)[0], 
                 $student->pasaporte, $student->appaterno, $student->apmaterno,
                 $student->nombres,  $student->appaterno ." ". $student->apmaterno ." ". $student->nombres,
                 $student->sexo, $student->correo_institucional,
