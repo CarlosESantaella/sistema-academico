@@ -339,7 +339,7 @@
                     <div class="mb-3 row">
                         <label for="password" class="col-12 col-form-label">Contraseña: </label>
                         <div class="col-12">
-                            <input type="text" readonly class="form-control" id="password" name="password"
+                            <input type="text" readonly class="form-control tw-uppercase" id="password" name="password"
                                 value="{{ $password }}">
                         </div>
                     </div>

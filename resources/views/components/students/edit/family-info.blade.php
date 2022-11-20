@@ -14,17 +14,21 @@
                 <input type="hidden" id="codigo_1" name="codigo_1" value="{{$responsibles[0]->codigo ?? ''}}">
                 <label for="relacion_1" class="col-12 col-form-label">Relación: </label>
                 <div class="col-12">
-                    @isset($responsible[0])
+                    @isset($responsibles[0]->relacion)
+
                     <input 
                         type="text" 
                         name="relacion_1" 
                         id="relacion_1" 
-                        class="form-control" 
+                        class="form-control " 
                         readonly
-                        value="{{$responsibles[0]->relacion ?? ''}}"
+                        value="{{$responsibles[0]->relacion}}"
                     >
                     @else
                     <select name="relacion_1" id="relacion_1" class="form-select">
+                        {{-- @php
+                        echo $responsible[0];
+                    @endphp --}}
                         <option value="">--</option>
                         <option 
                             value="PADRE"
@@ -131,21 +135,22 @@
         <hr class="my-4 d-block d-md-none">
 
         <!-- Familiar 2 -->
-        @isset($responsibles[1])
-        <div class="border-start-md ps-md-3 col-md-6  {{$responsibles[1]->relacion == 'Padre' ? 'order-2': 'order-1'}}">
+        @isset($responsibles[1]->relacion)
+        <div class="border-start-md ps-md-3 col-md-6 tw-border-l  {{$responsibles[1]->relacion == 'Padre' ? 'order-2': 'order-1'}}">
         @else
-        <div class="border-start-md ps-md-3 col-md-6 ">
+        <div class="border-start-md ps-md-3 col-md-6 md:tw-border-l ">
         @endif
             <div class="mb-3 row">
                 <label for="relacion_2" class="col-12 col-form-label">Relación: </label>
                 <input type="hidden" id="codigo_2" name="codigo_2" value="{{$responsibles[1]->codigo ?? ''}}">
                 <div class="col-12">
-                    @isset($responsible[1])
+                    @isset($responsibles[1]->relacion)
                     <input 
                         type="text" 
                         name="relacion_2" 
                         id="relacion_2" 
                         class="form-control"
+                        readonly
                         value="{{$responsibles[1]->relacion ?? ''}}"
                     >
                     @else   

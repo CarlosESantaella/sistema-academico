@@ -13,18 +13,7 @@
         #students > tbody > tr.active > td{
             color: white !important;
         }
-        table.dataTable thead .sorting:after,
-table.dataTable thead .sorting:before,
-table.dataTable thead .sorting_asc:after,
-table.dataTable thead .sorting_asc:before,
-table.dataTable thead .sorting_asc_disabled:after,
-table.dataTable thead .sorting_asc_disabled:before,
-table.dataTable thead .sorting_desc:after,
-table.dataTable thead .sorting_desc:before,
-table.dataTable thead .sorting_desc_disabled:after,
-table.dataTable thead .sorting_desc_disabled:before {
-bottom: .5em;
-}
+
     </style>
 @endpush
 @section('content')
@@ -200,11 +189,10 @@ bottom: .5em;
             //     // searching: false,
             // });
             $('#students').DataTable({
-                "scrollY": "50vh",
-                "scrollCollapse": true,
-                "lengthChange": false,
-                "paging": false,
-                // "info": false,
+                lengthChange: false,
+                scrollY: '400px',
+                scrollCollapse: true,
+                paging: false,
             });
             $('.dataTables_length').addClass('bs-select');
 

@@ -2,7 +2,7 @@
 @section('title', 'Home')
 @section('content')
 
-    @if ($student->estado != '1')
+    @if ($student->estado != '1' and auth()->user()->tipo != 0)
         <div class="container-fluid">
             <p>Esta sección esta bloqueada</p>
         </div>
