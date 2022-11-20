@@ -182,7 +182,9 @@
         $(document).ready(function () {
             $('#students').DataTable({
                 lengthChange: false,
-                // searching: false,
+                scrollY: '400px',
+                scrollCollapse: true,
+                paging: false,
             });
             $('body').on('click', '#students > tbody > tr', function(){
                 let id = $(this).attr('data-id');
