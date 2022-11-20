@@ -194,12 +194,15 @@ class StudentsController extends Controller
         $student = User::where('clave', $id)->first()->student()->first();
         // $student = User::where('clave', $id)->firstOrFail();
         // echo $student;
+
         if($student->estado == 0){
-            
-            Auth::logout();
-            session()->invalidate();
-            session()->regenerateToken();
-            return redirect()->route('login.index')->with('message', 'Su cuenta se escuentra deshabilitada, gracias por haberse matriculado en periodos anteriores!');
+            if(auth()->user()->tipo != 0){
+
+                Auth::logout();
+                session()->invalidate();
+                session()->regenerateToken();
+                return redirect()->route('login.index')->with('message', 'Su cuenta se escuentra deshabilitada, gracias por haberse matriculado en periodos anteriores!');
+            }
         }
         $password = $student->codigo.'CLS';
         $username_a = explode(' ', $student->nombres);
@@ -213,8 +216,9 @@ class StudentsController extends Controller
         $correct_username = $first_letter_names.$student->appaterno;
         $username = $correct_username;
         $responsibles = Student::findOrFail($student->codigo)->responsibles()->get();
-        $license_plates = Student::findOrFail($student->codigo)->licenses_plates()->get();
-
+        $license_plates = Student::findOrFail($student->codigo)->licenses_plates()->orderBy('finscripcion', 'desc')->get();
+        // echo $responsibles;
+        // die();
         return view('students.edit-student', [
             "student" => $student,
             "responsibles" => $responsibles,
@@ -297,7 +301,7 @@ class StudentsController extends Controller
 
         if($responsible_1){
 
-            $responsible_1->relacion = strtoupper($request->relacion_1);
+            $responsible_1->relacion = $request->relacion_1;
             $responsible_1->ci = strtoupper($request->ci_1);
             $responsible_1->exp_ci = strtoupper($request->expedido_del_ci_1);
             $responsible_1->appaterno = strtoupper($request->appaterno_1);
@@ -311,6 +315,32 @@ class StudentsController extends Controller
             $responsible_1->mail = strtoupper($request->email_1);
             $responsible_1->fnacimiento = $request->fecha_de_nacimiento_1;
             $responsible_1->save();
+        }else{
+            if($request->ci_1){
+                $responsible_1 = Responsible::updateOrCreate(
+                    [
+                        "ci" => strtoupper($request->ci_1)
+                    ],
+                    [
+                        "relacion" => strtoupper($request->relacion_1),
+                        "exp_ci" => strtoupper($request->expedido_del_ci_1),
+                        "appaterno" => strtoupper($request->appaterno_1),
+                        "apmaterno" => strtoupper($request->apmaterno_1),
+                        "nombres" => strtoupper($request->nombres_1),
+                        "idioma" => strtoupper($request->idioma_1),
+                        "ocupacion" => strtoupper($request->ocupacion_1),
+                        "ginstruccion" => strtoupper($request->ginstruccion_1),
+                        "telefono" => strtoupper($request->telefono_1),
+                        "celular" => strtoupper($request->celular_1),
+                        "mail" => strtoupper($request->email_1),
+                        "fnacimiento" => $request->fecha_de_nacimiento_1
+                    ]
+                );
+                ResponsibleStudent::create([
+                    "codalumno" => $student->codigo,
+                    "codresponsable" => $responsible_1->codigo
+                ]);
+            }
         }
         if($responsible_2){
 
@@ -328,6 +358,32 @@ class StudentsController extends Controller
             $responsible_2->mail = strtoupper($request->email_2);
             $responsible_2->fnacimiento = $request->fecha_de_nacimiento_2;
             $responsible_2->save();
+        }else{
+            if($request->ci_2){
+                $responsible_2 = Responsible::updateOrCreate(
+                    [
+                        "ci" => strtoupper($request->ci_2)
+                    ],
+                    [
+                        "relacion" => strtoupper($request->relacion_2),
+                        "exp_ci" => strtoupper($request->expedido_del_ci_2),
+                        "appaterno" => strtoupper($request->appaterno_2),
+                        "apmaterno" => strtoupper($request->apmaterno_2),
+                        "nombres" => strtoupper($request->nombres_2),
+                        "idioma" => strtoupper($request->idioma_2),
+                        "ocupacion" => strtoupper($request->ocupacion_2),
+                        "ginstruccion" => strtoupper($request->ginstruccion_2),
+                        "telefono" => strtoupper($request->telefono_2),
+                        "celular" => strtoupper($request->celular_2),
+                        "mail" => strtoupper($request->email_2),
+                        "fnacimiento" => $request->fecha_de_nacimiento_2
+                    ]
+                );
+                ResponsibleStudent::create([
+                    "codalumno" => $student->codigo,
+                    "codresponsable" => $responsible_2->codigo
+                ]);
+            }
         }
 
         $student->save();

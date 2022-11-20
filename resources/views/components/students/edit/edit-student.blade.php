@@ -15,6 +15,7 @@
                 
                 <div class="row mt-3">
                     <div class="card p-3">
+                        
                         <x-students.edit.family-info :student="$student" :responsibles="$responsibles"/>
                     </div>
                 </div>
