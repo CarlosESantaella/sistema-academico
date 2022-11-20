@@ -15,7 +15,7 @@
         }
 
     </style>
-@endpush
+@endpush 
 @section('content')
 <div class="container-table mx-auto mt-5" style="max-width: 1200px; width: 95%;">
 
