@@ -2,7 +2,7 @@
 @section('title', 'Home')
 @push('styles')
 <style>
-    .tw-uppercase{
+    .tw-uppercase{ 
         text-transform: uppercase;
     }
 </style>
