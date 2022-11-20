@@ -199,7 +199,7 @@
                                 name="provnac" 
                                 id="provnac" 
                                 data-provincia="{{$student->provnac ?? '' }}"
-                            ></select>
+                            ></select> 
                         </div>
                     </div>
                 </div>
