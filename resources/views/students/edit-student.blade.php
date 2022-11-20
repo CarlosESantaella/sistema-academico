@@ -1,5 +1,12 @@
 @extends('layouts.layout')
 @section('title', 'Home')
+@push('styles')
+<style>
+    .tw-uppercase{
+        text-transform: uppercase;
+    }
+</style>
+@endpush
 @section('content')
 
     @if ($student->estado != '1' and auth()->user()->tipo != 0)

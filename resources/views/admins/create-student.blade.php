@@ -2,7 +2,9 @@
 @section('title', 'Crear Alumno')
 @push('styles')
     <style>
-
+        .tw-uppercase{
+            text-transform: uppercase;
+        }
     </style>
 @endpush
 @section('content')
