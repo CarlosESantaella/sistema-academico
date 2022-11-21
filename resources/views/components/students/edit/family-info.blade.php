@@ -5,7 +5,7 @@
         
         <!-- Familiar 1 -->
         @isset($responsibles[0])
-        <div class="col-md-6 pe-md-3 {{$responsibles[0]->relacion == 'Padre' ? 'order-2': 'order-1'}}">
+        <div class="col-md-6 pe-md-3 {{$responsibles[0]->relacion == 'Padre' ? 'tw-order-last': 'tw-order-first'}}">
         @else
         <div class="col-md-6 pe-md-3">
 
@@ -136,7 +136,7 @@
 
         <!-- Familiar 2 -->
         @isset($responsibles[1]->relacion)
-        <div class="border-start-md ps-md-3 col-md-6 tw-border-l  {{$responsibles[1]->relacion == 'Padre' ? 'order-2': 'order-1'}}">
+        <div class="border-start-md ps-md-3 col-md-6 tw-border-l  {{$responsibles[1]->relacion == 'Padre' ? 'tw-order-last': 'tw-order-first'}}">
         @else
         <div class="border-start-md ps-md-3 col-md-6 md:tw-border-l ">
         @endif

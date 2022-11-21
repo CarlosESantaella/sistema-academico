@@ -13,11 +13,30 @@ use Illuminate\Database\Eloquent\Builder;
 
 class AdminController extends Controller
 {
+    public function pruebas()
+    {
+        $students = Student::whereHas('licenses_plates', function (Builder $query){
+            $query->whereYear('finscripcion', date('Y'));
+        })->get();
+        // $students = Student::with(['licenses_plates' =>  function($query){
+        //     $query->whereYear('finscripcion', date('Y'));
+        // }])->get();
+
+        foreach($students as $student)
+        {
+            $student->estado = -1;
+            $student->save();
+        }
+        
+        die();
+    }
+
     public function index() {
         return view('admins.index');
     }
 
-    public function getLicencePlatesByFilter(Request $request, $year=false) {
+    public function getLicencePlatesByFilter(Request $request, $year=false) 
+    {
         $year = $request->gestion ? $request->gestion : $year;
         $startDate = $request->startDate ?? false;
         $endDate = $request->endDate ?? false;
