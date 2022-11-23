@@ -14,8 +14,9 @@
 <div class="container-table mx-auto mt-5" style="max-width: 1200px; width: 95%;">
 
     <div class="table-responsive">
-        <form action="" method="POST" class="filters-table d-flex justify-content-between flex-wrap">
+        <form action="{{ route('students.pre-registrations-export') }}" method="GET" class="filters-table d-flex justify-content-between flex-wrap">
             @csrf
+            <input type="hidden" name="search" clasS="search_value" value="">
             {{-- <div class="d-flex flex-wrap"> --}}
                 {{-- <div class="from-date d-flex align-items-center my-2 me-2">
                     <span>Desde: </span>
@@ -57,8 +58,8 @@
             <div class="d-flex align-items-center">
                 <button type="submit" class="btn btn-primary-custom search-table">Buscar</button>
             </div> --}}
+            <button  type="submit" class="btn btn-success me-1 text-break">Exportar Excel</button>
         </form>
-        <a href="{{ route('students.pre-registrations-export', ['startDate' => $startDate, 'endDate' => $endDate, 'curso' => $curso, 'nivel' => $nivel, 'turno' => $turno]) }}" class="btn btn-success me-1 text-break">Exportar Excel</a>
         @php
             $cursos = [
                 "Inicial" => "K",
@@ -81,10 +82,9 @@
             <tbody>
                 @foreach($students as $student)
                     @php
-                        $last_lp = $student->licenses_plates()->latest()->first();
-                        
-                        if($last_lp){
-                            $course = $last_lp->course()->first();
+                    
+                        if(count($student->student->licenses_plates) > 0){
+                            $course = $student->student->licenses_plates[0]->course;
                             
                             $gnumeral = match($course->gnumeral){
                                 "Kinder" => '1',
@@ -100,14 +100,16 @@
                             $nivel = '';
 
                         }
+                        // $curso_procesado = '';
+                        //     $nivel = '';
 
                     @endphp
                     <tr>
-                        <td>{{ $student->codigo }}</td>
-                        <td>{{ $student->nombres }} {{$student->appaterno}} {{$student->apmaterno}}</td>
+                        <td>{{ $student->student->codigo }}</td>
+                        <td>{{ $student->student->nombres }} {{$student->student->appaterno}} {{$student->student->apmaterno}}</td>
                         <td>{{ $curso_procesado }}</td>
                         <td>{{ $nivel }}</td>
-                        <td>{{ $student->sexo }}</td>
+                        <td>{{ $student->student->sexo }}</td>
                         <td>{{ 'no' }}</td>
                     </tr>
                 @endforeach
@@ -127,6 +129,11 @@
                 // searching: false,
 
             });
+            $('body').on('input', '#students_filter > label > input',function(){
+                let input = $(this).val();
+
+                $('.search_value').val(input);
+            })
         });
     </script>
 @endpush

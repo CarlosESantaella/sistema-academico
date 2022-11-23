@@ -29,7 +29,16 @@ Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
 
-// Dashboard
+// Auth
+Route::controller(LoginController::class)->group(function(){
+    Route::get('/login', 'index')->middleware('guest')->name('login.index');
+    Route::post('/login', 'store')->middleware('guest')->name('login.store');
+    Route::post('/logout', 'logout')->middleware('auth')->name('logout');
+    Route::get('/logout', 'logout')->name('logout2');
+
+});
+
+// Admin
 Route::controller(AdminController::class)->group(function(){
     Route::get('/dashboard', 'index')->middleware('auth')->name('admins.index');
     Route::get('/dashboard/license-plates', 'viewLicencePlates')->middleware('auth')->name('admins.lp');
@@ -40,18 +49,11 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/dashboard/create-student', 'createStudent')->middleware('auth')->name('admins.create_student');
     Route::get('/dashboard/preregistrations', 'preregistrations')->middleware('auth')->name('admins.preregistrations');
     Route::get('/dashboard/registration', 'registration')->middleware('auth')->name('admins.registration');
+    Route::get('/dashboard/users', 'users')->middleware('auth')->name('admins.users');
+    Route::get('/dashboard/pruebas', 'pruebas')->name('admins.pruebas');
 });
 Route::get('/dashboard/students/{student}/edit', [StudentsController::class, 'edit'])->middleware('auth')->name('admins.edit.student');
 Route::put('/students/{student}/changeState2', [StudentsController::class, 'changeState2'])->name('students.changestate.two');
-
-
-
-// Auth
-Route::controller(LoginController::class)->group(function(){
-    Route::get('/login', 'index')->middleware('guest')->name('login.index');
-    Route::post('/login', 'store')->middleware('guest')->name('login.store');
-    Route::post('/logout', 'logout')->middleware('auth')->name('logout');
-});
 
 // Students
 Route::get(

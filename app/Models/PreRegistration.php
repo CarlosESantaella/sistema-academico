@@ -13,7 +13,7 @@ class PreRegistration extends Model
     protected $table = 'preinscripciones';
     protected $primaryKey = 'id';
 
-    public function students()
+    public function student()
     {
         return $this->belongsTo(Student::class, 'fk_alumno', 'codigo');
     }

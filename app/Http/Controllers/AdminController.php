@@ -8,16 +8,37 @@ use App\Models\User;
 use App\Models\Student;
 use App\Models\LicensePlate;
 use Illuminate\Http\Request;
+use App\Models\PreRegistration;
+use Illuminate\Support\Facades\DB;
 use App\Exports\LicensesPlatesExport;
 use Illuminate\Database\Eloquent\Builder;
 
 class AdminController extends Controller
 {
+    public function pruebas()
+    {
+        $students = Student::whereHas('licenses_plates', function (Builder $query){
+            $query->whereYear('finscripcion', date('Y'));
+        })->get();
+        // $students = Student::with(['licenses_plates' =>  function($query){
+        //     $query->whereYear('finscripcion', date('Y'));
+        // }])->get();
+
+        foreach($students as $student)
+        {
+            $student->estado = -1;
+            $student->save();
+        }
+        
+        die();
+    }
+
     public function index() {
         return view('admins.index');
     }
 
-    public function getLicencePlatesByFilter(Request $request, $year=false) {
+    public function getLicencePlatesByFilter(Request $request, $year=false) 
+    {
         $year = $request->gestion ? $request->gestion : $year;
         $startDate = $request->startDate ?? false;
         $endDate = $request->endDate ?? false;
@@ -76,10 +97,12 @@ class AdminController extends Controller
 
         return $results;
     }
-    public function getPreRegistrationsByFilter(Request $request, $year=false) {
+    public function getPreRegistrationsByFilter(Request $request, $year=false) 
+    {
         $year = $request->gestion ? $request->gestion : $year;
         $startDate = $request->startDate ?? false;
         $endDate = $request->endDate ?? false;
+        
         $curso = $request->curso ?? false;
         $curso_parse = [];
         if ($curso) {
@@ -87,59 +110,110 @@ class AdminController extends Controller
         }
         $nivel = $request->nivel ?? false;
         $turno = $request->turno ?? false;
-        $search_by = $request->search_by ?? false;
+        $search = $request->search ?? false;
         $search_value = $request->search_value ?? false;
         // die(now()->year(date('Y')));
-        $students = Student::whereHas('pre_registrations', function (Builder $query){
-            $query->whereYear('created_at', date('Y'));
-        })
-        // ->when(
-        //     $startDate,
-        //     function ($query) use ($startDate) {
-        //         return $query->where('finscripcion', '>=', $startDate);
+
+        // $students = Student::whereHas('pre_registrations', function (Builder $query){
+        //     $query->whereYear('created_at', date('Y'));
+        // })
+
+        $students = PreRegistration::with('student')
+                                        // ->where('codigo', )
+        // ,'student.licenses_plates' => function($query) use ($search){
+        //     if(trim($search) != ''){
+        //         return $query->whereYear('finscripcion', date('Y'));
+                
+        //     }else{
+        //         return $query->whereYear('finscripcion', date('Y'));
+
         //     }
-        // )->when(
-        //     $endDate,
-        //     function ($query) use ($endDate) {
-        //         return $query->where('finscripcion', '<=', $endDate);
+
+        // }
+        // ,'student.licenses_plates.course' => function($query) use ($search){
+        //     if(trim($search) != ''){
+        //         return $query->where('nivel', 'like', "%{$search}%");
+                
         //     }
-        // )->when(
-        //     !$startDate && $year,
-        //     function ($query) use ($year) {
-        //         return $query->whereYear('finscripcion', $year);
-        //     }
-        // )
+        // }
+        // ])
         ->get();
-        // $students = $students->where('codigo', '492430');
-        // $students = $students->;
-        // $students = $studnets->whereRaw('student.pre_registrations.created_at', )
 
-        $results = $students;
+        if(trim($search) != ''){
+            // $students = DB::table('preinscripciones')
+            //                 ->join('alumno', 'preinscripciones.fk_alumno', '=', 'alumno.codigo')
+            //                 ->join('matricula', 'matricula.codalumno', '=', 'alumno.codigo')
+            //                 ->join('curso', 'curso.codigo', '=', 'matricula.codcurso')
+            //                 // ->whereYear('matricula.finscripcion', date('Y'))
+            //                 ->whereYear('preinscripciones.created_at', date('Y'))
+            //                 // ->where('matricula.gestion', '2022')
+            //                 ->where(function($query) use ($search){
+            //                     $query->where('alumno.codigo', 'like', "%{$search}%")
+            //                     ->orWhere('alumno.nombres', 'like', "%{$search}%")
+            //                     ->orWhere('alumno.appaterno', 'like', "%{$search}%")
+            //                     ->orWhere('alumno.apmaterno', 'like', "%{$search}%")
+            //                     ->orWhere('alumno.sexo', 'like', "%{$search}%")
+            //                     ->orWhere('curso.nivel', 'like', "%{$search}%");
+            //                 })
+            //                 // ->select('usu.nombres as usu.usu_nombres')
+            //                 ->get();
+            $students = PreRegistration::whereYear('created_at', date('Y'))
+            ->withWhereHas('student', function($query) use ($search){
+                $query->where(function($query) use ($search){
+                    $query->where('nombres', 'like', "%{$search}%")
+                        ->orWhere('appaterno', 'like', "%{$search}%")
+                        ->orWhere('apmaterno', 'like', "%{$search}%")
+                        ->orWhere('codigo', 'like', "%{$search}%")
+                        ->orWhere('sexo', 'like', "%{$search}%");
+                })
+                ->orWhere(function($query) use ($search){
+                    
+                    $query->whereHas('licenses_plates', function($query) use ($search){
+                        $query->whereYear('finscripcion', date('Y'))
+                            ->whereHas('course', function($query) use ($search){
+                                $query->where('nivel', 'like', "%{$search}%");
 
-        // Filter
-        // foreach ($students as $key => $student) {
-        //     if ($curso) {
-        //         if ($student->course->gnumeral != $curso_parse[0] || 
-        //             $student->course->paralelo != $curso_parse[1]) {
-        //                 continue;       
-        //         }
-        //     }
-        //     if ($nivel) {
-        //         if ($student->course->nivel != $nivel) continue;
-        //     }
-        //     if ($turno) {
-        //         if ($student->course->turno != $turno) continue;
-        //     }
-        //     if ($search_by && $search_value) {
-        //         if ($student->student->$search_by != $search_value) continue;
-        //     }
+                            });
+                    });
+                });    
+            })->with(['student.licenses_plates' => function($query){
+                $query->whereYear('finscripcion', date('Y'));
+            }
+            , 'student.licenses_plates.course'])
+            ->get();
+
+        }else{
+            $students = PreRegistration::withWhereHas('student', function($query){
+                $query->with([
+                                'licenses_plates' => function($query){
+                                    $query->whereYear('finscripcion', date('Y'));
+                                }
+                                , 'licenses_plates.course'
+                            ]);
+            })
+            ->get();
+        }
+
+        
+        // $students = $students->where('student', '<>', null);
+            
+
+
+
+        // $results = [];
+
+        // // Filter
+        // foreach ($students as $student) {
+            
         //     $results[] = $student;
         // }
 
-        return $results;
+
+        return $students;
     }
 
-    public function viewLicencePlates(Request $request) {
+    public function viewLicencePlates(Request $request) 
+    {
         $year = date('Y', strtotime(date('Y')));
         $students = $this->getLicencePlatesByFilter($request, $year);
         return view('admins.licenses-plates', [
@@ -149,12 +223,15 @@ class AdminController extends Controller
         ]);
     }
 
-    public function exportLicensePlates(Request $request) {
+    public function exportLicensePlates(Request $request) 
+    {
         $year = date('Y', strtotime(date('Y')));
         $students = $this->getLicencePlatesByFilter($request, $year);
         return LicensesPlatesExport::export($students);
     }
-    public function exportPreRegistrations(Request $request) {
+
+    public function exportPreRegistrations(Request $request) 
+    {
         $year = date('Y', strtotime(date('Y')));
         $students = $this->getPreRegistrationsByFilter($request, $year);
 
@@ -175,6 +252,7 @@ class AdminController extends Controller
         
         return view('admins.create-student');
     }
+
     public function preregistrations(Request $request)
     {
         $year = date('Y', strtotime(date('Y')));
@@ -182,9 +260,7 @@ class AdminController extends Controller
         // $students = Student::all();
         
         return view('admins.preregistrations', [
-            'students' => $students, 'startDate' => $request->startDate, 
-            'endDate' => $request->endDate, 'curso' => $request->curso,
-            'nivel' => $request->nivel, 'turno' => $request->turno
+            'students' => $students
         ]);
     }
 
@@ -193,6 +269,12 @@ class AdminController extends Controller
         
         
         return view('admins.registration');
+    }
+
+    public function users()
+    {
+
+        return view('admins.users');
     }
 
 }
