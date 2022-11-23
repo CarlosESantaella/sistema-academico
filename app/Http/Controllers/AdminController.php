@@ -51,6 +51,7 @@ class AdminController extends Controller
         $turno = $request->turno ?? false;
         $search_by = $request->search_by ?? false;
         $search_value = $request->search_value ?? false;
+
         $students = LicensePlate::with([
             "course",
             "student",
@@ -71,7 +72,7 @@ class AdminController extends Controller
                 return $query->whereYear('finscripcion', $year);
             }
         )->get();
-        $students = $students->where('student.estado', 1);
+        // $students = $students->where('student.estado', 1);
 
         $results = [];
 
