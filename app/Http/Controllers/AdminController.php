@@ -71,7 +71,7 @@ class AdminController extends Controller
                 return $query->whereYear('finscripcion', $year);
             }
         )->get();
-        $students = $students->where('student.estado', 1);
+        // $students = $students->where('student.estado', 1);
 
         $results = [];
 
