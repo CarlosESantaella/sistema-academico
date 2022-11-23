@@ -2,8 +2,9 @@
 
 namespace App\Exports;
 
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx as Writer;
+use App\Models\Student;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx as Reader;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx as Writer;
 
 class LicensesPlatesExport {
 
@@ -65,43 +66,44 @@ class LicensesPlatesExport {
                 isset($responsible_2->ocupacion) ? $responsible_2->ocupacion: '', isset($responsible_2->ginstruccion) ? $responsible_2->ginstruccion: '', 
                 isset($responsible_2->celular) ? $responsible_2->celular: '', isset($responsible_2->telefono) ? $responsible_2->telefono: '', 
                 isset($responsible_2->mail) ? $responsible_2->mail: '', isset($responsible_2->relacion) ? $responsible_2->relacion: '',
-
+                
                 $curso_procesado, $s->course->turno, $s->course->nivel
             ];
         }
         
         $sheet->fromArray($students_arr, NULL, 'A2');
-
+        
         $writer->save("historial-matriculas.xlsx");
         $content = file_get_contents("historial-matriculas.xlsx");
         exit($content);
     }
-
-
+    
+    
     public static function exportPreRegistrations($students)
     {
-
+        
         $reader = new Reader();
         $spreadsheet = $reader->load("template-historial-matriculas.xlsx");
         $sheet = $spreadsheet->getActiveSheet();
-
+        
         $writer = new Writer($spreadsheet);
-
+        
         header("Content-Disposition: attachment; filename=pre-inscripciones.xlsx");
-
+        
         $students_arr = [];
-
+        
         $cursos = [
             "Inicial" => "K",
             "Primario" => "P",
             "Secundaria" => "S"
         ];
-
+        
         foreach ($students as $student) {
-            $last_lp = $student->licenses_plates()->latest()->first();
-                        
-            if($last_lp){
-                $course = $last_lp->course()->first();
+            $last_lp = $student->student->licenses_plates;
+            $student = $student->student;
+            if(count($last_lp) > 0){
+
+                $course = $last_lp[0]->course;
                 
                 $gnumeral = match($course->gnumeral){
                     "Kinder" => '2',
@@ -119,7 +121,7 @@ class LicensesPlatesExport {
                 $turno = '';
 
             }
-            $responsibles = $student->responsibles()->get();
+            $responsibles = Student::find($student->codigo)->responsibles()->get();
             $responsible_1 = isset($responsibles[0]) ? $responsibles[0]: [];
             $responsible_2 = isset($responsibles[1]) ? $responsibles[1]: [];
             // $gnumeral = $course->gnumeral;

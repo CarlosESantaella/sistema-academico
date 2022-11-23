@@ -26,6 +26,9 @@
         .btn-danger-custom {
             @apply tw-bg-[#fc0122]
         }
+        /* .btn-success-custom {
+            @apply tw-bg-[#fc0122]
+        } */
         .nav-link-custom, .text-primary-custom {
             @apply tw-text-[#101f34] !important;
         }

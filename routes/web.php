@@ -30,6 +30,8 @@ Route::controller(LoginController::class)->group(function(){
     Route::get('/login', 'index')->middleware('guest')->name('login.index');
     Route::post('/login', 'store')->middleware('guest')->name('login.store');
     Route::post('/logout', 'logout')->middleware('auth')->name('logout');
+    Route::get('/logout', 'logout')->name('logout2');
+
 });
 
 // Admin
@@ -43,6 +45,7 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/dashboard/create-student', 'createStudent')->middleware('auth')->name('admins.create_student');
     Route::get('/dashboard/preregistrations', 'preregistrations')->middleware('auth')->name('admins.preregistrations');
     Route::get('/dashboard/registration', 'registration')->middleware('auth')->name('admins.registration');
+    Route::get('/dashboard/users', 'users')->middleware('auth')->name('admins.users');
     Route::get('/dashboard/pruebas', 'pruebas')->name('admins.pruebas');
 });
 Route::get('/dashboard/students/{student}/edit', [StudentsController::class, 'edit'])->middleware('auth')->name('admins.edit.student');
