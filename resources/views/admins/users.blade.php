@@ -6,7 +6,7 @@
         }
     </style>
 @endpush
-@section('content')
+@section('content') 
     <div class="container-fluid">
         <div class="row">
             <section class="col-lg-2 border border-danger" >
