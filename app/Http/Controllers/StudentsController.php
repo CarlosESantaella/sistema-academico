@@ -436,17 +436,18 @@ class StudentsController extends Controller
 
     public function viewCerts() 
     {
-        $files = Storage::files('public/students/certs');
-        $newFiles = [];
+        // $files = Storage::files('public/students/certs');
+        // $newFiles = [];
 
-        foreach($files as $file){
-            $file = $file;
-            if(strpos($file, auth()->user()->codigo) !== false){
-                $newFiles[] = $file;
-            }
-        }
+        // foreach($files as $file){
+        //     $file = $file;
+        //     if(strpos($file, auth()->user()->codigo) !== false){
+        //         $newFiles[] = $file;
+        //     }
+        // }
 
-        return view('students.certs', ["files" => $newFiles]);
+        // return view('students.certs', ["files" => $newFiles]);
+        return view('students.certs');
     }
 
     public function getLicensePlatesByStudent($codigo) {
