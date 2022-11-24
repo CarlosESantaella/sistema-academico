@@ -41,23 +41,48 @@ class ListCerts extends Component
 
     public function filterByYear()
     {
-        $this->files = Storage::files('public/students/certs');
-        $files = $this->files;
-        $i = 0;
-        // $diffYear = 0;
-        $this->newFiles = [];
-        foreach($files as $file){
-            $file = $file;
-            if(strpos($file, auth()->user()->codigo) !== false){
+        if($this->year != ''){
 
-                $filename = pathinfo($file, PATHINFO_FILENAME);
-                $year = substr($filename, -2);
-                if($year == $this->year){
-                    // $this->years[] = $year;
-                    // $diffYear = $year;
-                    $this->newFiles[] = $file;
+            $this->files = Storage::files('public/students/certs');
+            $files = $this->files;
+            $i = 0;
+            // $diffYear = 0;
+            $this->newFiles = [];
+            foreach($files as $file){
+                $file = $file;
+                if(strpos($file, auth()->user()->codigo) !== false){
+    
+                    $filename = pathinfo($file, PATHINFO_FILENAME);
+                    $year = substr($filename, -2);
+                    if($year == $this->year){
+                        // $this->years[] = $year;
+                        // $diffYear = $year;
+                        $this->newFiles[] = $file;
+                    }
+    
                 }
-
+            }
+        }else{
+            $this->year = '';
+            $this->files = Storage::files('public/students/certs');
+            $files = $this->files;
+            $i = 0;
+            $diffYear = 0;
+            $this->years = [];
+            $this->newFiles = [];
+            foreach($files as $file){
+                $file = $file;
+                if(strpos($file, auth()->user()->codigo) !== false){
+                    $this->newFiles[] = $file;
+                    $filename = pathinfo($file, PATHINFO_FILENAME);
+                    $year = substr($filename, -2);
+                    if($year != $diffYear){
+                        $this->years[] = $year;
+                        $diffYear = $year;
+                    }
+        
+                }
+        
             }
         }
         
