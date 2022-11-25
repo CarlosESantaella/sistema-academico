@@ -139,7 +139,7 @@
                     <div class="mb-3 row">
                         <label for="correo_institucional" class="col-12 col-form-label">Correo institucional :</label>
                         <div class="col-12">
-                            <input type="text" class="form-control tw-uppercase" id="correo_institucional" name="correo_institucional"
+                            <input type="text" class="form-control tw-lowercase" id="correo_institucional" name="correo_institucional"
                                 value="{{$student->correo_institucional ?? '' }}">
                         </div>
                     </div>

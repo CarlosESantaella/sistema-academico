@@ -83,7 +83,8 @@ class LicensesPlatesExport {
     {
         
         $reader = new Reader();
-        $spreadsheet = $reader->load("template-historial-matriculas.xlsx");
+        // $spreadsheet = $reader->load("template-historial-matriculas.xlsx");
+        $spreadsheet = $reader->load("template_pre_inscripciones.xlsx");
         $sheet = $spreadsheet->getActiveSheet();
         
         $writer = new Writer($spreadsheet);
@@ -100,6 +101,7 @@ class LicensesPlatesExport {
         
         foreach ($students as $student) {
             $last_lp = $student->student->licenses_plates;
+            $pre_inscrito = ($student->esta_preinscrito == 1)? 'Si' : 'No';
             $student = $student->student;
             if(count($last_lp) > 0){
 
@@ -160,14 +162,14 @@ class LicensesPlatesExport {
                 isset($responsible_2->celular) ? $responsible_2->celular: '', isset($responsible_2->telefono) ? $responsible_2->telefono: '', 
                 isset($responsible_2->mail) ? $responsible_2->mail: '', isset($responsible_2->relacion) ? $responsible_2->relacion: '',
 
-                $curso_procesado, $turno, $nivel
+                $pre_inscrito, $curso_procesado, $turno, $nivel
             ];
         }
         
         $sheet->fromArray($students_arr, NULL, 'A2');
 
-        $writer->save("pre-inscripciones.xlsx");
-        $content = file_get_contents("pre-inscripciones.xlsx");
+        $writer->save("pre_inscripciones.xlsx");
+        $content = file_get_contents("pre_inscripciones.xlsx");
         exit($content);
     }
 }

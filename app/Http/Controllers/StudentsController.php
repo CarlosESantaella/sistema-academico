@@ -99,7 +99,7 @@ class StudentsController extends Controller
             "localidad" => strtoupper($request->localidad),
             "telefono" => strtoupper($request->telefono),
             "sie" => strtoupper($request->sie),
-            "correo_institucional" => strtoupper($request->correo_institucional),
+            "correo_institucional" => strtolower($request->correo_institucional),
             "celular" => $request->celular_alumno,
             "pertenece" => strtoupper($request->etnia),
             "nsalud" => strtoupper($request->salud),
@@ -128,7 +128,7 @@ class StudentsController extends Controller
                     "ginstruccion" => strtoupper($request->ginstruccion_1),
                     "telefono" => strtoupper($request->telefono_1),
                     "celular" => strtoupper($request->celular_1),
-                    "mail" => strtoupper($request->email_1),
+                    "mail" => strtolower($request->email_1),
                     "fnacimiento" => $request->fecha_de_nacimiento_1
                 ]
             );
@@ -156,7 +156,7 @@ class StudentsController extends Controller
                     "ginstruccion" => strtoupper($request->ginstruccion_2),
                     "telefono" => strtoupper($request->telefono_2),
                     "celular" => strtoupper($request->celular_2),
-                    "mail" => strtoupper($request->email_2),
+                    "mail" => strtolower($request->email_2),
                     "fnacimiento" => $request->fecha_de_nacimiento_2
                 ]
             );
@@ -276,7 +276,7 @@ class StudentsController extends Controller
         $student->localidad = strtoupper($request->localidad);
         $student->telefono = strtoupper($request->telefono);
         $student->sie = strtoupper($request->sie);
-        $student->correo_institucional = strtoupper($request->correo_institucional);
+        $student->correo_institucional = strtolower($request->correo_institucional);
         $student->celular =$request->celular_alumno;
 
         //social aspects
@@ -312,7 +312,7 @@ class StudentsController extends Controller
             $responsible_1->ginstruccion = strtoupper($request->ginstruccion_1);
             $responsible_1->telefono = strtoupper($request->telefono_1);
             $responsible_1->celular = strtoupper($request->celular_1);
-            $responsible_1->mail = strtoupper($request->email_1);
+            $responsible_1->mail = strtolower($request->email_1);
             $responsible_1->fnacimiento = $request->fecha_de_nacimiento_1;
             $responsible_1->save();
         }else{
@@ -332,7 +332,7 @@ class StudentsController extends Controller
                         "ginstruccion" => strtoupper($request->ginstruccion_1),
                         "telefono" => strtoupper($request->telefono_1),
                         "celular" => strtoupper($request->celular_1),
-                        "mail" => strtoupper($request->email_1),
+                        "mail" => strtolower($request->email_1),
                         "fnacimiento" => $request->fecha_de_nacimiento_1
                     ]
                 );
@@ -355,7 +355,7 @@ class StudentsController extends Controller
             $responsible_2->ginstruccion = strtoupper($request->ginstruccion_2);
             $responsible_2->telefono = strtoupper($request->telefono_2);
             $responsible_2->celular = strtoupper($request->celular_2);
-            $responsible_2->mail = strtoupper($request->email_2);
+            $responsible_2->mail = strtolower($request->email_2);
             $responsible_2->fnacimiento = $request->fecha_de_nacimiento_2;
             $responsible_2->save();
         }else{
@@ -375,7 +375,7 @@ class StudentsController extends Controller
                         "ginstruccion" => strtoupper($request->ginstruccion_2),
                         "telefono" => strtoupper($request->telefono_2),
                         "celular" => strtoupper($request->celular_2),
-                        "mail" => strtoupper($request->email_2),
+                        "mail" => strtolower($request->email_2),
                         "fnacimiento" => $request->fecha_de_nacimiento_2
                     ]
                 );
@@ -409,10 +409,12 @@ class StudentsController extends Controller
     public function changeState(Request $request, $id)
     {
 
+       
         $student = Student::find($id);
         
         PreRegistration::create([
-            'fk_alumno' => $id
+            'fk_alumno' => $id,
+            'esta_preinscrito' => $request->estado
         ]);
 
         $student->estado = $request->estado;
@@ -420,19 +422,19 @@ class StudentsController extends Controller
         $student->save();
     }
 
-    public function changeState2(Request $request, $id)
-    {
+    // public function changeState2(Request $request, $id)
+    // {
 
-        $student = Student::find($id);
+    //     $student = Student::find($id);
         
-        // PreRegistration::create([
-        //     'fk_alumno' => $id
-        // ]);
+    //     // PreRegistration::create([
+    //     //     'fk_alumno' => $id
+    //     // ]);
 
-        $student->estado = $request->estado;
+    //     $student->estado = $request->estado;
 
-        $student->save();
-    }
+    //     $student->save();
+    // }
 
     public function viewCerts() 
     {

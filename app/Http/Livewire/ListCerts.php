@@ -23,20 +23,20 @@ class ListCerts extends Component
         $i = 0;
         $diffYear = 0;
         $this->years = [];
-        foreach($files as $file){
-            $file = $file;
-            if(strpos($file, auth()->user()->codigo) !== false){
-                $this->newFiles[] = $file;
-                $filename = pathinfo($file, PATHINFO_FILENAME);
-                $year = substr($filename, -2);
-                if($year != $diffYear){
-                    $this->years[] = $year;
-                    $diffYear = $year;
-                }
+        // foreach($files as $file){
+        //     $file = $file;
+        //     if(strpos($file, auth()->user()->codigo) !== false){
+        //         $this->newFiles[] = $file;
+        //         $filename = pathinfo($file, PATHINFO_FILENAME);
+        //         $year = substr($filename, -2);
+        //         if($year != $diffYear){
+        //             $this->years[] = $year;
+        //             $diffYear = $year;
+        //         }
     
-            }
+        //     }
     
-        }
+        // }
     }
 
     public function filterByYear()
@@ -63,27 +63,7 @@ class ListCerts extends Component
                 }
             }
         }else{
-            $this->year = '';
-            $this->files = Storage::files('public/students/certs');
-            $files = $this->files;
-            $i = 0;
-            $diffYear = 0;
-            $this->years = [];
             $this->newFiles = [];
-            foreach($files as $file){
-                $file = $file;
-                if(strpos($file, auth()->user()->codigo) !== false){
-                    $this->newFiles[] = $file;
-                    $filename = pathinfo($file, PATHINFO_FILENAME);
-                    $year = substr($filename, -2);
-                    if($year != $diffYear){
-                        $this->years[] = $year;
-                        $diffYear = $year;
-                    }
-        
-                }
-        
-            }
         }
         
     }

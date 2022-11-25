@@ -111,7 +111,7 @@
             <div class="mb-3 row">
                 <label for="email_1" class="col-12 col-form-label">Email: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control tw-uppercase" id="email_1" name="email_1" value="{{$responsibles[0]->mail ?? ''}}">
+                    <input type="text" class="form-control tw-lowercase" id="email_1" name="email_1" value="{{$responsibles[0]->mail ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
@@ -238,7 +238,7 @@
             <div class="mb-3 row">
                 <label for="email_2" class="col-12 col-form-label">Email: </label>
                 <div class="col-12">
-                    <input type="text" class="form-control tw-uppercase" id="email_2" name="email_2" value="{{$responsibles[1]->mail ?? ''}}">
+                    <input type="text" class="form-control tw-lowercase" id="email_2" name="email_2" value="{{$responsibles[1]->mail ?? ''}}">
                 </div>
             </div>
             <div class="mb-3 row">
