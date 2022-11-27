@@ -194,6 +194,20 @@ class StudentsController extends Controller
         $student = User::where('clave', $id)->first()->student()->first();
         // $student = User::where('clave', $id)->firstOrFail();
         // echo $student;
+        $register = $student->licenses_plates()->whereYear('finscripcion', date('Y'))->first();
+
+        if(auth()->user()->tipo != 0){
+
+            if($register){
+    
+            }else{
+                Auth::logout();
+                session()->invalidate();
+                session()->regenerateToken();
+                return redirect()->route('login.index')->with('message', 'Usted no esta activo en la gestión actual.');
+    
+            }
+        }
 
         if($student->estado == 0){
             if(auth()->user()->tipo != 0){
