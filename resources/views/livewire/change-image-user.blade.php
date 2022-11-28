@@ -1,7 +1,7 @@
 <div>
     <div class="container-img-user">
     
-        <label for="image" class="inline-block mb-3 rounded-full">
+        <label for="image" class="inline-block mb-3 rounded-full"> 
             <img
                 class="  tw-cursor-pointer tw-object-cover tw-object-center tw-rounded-full tw-block tw-aspect-square tw-w-100 tw-max-w-[250px]" style="width: 100%; max-width: 200px;"
                 @if ($image)
