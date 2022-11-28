@@ -245,7 +245,7 @@ class AdminController extends Controller
         return view('admins.search-students', [
             "students" => $students, "search_by" => $request->search_by, 
             "search_value" => $request->search_value, "gestion" => $request->gestion
-        ]);
+        ]); 
     }
 
     public function createStudent()
