@@ -1,8 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AdminController;
+=======
+use App\Http\Controllers\AdminController;
+use App\Http\Livewire\Views\UsersCrudAdmin;
+>>>>>>> master
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LicensePlateController;
@@ -49,8 +54,8 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/dashboard/create-student', 'createStudent')->middleware('auth')->name('admins.create_student');
     Route::get('/dashboard/preregistrations', 'preregistrations')->middleware('auth')->name('admins.preregistrations');
     Route::get('/dashboard/registration', 'registration')->middleware('auth')->name('admins.registration');
-    Route::get('/dashboard/users', 'users')->middleware('auth')->name('admins.users');
     Route::get('/dashboard/pruebas', 'pruebas')->name('admins.pruebas');
+    Route::get('/dashboard/users', 'users')->middleware('auth')->name('admins.users');
 });
 Route::get('/dashboard/students/{student}/edit', [StudentsController::class, 'edit'])->middleware('auth')->name('admins.edit.student');
 Route::put('/students/{student}/changeState2', [StudentsController::class, 'changeState2'])->name('students.changestate.two');

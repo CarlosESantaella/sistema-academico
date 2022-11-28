@@ -76,7 +76,7 @@
                     <th>Nivel</th>
                     {{-- <th>Turno</th> --}}
                     <th>Sexo</th>
-                    <th>¿Matriculado?</th>
+                    <th>¿Preinscrito?</th>
                 </tr>
             </thead>
             <tbody>
@@ -110,7 +110,7 @@
                         <td>{{ $curso_procesado }}</td>
                         <td>{{ $nivel }}</td>
                         <td>{{ $student->student->sexo }}</td>
-                        <td>{{ 'no' }}</td>
+                        <td>{{ ($student->esta_preinscrito == 1)? 'Si' : 'No' }}</td>
                     </tr>
                 @endforeach
                
