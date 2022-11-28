@@ -47,10 +47,10 @@ class StudentsController extends Controller
         ]);
 
         if($request->hasFile('image')){
-            $img_path = $request->file('image')->store('public/students/img');
-            $file_name = str_replace('public/students/img/', '', $img_path);
-            if(Storage::exists('public/students/img/'.$request->foto)){
-                Storage::delete('public/students/img/'.$request->foto);
+            $img_path = $request->file('image')->store('public/users/img');
+            $file_name = str_replace('public/users/img/', '', $img_path);
+            if(Storage::exists('public/users/img/'.$request->foto)){
+                Storage::delete('public/users/img/'.$request->foto);
             }
         }else{
             $file_name = $request->foto;
@@ -253,11 +253,11 @@ class StudentsController extends Controller
     {
         if($request->hasFile('image')){
 
-            $img_path = $request->file('image')->store('public/students/img');
-            $file_name = str_replace('public/students/img/', '', $img_path);
+            $img_path = $request->file('image')->store('public/users/img');
+            $file_name = str_replace('public/users/img/', '', $img_path);
             
-            if(Storage::exists('public/students/img/'.$student->foto)){
-                Storage::delete('public/students/img/'.$student->foto);
+            if(Storage::exists('public/users/img/'.$student->foto)){
+                Storage::delete('public/users/img/'.$student->foto);
             }
         }else{
             $file_name = $student->foto;

@@ -5,15 +5,15 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class ChangeImageStudent extends Component
+class ChangeImageUser extends Component
 {
     public $image;
-    public $student;
+    public $user;
 
     use WithFileUploads;
 
     public function render()
     {
-        return view('livewire.change-image-student');
+        return view('livewire.change-image-user');
     }
 }

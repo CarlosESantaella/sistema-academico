@@ -20,7 +20,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         @livewireStyles
     </head>
-    <body class="bg-slate-100">
+    <body class="tw-bg-slate-100">
         @include('layouts.header')
         <main class="app-main">
 
