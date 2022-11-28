@@ -1,13 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
-use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\AdminController;
-=======
 use App\Http\Controllers\AdminController;
 use App\Http\Livewire\Views\UsersCrudAdmin;
->>>>>>> master
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LicensePlateController;
