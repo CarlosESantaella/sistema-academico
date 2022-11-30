@@ -4,8 +4,18 @@
     "src": "resources/js/app.js",
     "isEntry": true
   },
+  "resources/js/select-departamento-provincia.js": {
+    "file": "assets/select-departamento-provincia.05f60663.js",
+    "src": "resources/js/select-departamento-provincia.js",
+    "isEntry": true
+  },
+  "resources/js/edit-students.js": {
+    "file": "assets/edit-students.9a95ae45.js",
+    "src": "resources/js/edit-students.js",
+    "isEntry": true
+  },
   "resources/css/app.css": {
-    "file": "assets/app.61c1188e.css",
+    "file": "assets/app.fd0f36a6.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }
