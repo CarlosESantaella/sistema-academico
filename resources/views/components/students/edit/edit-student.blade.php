@@ -21,10 +21,10 @@
                 </div>
     
                 <div class="row mt-3 align-items-start">
-                    <div class="col-md-8 card p-3">
+                    {{-- <div class="col-md-8 card p-3">
                         <x-students.edit.social-aspects :student="$student"/>
-                    </div>
-                    <div class="col-md-4 d-flex justify-content-end pe-0 mt-3 mt-md-0">
+                    </div> --}}
+                    <div class="col-md-12 d-flex justify-content-end pe-0 mt-3 mt-md-0">
                         <button class="btn btn-primary-custom btn-lg" type="submit">Guardar datos</button>
                     </div>
                 </div>

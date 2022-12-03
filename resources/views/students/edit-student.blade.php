@@ -29,7 +29,7 @@
 @push('scripts')
     <script>
         var id_estudiante = "{{$student->codigo}}";
-        var estado = "{{$student->estado}}";
+        var estado = "{{(auth()->user()->tipo == 0 || auth()->user()->tipo == 2)? 1 : $student->estado}}";
     </script>
     @vite('resources/js/edit-students.js')
     @vite('resources/js/select-departamento-provincia.js')

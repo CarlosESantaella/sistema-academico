@@ -91,7 +91,7 @@
                 @endphp
                     <tr>
                         <td>{{ $student->student->codigo }}</td>
-                        <td>{{ $student->student->nombres }} {{ $student->student->appaterno }} {{ $student->student->apmaterno }}</td>
+                        <td>{{ $student->student->appaterno }} {{ $student->student->apmaterno }} {{ $student->student->nombres }}</td>
                         {{-- <td>{{ $student->course->gnumeral ?? '' }} {{ $student->course->paralelo ?? '' }}</td> --}}
                         <td>{{ $curso_procesado ?? '' }}</td>
                         <td>{{ $student->course->nivel ?? '' }}</td>

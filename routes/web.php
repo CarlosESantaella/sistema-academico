@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AdminController;
 use App\Http\Livewire\Views\UsersCrudAdmin;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\SecretaryController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LicensePlateController;
 use App\Http\Controllers\ResponsibleStudentController;
@@ -52,11 +53,23 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/dashboard/create-student', 'createStudent')->middleware('auth')->name('admins.create_student');
     Route::get('/dashboard/preregistrations', 'preregistrations')->middleware('auth')->name('admins.preregistrations');
     Route::get('/dashboard/registration', 'registration')->middleware('auth')->name('admins.registration');
+    Route::post('/dashboard/add-user', 'storeUser')->middleware('auth')->name('store.user');
+    Route::get('/uploads/certs', 'viewUploadCerts')->middleware('auth')->name('view.uploads.certs');
+    Route::post('/uploads/certs', 'uploadCerts')->middleware('auth')->name('uploads.certs');
     Route::get('/dashboard/pruebas', 'pruebas')->name('admins.pruebas');
     Route::get('/dashboard/users', 'users')->middleware('auth')->name('admins.users');
 });
 Route::get('/dashboard/students/{student}/edit', [StudentsController::class, 'edit'])->middleware('auth')->name('admins.edit.student');
 Route::put('/students/{student}/changeState2', [StudentsController::class, 'changeState2'])->name('students.changestate.two');
+
+// Secretary
+Route::controller(SecretaryController::class)->group(function(){
+    Route::get('/dashboard-s', 'index')->middleware('auth')->name('secretary.index');
+    Route::get('/dashboard-s/pre-registrations/export', 'exportPreRegistrations')->middleware('auth')->name('secretary.pre-registrations-export');
+    Route::match(['get', 'post'],'/dashboard-s/search-students', 'searchStudents')->middleware('auth')->name('secretary.search_students');
+    Route::get('/dashboard-s/preregistrations', 'preregistrations')->middleware('auth')->name('secretary.preregistrations');
+});
+Route::get('/dashboard-s/students/{student}/edit', [StudentsController::class, 'edit'])->middleware('auth')->name('secretary.edit.student');
 
 // Students
 Route::get(

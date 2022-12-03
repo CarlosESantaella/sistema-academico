@@ -101,10 +101,10 @@ class StudentsController extends Controller
             "sie" => strtoupper($request->sie),
             "correo_institucional" => strtolower($request->correo_institucional),
             "celular" => $request->celular_alumno,
-            "pertenece" => strtoupper($request->etnia),
-            "nsalud" => strtoupper($request->salud),
-            "transporte" => strtoupper($request->transporte),
-            "tiempo" => strtoupper($request->tiempo),
+            // "pertenece" => strtoupper($request->etnia),
+            // "nsalud" => strtoupper($request->salud),
+            // "transporte" => strtoupper($request->transporte),
+            // "tiempo" => strtoupper($request->tiempo),
             "usuario_fk" => $codigo_alumno,
         ]);
 
@@ -196,7 +196,7 @@ class StudentsController extends Controller
         // echo $student;
         $register = $student->licenses_plates()->whereYear('finscripcion', date('Y'))->first();
 
-        if(auth()->user()->tipo != 0){
+        if(auth()->user()->tipo != 0 && auth()->user()->tipo != 2){
 
             if($register){
     
@@ -210,7 +210,7 @@ class StudentsController extends Controller
         }
 
         if($student->estado == 0){
-            if(auth()->user()->tipo != 0){
+            if(auth()->user()->tipo != 0 && auth()->user()->tipo != 2){
 
                 Auth::logout();
                 session()->invalidate();
@@ -227,7 +227,8 @@ class StudentsController extends Controller
             $first_letter_names .= $letter_a[0];
         }
         
-        $correct_username = $first_letter_names.$student->appaterno;
+        $correct_username = $first_letter_names.str_replace(" ", "", $student->appaterno);
+        // die($correct_username);
         $username = $correct_username;
         $responsibles = Student::findOrFail($student->codigo)->responsibles()->get();
         $license_plates = Student::findOrFail($student->codigo)->licenses_plates()->orderBy('finscripcion', 'desc')->get();
@@ -294,10 +295,10 @@ class StudentsController extends Controller
         $student->celular =$request->celular_alumno;
 
         //social aspects
-        $student->pertenece = strtoupper($request->etnia);
-        $student->nsalud = strtoupper($request->salud);
-        $student->transporte = strtoupper($request->transporte);
-        $student->tiempo = strtoupper($request->tiempo);
+        // $student->pertenece = strtoupper($request->etnia);
+        // $student->nsalud = strtoupper($request->salud);
+        // $student->transporte = strtoupper($request->transporte);
+        // $student->tiempo = strtoupper($request->tiempo);
 
         // institution of origin
 
@@ -436,19 +437,19 @@ class StudentsController extends Controller
         $student->save();
     }
 
-    // public function changeState2(Request $request, $id)
-    // {
+    public function changeState2(Request $request, $id)
+    {
 
-    //     $student = Student::find($id);
+        $student = Student::find($id);
         
-    //     // PreRegistration::create([
-    //     //     'fk_alumno' => $id
-    //     // ]);
+        // PreRegistration::create([
+        //     'fk_alumno' => $id
+        // ]);
+        PreRegistration::where('fk_alumno', $id)->delete();
+        $student->estado = $request->estado;
 
-    //     $student->estado = $request->estado;
-
-    //     $student->save();
-    // }
+        $student->save();
+    }
 
     public function viewCerts() 
     {

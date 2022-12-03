@@ -24,6 +24,8 @@
                 >
                     Certificados
                 </x-nav-link>
+            @elseif(auth()->user()->tipo == 2)
+                <x-header.sec-nav />
             @elseif(auth()->user()->tipo == 0)
                 <x-header.admin-nav />
             @endif

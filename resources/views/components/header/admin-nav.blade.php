@@ -47,6 +47,16 @@
             </x-nav-link>
         </li>
         <li>
+            <x-nav-link
+                :href="route('view.uploads.certs')"
+                :active="request()->routeIs('view.uploads.certs')"
+                class="dropdown-item"
+
+            >
+                Subir Certificados
+            </x-nav-link>
+        </li>
+        <li>
             <hr class="dropdown-divider">
         </li>
         <li>

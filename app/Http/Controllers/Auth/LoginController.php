@@ -75,7 +75,7 @@ class LoginController extends Controller
                 $first_letter_names .= $letter_a[0];
             }
             
-            $correct_username = $first_letter_names.$user->appaterno;
+            $correct_username = $first_letter_names.str_replace(" ", "", $user->appaterno);
             
             if($correct_username == $nombres){
                 //PRUEBA1 PRUEBA2
@@ -83,11 +83,13 @@ class LoginController extends Controller
 
                 auth()->login($user);
 
+
+
                 if(auth()->user()->tipo == 3){
 
                     return redirect()->route('students.edit', ['student' => auth()->user()->clave]);
                 }else if(auth()->user()->tipo == 2){
-                    echo 'eres una secretaria';
+                    return redirect()->route('secretary.index');
                 }else if(auth()->user()->tipo == 1){
                     echo 'eres un profesor';
                 }else if(auth()->user()->tipo == 0){

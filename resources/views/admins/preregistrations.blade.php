@@ -3,7 +3,16 @@
 @push('styles')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.12.1/r-2.3.0/datatables.min.css"/>
     <style>
-
+        #students > tbody > tr{
+            cursor: pointer;
+        }
+        #students > tbody > tr.active{
+            background: var(--color-primary);
+            color: white;
+        }
+        #students > tbody > tr.active > td{
+            color: white !important;
+        }
     </style>
 @endpush
 @section('content')
@@ -106,7 +115,7 @@
                     @endphp
                     <tr>
                         <td>{{ $student->student->codigo }}</td>
-                        <td>{{ $student->student->nombres }} {{$student->student->appaterno}} {{$student->student->apmaterno}}</td>
+                        <td>{{$student->student->appaterno}} {{$student->student->apmaterno}} {{ $student->student->nombres }}</td>
                         <td>{{ $curso_procesado }}</td>
                         <td>{{ $nivel }}</td>
                         <td>{{ $student->student->sexo }}</td>
@@ -134,6 +143,12 @@
 
                 $('.search_value').val(input);
             })
+            $('body').on('click', '#students > tbody > tr', function(){
+                let id = $(this).attr('data-id');
+                $('#students > tbody > tr').removeClass('active');
+                $(this).addClass('active');
+                
+            });
         });
     </script>
 @endpush

@@ -7,7 +7,7 @@ use Livewire\WithFileUploads;
 
 class ChangeImageUser extends Component
 {
-    public $image;
+    public $image = '';
     public $user;
 
     use WithFileUploads;

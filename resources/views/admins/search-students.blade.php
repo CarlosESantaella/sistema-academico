@@ -136,9 +136,9 @@
             </thead>
             <tbody>
                 @foreach($students as $student)
-                    <tr data-id="{{ $student->codigo }}">
+                    <tr data-id="{{ $student->codigo }}" data-state="{{ $student->estado }}">
                         <td>{{ $student->codigo }}</td>
-                        <td>{{ $student->nombres }} {{ $student->appaterno }} {{ $student->apmaterno }}</td>
+                        <td>{{ $student->appaterno }} {{ $student->apmaterno }} {{ $student->nombres }}</td>
                         {{-- <td>{{ $curso_procesado ?? '' }}</td> --}}
                         {{-- <td>{{ $student->course->nivel ?? '' }}</td>
                         <td>{{ $student->course->turno ?? '' }}</td> --}}
@@ -188,14 +188,23 @@
             });
             $('body').on('click', '#students > tbody > tr', function(){
                 let id = $(this).attr('data-id');
+                let state = $(this).attr('data-state');
+
                 $('#students > tbody > tr').removeClass('active');
                 $(this).addClass('active');
 
                 $('.link-edit-student').attr('href', '/dashboard/students/'+id+'CLS/edit');
 
                 $('.link-disabled-student').attr('data-id', id);
-                $('.link-delete-student').attr('data-id', id);
+                if(state == '0'){
+                    $('.link-disabled-student button').text('Habilitar');
+                    $('.link-disabled-student button').attr('data-state', -1);
+                }else{
+                    $('.link-disabled-student button').text('Deshabilitar');
+                    $('.link-disabled-student button').attr('data-state', 0);
 
+                }
+                $('.link-delete-student').attr('data-id', id);
                 
             });
 
@@ -215,21 +224,41 @@
                 )
                 .then(res => res.text())
                 .then(data => {
-                    Swal.fire({
-                        title: 'Usuario Deshabilitado',
-                        imageUrl: "/images/logo-salle-2.png",
-                        confirmButtonColor: '#101f34',
-                        confirmButtonText: 'Ok',
-                    });
+                    if(estado == '0'){
+
+                        Swal.fire({
+                            title: 'Usuario Deshabilitado',
+                            imageUrl: "/images/logo-salle-2.png",
+                            confirmButtonColor: '#101f34',
+                            confirmButtonText: 'Ok',
+                        });
+                    }else{
+                        Swal.fire({
+                            title: 'Usuario Habilitado',
+                            imageUrl: "/images/logo-salle-2.png",
+                            confirmButtonColor: '#101f34',
+                            confirmButtonText: 'Ok',
+                        });
+                    }
                 });
             }
 
             $('.link-disabled-student').on('click', function(){
                 let id_student = $(this).attr('data-id');
-                let estado = "0";
+                let estado = $(this).children('button').attr('data-state');
+                
+                
 
                 if(id_student.trim() != ''){
                     changeStatus2(id_student, estado);
+                    $('tr[data-id='+id_student+']').attr('data-state', estado);
+                    if(estado == '0'){
+                        $(this).children('button').attr('data-state', -1);
+                        $(this).children('button').text('Habilitar');
+                    }else{
+                        $(this).children('button').attr('data-state', 0);
+                        $(this).children('button').text('Deshabilitar');
+                    }
                 }
             })
             function deleteStudent(id_estudiante) {

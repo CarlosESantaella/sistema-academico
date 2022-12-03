@@ -73,7 +73,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-lg-4 col-xl-3 my-3 my-xl-0">
+    {{-- <div class="col-12 col-lg-4 col-xl-3 my-3 my-xl-0">
         <button type="button" class="btn btn-primary-custom btn-lg">Nueva Matricula</button>
-    </div>
+    </div> --}}
 </div>

@@ -29,6 +29,12 @@ class AdminController extends Controller
             $student->estado = -1;
             $student->save();
         }
+
+        $preRegistrations = PreRegistration::all();
+
+        foreach($preRegistrations as $preRegistration){
+            $preRegistration->delete();
+        }
         
         die();
     }
@@ -158,39 +164,53 @@ class AdminController extends Controller
             //                 // ->select('usu.nombres as usu.usu_nombres')
             //                 ->get();
             $students = PreRegistration::whereYear('created_at', date('Y'))
-            ->withWhereHas('student', function($query) use ($search){
-                $query->where(function($query) use ($search){
-                    $query->where('nombres', 'like', "%{$search}%")
-                        ->orWhere('appaterno', 'like', "%{$search}%")
-                        ->orWhere('apmaterno', 'like', "%{$search}%")
-                        ->orWhere('codigo', 'like', "%{$search}%")
-                        ->orWhere('sexo', 'like', "%{$search}%");
-                })
-                ->orWhere(function($query) use ($search){
-                    
-                    $query->whereHas('licenses_plates', function($query) use ($search){
-                        $query->whereYear('finscripcion', date('Y'))
-                            ->whereHas('course', function($query) use ($search){
-                                $query->where('nivel', 'like', "%{$search}%");
-
-                            });
-                    });
-                });    
-            })->with(['student.licenses_plates' => function($query){
-                $query->whereYear('finscripcion', date('Y'));
-            }
-            , 'student.licenses_plates.course'])
+            ->with(['student', 'student.licenses_plates' => function($query){
+                    $query->whereYear('finscripcion', date('Y'));
+                }, 'student.licenses_plates.course'])
             ->get();
+            // ->withWhereHas('student', function($query) use ($search){
+                
+            //     $query->where(function($query) use ($search){
+            //         $query->where('nombres', 'like', "%{$search}%")
+            //             ->orWhere('appaterno', 'like', "%{$search}%")
+            //             ->orWhere('apmaterno', 'like', "%{$search}%")
+            //             ->orWhere('codigo', 'like', "%{$search}%")
+            //             ->orWhere('sexo', 'like', "%{$search}%");
+            //     })
+            //     ->orWhere(function($query) use ($search){
+                    
+            //         $query->whereHas('licenses_plates', function($query) use ($search){
+            //             $query->whereHas('course', function($query) use ($search){
+            //                     $query->where('nivel', 'like', "%{$search}%");
+
+            //                 });
+            //         });
+            //     })    
+            //     ->where(function($query) use ($search){
+                    
+            //         $query->whereHas('licenses_plates', function($query) use ($search){
+            //             $query->whereYear('finscripcion', date('Y'));
+            //         });
+            //     });    
+            // })->with(['student.licenses_plates' => function($query){
+            //     $query->whereYear('finscripcion', date('Y'));
+            // }
+            // , 'student.licenses_plates.course'])
+            // ->get();
 
         }else{
-            $students = PreRegistration::withWhereHas('student', function($query){
-                $query->with([
-                                'licenses_plates' => function($query){
-                                    $query->whereYear('finscripcion', date('Y'));
-                                }
-                                , 'licenses_plates.course'
-                            ]);
-            })
+            // $students = PreRegistration::withWhereHas('student', function($query){
+            //     $query->with([
+            //                     'licenses_plates' => function($query){
+            //                         $query->whereYear('finscripcion', date('Y'));
+            //                     }
+            //                     , 'licenses_plates.course'
+            //                 ]);
+            // })
+            $students = PreRegistration::whereYear('created_at', date('Y'))
+            ->with(['student', 'student.licenses_plates' => function($query){
+                    $query->whereYear('finscripcion', date('Y'));
+                }, 'student.licenses_plates.course'])
             ->get();
         }
 
@@ -276,5 +296,38 @@ class AdminController extends Controller
 
         return view('admins.users');
     }
+
+    public function storeUser(Request $request)
+    {
+        // if($request->hasFile('image')){
+            $filename = $request->file('image')->getClientOriginalName();
+            dd($filename);
+        // }
+        // dd("doesn't work");
+    }
+
+    public function viewUploadCerts()
+    {
+
+
+        return view('admins.upload-certs');
+    }
+
+    public function uploadCerts(Request $request)
+    {
+        $files = $request->file('files');
+
+        foreach($files as $file){
+            $name = $file->getClientOriginalName();
+            $file->storeAs(
+                'public/students/certs',
+                $name
+            );
+        }
+
+        return redirect()->back()->with('message', 'Certificados subidos correctamente');
+
+    }
+
 
 }

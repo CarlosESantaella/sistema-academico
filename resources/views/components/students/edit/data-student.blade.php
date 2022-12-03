@@ -19,21 +19,21 @@
             <div class="mb-3 row">
                 <label for="appaterno" class="col-12 col-form-label">Ap. Paterno</label>
                 <div class="col-12">
-                    <input type="text" class="form-control tw-uppercase" id="appaterno" name="appaterno"
+                    <input type="text" class="form-control tw-uppercase" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} id="appaterno" name="appaterno"
                         value="{{$student->appaterno ?? '' }}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="apmaterno" class="col-12 col-form-label">Ap. Materno</label>
                 <div class="col-12">
-                    <input type="text" class="form-control tw-uppercase" id="apmaterno" name="apmaterno"
+                    <input type="text" class="form-control tw-uppercase" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} id="apmaterno" name="apmaterno"
                         value="{{$student->apmaterno ?? '' }}">
                 </div>
             </div> 
             <div class="mb-3 row">
                 <label for="nombres" class="col-12 col-form-label">Nombres</label>
                 <div class="col-12">
-                    <input type="text" class="form-control tw-uppercase" id="nombres" name="nombres"
+                    <input type="text" class="form-control tw-uppercase" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} id="nombres" name="nombres"
                         value="{{$student->nombres ?? '' }}">
                 </div>
             </div>
@@ -44,7 +44,7 @@
     <div class="card p-3">
         <div class="mb-3">
             <label for="codigo_estudiantil_rude" class="label fw-bold mb-2">Código estudiantil RUDE</label>
-            <input type="text" class="form-control tw-uppercase" name="codigo_estudiantil_rude"
+            <input type="text" class="form-control tw-uppercase" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} name="codigo_estudiantil_rude"
                 id="codigo_estudiantil_rude" value="{{$student->rude ?? '' }}">
             @error('codigo_estudiantil_rude')
                 <p class="text-danger w-100">Este campo es obligatorio</p>
