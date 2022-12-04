@@ -18,6 +18,7 @@ class UsersCrudAdmin extends Component
     public $users = [];
     public $user = '';
     public $ci;
+    public $exp_ci;
     public $appaterno;
     public $apmaterno;
     public $nombres;
@@ -29,6 +30,9 @@ class UsersCrudAdmin extends Component
     public $clave;
     public $image;
     public $codigo;
+    public $rda;
+    public $celular;
+    public $correo_institucional;
 
     public $is_save = true;
     public $is_update = false;
@@ -59,6 +63,7 @@ class UsersCrudAdmin extends Component
     public function cleanFields()
     {
         $this->ci = '';
+        $this->exp_ci = '';
         $this->appaterno = '';
         $this->apmaterno = '';
         $this->nombres = '';
@@ -71,6 +76,9 @@ class UsersCrudAdmin extends Component
         $this->image = '';
         $this->codigo = '';
         $this->user = '';
+        $this->rda = '';
+        $this->celular = '';
+        $this->correo_institucional = '';
 
         $this->is_update = false;
         $this->is_delete = false;
@@ -85,6 +93,7 @@ class UsersCrudAdmin extends Component
         $this->user = User::find($id);
 
         $this->ci = $this->user->ci;
+        $this->exp_ci = $this->user->exp_ci;
         $this->appaterno = $this->user->appaterno;
         $this->apmaterno = $this->user->apmaterno;
         $this->nombres = $this->user->nombres;
@@ -94,6 +103,9 @@ class UsersCrudAdmin extends Component
         $this->mail = $this->user->mail;
         $this->clave = $this->user->clave;
         $this->tipo = $this->user->tipo;
+        $this->rda = $this->user->rda;
+        $this->celular = $this->user->celular;
+        $this->correo_institucional = $this->user->correo_institucional;
         $this->codigo = $this->user->codigo;
         $this->image = '';
 
@@ -121,6 +133,7 @@ class UsersCrudAdmin extends Component
         $this->clave = strtoupper($primeraLetraNombres).strtoupper($primeraLetraAppaterno).$this->ci;
 
         $userUpdate->ci = strtoupper($this->ci);
+        $userUpdate->exp_ci = $this->exp_ci;
         $userUpdate->nombres = strtoupper($this->nombres);
         $userUpdate->appaterno = strtoupper($this->appaterno);
         $userUpdate->apmaterno = strtoupper($this->apmaterno);
@@ -129,6 +142,9 @@ class UsersCrudAdmin extends Component
         $userUpdate->direccion = strtoupper($this->direccion);
         $userUpdate->telefono = strtoupper($this->telefono);
         $userUpdate->tipo = $this->tipo;
+        $userUpdate->rda = strtoupper($this->rda);
+        $userUpdate->celular = strtoupper($this->celular);
+        $userUpdate->correo_institucional = strtoupper($this->correo_institucional);
         $userUpdate->clave = strtoupper($this->clave);
         if($this->image == ''){
 
@@ -172,18 +188,23 @@ class UsersCrudAdmin extends Component
             'apmaterno' => strtoupper($this->apmaterno),
             'nombres' => strtoupper($this->nombres),
             'ci' => $this->ci,
+            'exp_ci' => $this->exp_ci,
             'foto' => $filename,
             'direccion' => strtoupper($this->direccion),
             'telefono' => strtoupper($this->telefono),
             'fnacimiento' => $this->fnacimiento,
             'mail' => strtoupper($this->mail),
             'tipo' => $this->tipo,
+            'rda' => strtoupper($this->rda),
+            'celular' => strtoupper($this->celular),
+            'correo_institucional' => strtoupper($this->correo_institucional),
             'clave' => strtoupper($this->clave)
         ]);
 
         session()->flash('message', 'Usuario Creado con Exito!');
 
         $this->ci = '';
+        $this->exp_ci = '';
         $this->appaterno = '';
         $this->apmaterno = '';
         $this->nombres = '';
@@ -196,6 +217,9 @@ class UsersCrudAdmin extends Component
         $this->image = '';
         $this->codigo = '';
         $this->user = '';
+        $this->rda = '';
+        $this->celular = '';
+        $this->correo_institucional = '';
 
         $this->is_update = false;
         $this->is_delete = false;
@@ -216,6 +240,7 @@ class UsersCrudAdmin extends Component
             User::find($codigo)->delete();
             session()->flash('message', 'Usuario Eliminado Correctamente');
             $this->ci = '';
+            $this->exp_ci = '';
             $this->appaterno = '';
             $this->apmaterno = '';
             $this->nombres = '';
@@ -228,6 +253,9 @@ class UsersCrudAdmin extends Component
             $this->image = '';
             $this->codigo = '';
             $this->user = '';
+            $this->rda = '';
+            $this->celular = '';
+            $this->correo_institucional = '';
     
             $this->is_update = false;
             $this->is_delete = false;

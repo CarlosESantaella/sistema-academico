@@ -89,10 +89,21 @@
                                 </div>
                                 <hr>
                                 <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="">CI <span class="text-danger">*</span></label>
-                                        <input class="form-control tw-uppercase" wire:input='crearClave' name="ci" wire:model="ci" type="text" >
-                                        @error('ci')<p class="text-danger"> {{$message}} </p> @enderror
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label for="">CI <span class="text-danger">*</span></label>
+                                                <input class="form-control tw-uppercase" wire:input='crearClave' name="ci" wire:model="ci" type="text" >
+                                                @error('ci')<p class="text-danger"> {{$message}} </p> @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label for="">Exp CI <span class="text-danger">*</span></label>
+                                                <input class="form-control tw-uppercase" wire:input='crearClave' name="ci" wire:model="ci" type="text" >
+                                                @error('ci')<p class="text-danger"> {{$message}} </p> @enderror
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Apellido Paterno <span class="text-danger">*</span></label>
@@ -100,7 +111,7 @@
                                         @error('appaterno')<p class="text-danger"> {{$message}} </p> @enderror
 
                                     </div>
-                                    
+
                                     <div class="mb-3">
                                         <label for="">Apellido Materno</label>
                                         <input class="form-control tw-uppercase" name="apmaterno" wire:model="apmaterno" type="text" >
@@ -113,13 +124,13 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Correo institucional</label>
-                                        <input class="form-control tw-uppercase" name="correo_institucional" wire:model="mail" type="text" >
+                                        <input class="form-control tw-uppercase" name="correo_institucional" wire:model="correo_institucional" type="text" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="">RDA</label>
-                                        <input class="form-control tw-uppercase" name="rda" wire:model="direccion" type="text" >
+                                        <input class="form-control tw-uppercase" name="rda" wire:model="rda" type="text" >
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Teléfono</label>
@@ -127,8 +138,8 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Celular</label>
-                                        <input class="form-control tw-uppercase" name="celular" wire:model="" type="text" >
-                                        @error('fnacimiento')<p class="text-danger"> {{$message}} </p> @enderror
+                                        <input class="form-control tw-uppercase" name="celular" wire:model="celular" type="text" >
+                                        {{-- @error('celular')<p class="text-danger"> {{$message}} </p> @enderror --}}
 
                                     </div>
                                     <div class="mb-3">

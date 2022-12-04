@@ -22,8 +22,23 @@ use App\Http\Controllers\ResponsibleStudentController;
 */
 
 Route::get('/', function () {
-    return redirect('/dashboard');
-});
+    if(auth()->check()){
+        if(auth()->user()->tipo == 0){
+            return redirect()->route('admins.index');
+        }else if(auth()->user()->tipo == 1){
+            
+        
+        }else if(auth()->user()->tipo == 2){
+            return redirect()->route('secretary.index');
+
+        
+        }else if(auth()->user()->tipo == 3){
+            return redirect()->route('students.edit', ['student' => auth()->user()->clave]);
+        }
+    }else{
+        return redirect()->route('login.index');
+    }
+})->middleware('auth')->name('home');
 
 Route::get('storage-link', function(){
     Artisan::call('storage:link');
@@ -44,20 +59,20 @@ Route::controller(LoginController::class)->group(function(){
 
 // Admin
 Route::controller(AdminController::class)->group(function(){
-    Route::get('/dashboard', 'index')->middleware('auth')->name('admins.index');
-    Route::get('/dashboard/license-plates', 'viewLicencePlates')->middleware('auth')->name('admins.lp');
-    Route::get('/dashboard/license-plates/export', 'exportLicensePlates')->middleware('auth')->name('students.license-plates-export');
-    Route::get('/dashboard/pre-registrations/export', 'exportPreRegistrations')->middleware('auth')->name('students.pre-registrations-export');
-    Route::match(['get', 'post'],'/dashboard/license-plates', 'viewLicencePlates')->middleware('auth')->name('admins.licenses_plates');
-    Route::match(['get', 'post'],'/dashboard/search-students', 'searchStudents')->middleware('auth')->name('admins.search_students');
-    Route::get('/dashboard/create-student', 'createStudent')->middleware('auth')->name('admins.create_student');
-    Route::get('/dashboard/preregistrations', 'preregistrations')->middleware('auth')->name('admins.preregistrations');
-    Route::get('/dashboard/registration', 'registration')->middleware('auth')->name('admins.registration');
-    Route::post('/dashboard/add-user', 'storeUser')->middleware('auth')->name('store.user');
-    Route::get('/uploads/certs', 'viewUploadCerts')->middleware('auth')->name('view.uploads.certs');
-    Route::post('/uploads/certs', 'uploadCerts')->middleware('auth')->name('uploads.certs');
+    Route::get('/dashboard', 'index')->middleware(['auth', 'auth.admin'])->name('admins.index');
+    Route::get('/dashboard/license-plates', 'viewLicencePlates')->middleware(['auth', 'auth.admin'])->name('admins.lp');
+    Route::get('/dashboard/license-plates/export', 'exportLicensePlates')->middleware(['auth', 'auth.admin'])->name('students.license-plates-export');
+    Route::get('/dashboard/pre-registrations/export', 'exportPreRegistrations')->middleware(['auth', 'auth.admin'])->name('students.pre-registrations-export');
+    Route::match(['get', 'post'],'/dashboard/license-plates', 'viewLicencePlates')->middleware(['auth', 'auth.admin'])->name('admins.licenses_plates');
+    Route::match(['get', 'post'],'/dashboard/search-students', 'searchStudents')->middleware(['auth', 'auth.admin'])->name('admins.search_students');
+    Route::get('/dashboard/create-student', 'createStudent')->middleware(['auth', 'auth.admin'])->name('admins.create_student');
+    Route::get('/dashboard/preregistrations', 'preregistrations')->middleware(['auth', 'auth.admin'])->name('admins.preregistrations');
+    Route::get('/dashboard/registration', 'registration')->middleware(['auth', 'auth.admin'])->name('admins.registration');
+    Route::post('/dashboard/add-user', 'storeUser')->middleware(['auth', 'auth.admin'])->name('store.user');
+    Route::get('/uploads/certs', 'viewUploadCerts')->middleware(['auth', 'auth.admin'])->name('view.uploads.certs');
+    Route::post('/uploads/certs', 'uploadCerts')->middleware(['auth', 'auth.admin'])->name('uploads.certs');
     Route::get('/dashboard/pruebas', 'pruebas')->name('admins.pruebas');
-    Route::get('/dashboard/users', 'users')->middleware('auth')->name('admins.users');
+    Route::get('/dashboard/users', 'users')->middleware(['auth', 'auth.admin'])->name('admins.users');
 });
 Route::get('/dashboard/students/{student}/edit', [StudentsController::class, 'edit'])->middleware('auth')->name('admins.edit.student');
 Route::put('/students/{student}/changeState2', [StudentsController::class, 'changeState2'])->name('students.changestate.two');

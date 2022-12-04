@@ -41,9 +41,8 @@ class StudentsController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'nit' => 'required',
-            'codigo_estudiantil_rude' => 'required',
-            'fecha_nacimiento' => 'required'
+            'codigo' => 'required',
+            'nombres' => 'required',
         ]);
 
         if($request->hasFile('image')){
@@ -77,6 +76,7 @@ class StudentsController extends Controller
             "apmaterno" => strtoupper($request->apmaterno),
             "fnombre" => strtoupper($request->fnombre),
             "nit" => $request->nit,
+            "complemento" => strtoupper($request->complemento),
             "nombres" => strtoupper($request->nombres),
             "ci" => strtoupper($request->documento),
             "exp_ci" => strtoupper($request->expedido_del_ci),
@@ -252,6 +252,10 @@ class StudentsController extends Controller
      */
     public function update(Request $request, Student $student)
     {
+        $validate = $request->validate([
+            'codigo' => 'required',
+            'nombres' => 'required',
+        ]);
         if($request->hasFile('image')){
 
             $img_path = $request->file('image')->store('public/users/img');
@@ -291,6 +295,8 @@ class StudentsController extends Controller
         $student->localidad = strtoupper($request->localidad);
         $student->telefono = strtoupper($request->telefono);
         $student->sie = strtoupper($request->sie);
+        $student->nit = strtoupper($request->nit);
+        $student->complemento = strtoupper($request->complemento);
         $student->correo_institucional = strtolower($request->correo_institucional);
         $student->celular =$request->celular_alumno;
 
@@ -467,7 +473,8 @@ class StudentsController extends Controller
         return view('students.certs');
     }
 
-    public function getLicensePlatesByStudent($codigo) {
+    public function getLicensePlatesByStudent($codigo) 
+    {
         $license_plates = Student::where('codigo', $codigo)->firstOrFail()->licenses_plates()->get();
         return $license_plates;
     }

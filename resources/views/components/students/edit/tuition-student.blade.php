@@ -63,13 +63,27 @@
                     <span class="input-group-text">Nombre: </span>
                     <input type="text" name="fnombre" value="{{$student->fnombre ?? '' }}" class="form-control tw-uppercase">
                 </div>
-                <div class="input-group">
-                    <span class="input-group-text">NIT: </span>
-                    <input type="text" name="nit" value="{{$student->nit ?? '' }}" class="form-control tw-uppercase">
-                    @error('nit')
-                        <p class="text-danger w-100">Este campo es requerido</p>
-                    @enderror
+                <div class="row">
+                    <div class="col-6">
+                        <div class="input-group">
+                            <span class="input-group-text">NIT: </span>
+                            <input type="text" name="nit" value="{{$student->nit ?? '' }}" class="form-control tw-uppercase">
+                            {{-- @error('nit')
+                                <p class="text-danger w-100">Este campo es requerido</p>
+                            @enderror --}}
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group">
+                            <span class="input-group-text">Complemento: </span>
+                            <input type="text" name="complemento" value="{{$student->complemento ?? '' }}" class="form-control tw-uppercase">
+                            {{-- @error('complemento')
+                                <p class="text-danger w-100">Este campo es requerido</p>
+                            @enderror --}}
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>

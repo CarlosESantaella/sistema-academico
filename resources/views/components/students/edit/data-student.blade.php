@@ -9,8 +9,11 @@
             <div class="mb-3 row">
                 <label for="code" class="col-12 fw-bold">CÓDIGO</label>
                 <div class="col-12">
-                    <input type="text" readonly class="form-control tw-uppercase" id="codigo" name="codigo"
+                    <input type="text" {{(!request()->routeIs('admins.create_student'))? 'readonly' : ''}} class="form-control tw-uppercase" id="codigo" name="codigo"
                         value="{{ $student->codigo ?? '' }}">
+                    @error('codigo')
+                        <p class="text-danger w-100">Este campo es obligatorio</p>
+                    @enderror
                 </div>
             </div>
             {{-- <p class="mb-2">
@@ -35,6 +38,9 @@
                 <div class="col-12">
                     <input type="text" class="form-control tw-uppercase" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} id="nombres" name="nombres"
                         value="{{$student->nombres ?? '' }}">
+                    @error('nombres')
+                        <p class="text-danger w-100">Este campo es obligatorio</p>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -46,9 +52,9 @@
             <label for="codigo_estudiantil_rude" class="label fw-bold mb-2">Código estudiantil RUDE</label>
             <input type="text" class="form-control tw-uppercase" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} name="codigo_estudiantil_rude"
                 id="codigo_estudiantil_rude" value="{{$student->rude ?? '' }}">
-            @error('codigo_estudiantil_rude')
+            {{-- @error('codigo_estudiantil_rude')
                 <p class="text-danger w-100">Este campo es obligatorio</p>
-            @enderror
+            @enderror --}}
         </div>
         <div class="mb-3">
             <label class="label fw-bold mb-2">Documento de identificación</label>
@@ -92,9 +98,9 @@
                         <div class="col-12">
                             <input type="date" class="form-control" id="fecha_nacimiento"
                                 name="fecha_nacimiento" value="{{$student->fnacimiento ?? '' }}">
-                            @error('fecha_nacimiento')
+                            {{-- @error('fecha_nacimiento')
                                 <p class="text-danger w-100">Este campo es obligatorio</p>
-                            @enderror
+                            @enderror --}}
                         </div>
                     </div>
                 </div>
