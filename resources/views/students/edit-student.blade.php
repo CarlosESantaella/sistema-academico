@@ -27,7 +27,13 @@
 
         <div class="container-fluid">
             @if(session('message'))
-                <x-alert color="success" message="Alumno actualizado correctamente!" classes="mt-4 text-center" />
+                <x-alert color="success" :message="session('message')" classes="mt-4 text-center" />
+            @endif
+            @if(session('messageCreateStudent'))
+                <x-alert color="success" :message="session('messageCreateStudent')" classes="mt-4 text-center" />
+            @endif
+            @if(session('errorEdit'))
+                <x-alert color="danger" :message="session('errorEdit')" classes="mt-4 text-center" />
             @endif
             <form method="POST" action="/students/{{$student->codigo}}"  enctype="multipart/form-data">
                 @csrf

@@ -125,10 +125,10 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between">
-                <button class="btn btn-success">Guardar</button>
+                {{-- <button class="btn btn-success">Guardar</button>
                 @isset($responsibles[1])
                 <button class="btn btn-danger delete-student" data-codalumno="{{$responsibles[0]->pivot->codalumno}}" data-codresponsable="{{$responsibles[0]->pivot->codresponsable}}" type="button">Eliminar</button>
-                @endif
+                @endif --}}
             </div>
         </div>
 
@@ -252,10 +252,10 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between">
-                <button class="btn btn-success">Guardar</button>
+                {{-- <button class="btn btn-success">Guardar</button>
                 @isset($responsibles[1])
                 <button class="btn btn-danger delete-student" data-codalumno="{{$responsibles[1]->pivot->codalumno}}" data-codresponsable="{{$responsibles[1]->pivot->codresponsable}}" type="button">Eliminar</button>
-                @endif
+                @endif --}}
             </div>
         </div>
 

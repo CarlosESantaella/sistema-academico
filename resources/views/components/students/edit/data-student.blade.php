@@ -9,10 +9,10 @@
             <div class="mb-3 row">
                 <label for="code" class="col-12 fw-bold">CÓDIGO</label>
                 <div class="col-12">
-                    <input type="text" {{(!request()->routeIs('admins.create_student'))? 'readonly' : ''}} class="form-control tw-uppercase" id="codigo" name="codigo"
+                    <input type="text" {{(!request()->routeIs('admins.create_student') && !request()->routeIs('teacher.create_student') && !request()->routeIs('secretary.create_student'))? 'readonly' : ''}} class="form-control input-number tw-uppercase f-codigo" id="codigo" name="codigo"
                         value="{{ $student->codigo ?? '' }}">
                     @error('codigo')
-                        <p class="text-danger w-100">Este campo es obligatorio</p>
+                        <p class="text-danger w-100">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
@@ -22,24 +22,30 @@
             <div class="mb-3 row">
                 <label for="appaterno" class="col-12 col-form-label">Ap. Paterno</label>
                 <div class="col-12">
-                    <input type="text" class="form-control tw-uppercase" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} id="appaterno" name="appaterno"
+                    <input type="text" class="form-control tw-uppercase f-appaterno" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} id="appaterno" name="appaterno"
                         value="{{$student->appaterno ?? '' }}">
+                    @error('appaterno')
+                        <p class="text-danger w-100">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="apmaterno" class="col-12 col-form-label">Ap. Materno</label>
                 <div class="col-12">
-                    <input type="text" class="form-control tw-uppercase" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} id="apmaterno" name="apmaterno"
+                    <input type="text" class="form-control tw-uppercase f-apmaterno" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} id="apmaterno" name="apmaterno"
                         value="{{$student->apmaterno ?? '' }}">
+                    @error('apmaterno')
+                        <p class="text-danger w-100">{{ $message }}</p>
+                    @enderror
                 </div>
             </div> 
             <div class="mb-3 row">
                 <label for="nombres" class="col-12 col-form-label">Nombres</label>
                 <div class="col-12">
-                    <input type="text" class="form-control tw-uppercase" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} id="nombres" name="nombres"
+                    <input type="text" class="form-control tw-uppercase f-nombres" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} id="nombres" name="nombres"
                         value="{{$student->nombres ?? '' }}">
                     @error('nombres')
-                        <p class="text-danger w-100">Este campo es obligatorio</p>
+                        <p class="text-danger w-100">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
@@ -50,7 +56,7 @@
     <div class="card p-3">
         <div class="mb-3">
             <label for="codigo_estudiantil_rude" class="label fw-bold mb-2">Código estudiantil RUDE</label>
-            <input type="text" class="form-control tw-uppercase" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} name="codigo_estudiantil_rude"
+            <input type="text" class="form-control tw-uppercase f-rude" {{ (auth()->user()->tipo == 3)? 'readonly' : '' }} name="codigo_estudiantil_rude"
                 id="codigo_estudiantil_rude" value="{{$student->rude ?? '' }}">
             {{-- @error('codigo_estudiantil_rude')
                 <p class="text-danger w-100">Este campo es obligatorio</p>
@@ -64,7 +70,7 @@
                     <div class="mb-3 row">
                         <label for="documento" class="col-12 col-form-label">C.I :</label>
                         <div class="col-12">
-                            <input type="text" class="form-control tw-uppercase" id="documento" name="documento"
+                            <input type="text" class="form-control tw-uppercase f-ci" id="documento" name="documento"
                                 value="{{$student->ci ?? '' }}">
                         </div>
                     </div>
@@ -337,7 +343,7 @@
                     <div class="mb-3 row">
                         <label for="username" class="col-12 col-form-label">Usuario :</label>
                         <div class="col-12">
-                            <input type="text" readonly class="form-control tw-uppercase" id="username" 
+                            <input type="text" class="form-control tw-uppercase" id="username" 
                                 value="{{$username }}">
                         </div>
                     </div>
@@ -347,7 +353,7 @@
                     <div class="mb-3 row">
                         <label for="password" class="col-12 col-form-label">Contraseña: </label>
                         <div class="col-12">
-                            <input type="text" readonly class="form-control tw-uppercase" id="password" name="password"
+                            <input type="text" class="form-control tw-uppercase" id="password" name="password"
                                 value="{{ $password }}">
                         </div>
                     </div>

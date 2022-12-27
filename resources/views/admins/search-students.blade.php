@@ -13,6 +13,21 @@
         #students > tbody > tr.active > td{
             color: white !important;
         }
+        
+        #students_filter > label{
+            width: 95%;
+            max-width: 400px;
+        }
+        #students_filter > label > input{
+            width: 95%;
+            max-width: 250px;
+        }
+        @media(max-width: 400px){
+            #students_filter > label{
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
     </style>
 @endpush
 @section('content')
@@ -136,6 +151,15 @@
             </thead>
             <tbody>
                 @foreach($students as $student)
+                    @php
+                        $registerCurrent = $student->licenses_plates()->where('gestion', date('Y'))->first();
+                        $isRegister = '';
+                        if($registerCurrent){
+                            $isRegister = 'Matriculado';
+                        }else{
+                            $isRegister = 'No Matriculado';
+                        }
+                    @endphp
                     <tr data-id="{{ $student->codigo }}" data-state="{{ $student->estado }}">
                         <td>{{ $student->codigo }}</td>
                         <td>{{ $student->appaterno }} {{ $student->apmaterno }} {{ $student->nombres }}</td>
@@ -143,7 +167,7 @@
                         {{-- <td>{{ $student->course->nivel ?? '' }}</td>
                         <td>{{ $student->course->turno ?? '' }}</td> --}}
                         <td>{{ ($student->sexo == "M") ? 'Masculino' : 'Femenino' }}</td>
-                        <td></td>
+                        <td>{{ $isRegister }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -151,23 +175,39 @@
         <div class="d-flex flex-wrap justify-content-between mt-2">
             <div class="d-flex flex-wrap">
                 <a class="link-edit-student" href="#" target="_blank">
-                    <button class="btn btn-primary-custom me-1">Editar Registro</button>
+                    <button class="btn btn-primary-custom me-1">
+                        <i class="fa-solid fa-pen"></i>
+                        Editar Registro
+                    </button>
                 </a>
-
-                <button class="btn btn-primary-custom me-1">Matricular</button>
-
+                <a class="link-matricula-student" href="#" target="_blank">
+                    <button class="btn btn-primary-custom me-1">
+                        <i class="fa-solid fa-file-pen"></i>
+                        Matricular
+                    </button>
+                </a>
                 <a href="{{ route('admins.create_student') }}" target="_blank">
-                    <button class="btn btn-primary-custom me-1">Registro Nuevo</button>
+                    <button class="btn btn-primary-custom me-1">
+                        <i class="fa-solid fa-user"></i>
+                        Registro Nuevo
+                    </button>
                 </a>
 
                 <a class="link-disabled-student" data-id="" href="#" >
-                    <button class="btn btn-primary-custom me-1">Deshabilitar</button>
+                    <button class="btn btn-primary-custom me-1">
+                        <i class="fa-solid fa-power-off"></i>
+                        Deshabilitar
+                    </button>
                 </a>
 
             </div>
             <div>
-                <a class="link-delete-student" href="#" data-id="">
-                    <button class="btn btn-primary-custom">Eliminar Registro</button>
+
+                <a type="submit" class="link-delete-student" href="#" data-id="">
+                    <button class="btn btn-primary-custom">
+                        <i class="fa-solid fa-trash"></i>
+                        Eliminar Registro
+                    </button>
                 </a>
             </div>
         </div>
@@ -180,12 +220,26 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.12.1/r-2.3.0/datatables.min.js"></script>
     <script type="module">
         $(document).ready(function () {
-            $('#students').DataTable({
+            var tableSearch = $('#students').DataTable({
                 lengthChange: false,
                 scrollY: '400px',
                 scrollCollapse: true,
                 paging: false,
+                'oLanguage': {
+                    'sSearch': 'Búsqueda Rápida'
+                }
             });
+            $('#students_wrapper > .row:first-child > div:nth-child(2)').removeClass('col-md-6');
+            // tableSearch.on('init', function () {
+
+            //     $('[type="search"]')
+            //     .addClass('input-lg')
+            //     .css({ 'width': '500px', 'display': 'inline-block' });
+
+            //     $('div.dataTables_filter').css({ 'margin-top': '1em' });
+            // });
+
+
             $('body').on('click', '#students > tbody > tr', function(){
                 let id = $(this).attr('data-id');
                 let state = $(this).attr('data-state');
@@ -194,6 +248,7 @@
                 $(this).addClass('active');
 
                 $('.link-edit-student').attr('href', '/dashboard/students/'+id+'CLS/edit');
+                $('.link-matricula-student').attr('href', '/dashboard/registration/'+id);
 
                 $('.link-disabled-student').attr('data-id', id);
                 if(state == '0'){
@@ -205,7 +260,6 @@
 
                 }
                 $('.link-delete-student').attr('data-id', id);
-                
             });
 
             function changeStatus2(id_estudiante, estado) {

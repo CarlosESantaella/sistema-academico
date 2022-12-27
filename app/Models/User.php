@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Dictate;
 use App\Models\Student;
 use App\Models\Responsible;
 use Laravel\Sanctum\HasApiTokens;
@@ -46,6 +47,10 @@ class User extends Authenticatable
     public function student(){
         return $this->hasOne(Student::class, 'usuario_fk', 'codigo');
 
+    }
+
+    public function dictate(){
+        return $this->hasMany(Dictate::class, 'idusuario', 'codigo');
     }
 
     // public function getAuthPassword()

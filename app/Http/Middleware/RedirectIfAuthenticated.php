@@ -26,6 +26,12 @@ class RedirectIfAuthenticated
 
                 if(Auth::user()->tipo == 3){
                     return redirect()->route('students.edit', ['student' => Auth::user()->clave]);
+                }else if(Auth::user()->tipo == 2){
+                    return redirect()->route('secretary.index');
+                }else if(Auth::user()->tipo == 1){
+                    // return redirect()->route('secretary.index');
+                }else if(Auth::user()->tipo == 0){
+                    return redirect()->route('admins.index');
                 }else{
                     return redirect(RouteServiceProvider::HOME);
                 }

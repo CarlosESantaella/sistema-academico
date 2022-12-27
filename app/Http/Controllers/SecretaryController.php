@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use DateTime;
 
 use App\Models\User;
+use App\Models\Course;
 use App\Models\Student;
 use App\Models\LicensePlate;
 use Illuminate\Http\Request;
+use App\Exports\ExportExcels;
 use App\Models\PreRegistration;
 use Illuminate\Support\Facades\DB;
 use App\Exports\LicensesPlatesExport;
@@ -208,22 +210,11 @@ class SecretaryController extends Controller
         return $students;
     }
 
-    public function viewLicencePlates(Request $request) 
-    {
-        $year = date('Y', strtotime(date('Y')));
-        $students = $this->getLicencePlatesByFilter($request, $year);
-        return view('admins.licenses-plates', [
-            'students' => $students, 'startDate' => $request->startDate, 
-            'endDate' => $request->endDate, 'curso' => $request->curso,
-            'nivel' => $request->nivel, 'turno' => $request->turno
-        ]);
-    }
-
     public function exportLicensePlates(Request $request) 
     {
         $year = date('Y', strtotime(date('Y')));
         $students = $this->getLicencePlatesByFilter($request, $year);
-        return LicensesPlatesExport::export($students);
+        return ExportExcels::export($students);
     }
 
     public function exportPreRegistrations(Request $request) 
@@ -231,13 +222,13 @@ class SecretaryController extends Controller
         $year = date('Y', strtotime(date('Y')));
         $students = $this->getPreRegistrationsByFilter($request, $year);
 
-        return LicensesPlatesExport::exportPreRegistrations($students);
+        return ExportExcels::exportPreRegistrations($students);
     }
 
     public function searchStudents(Request $request)
     {
         $students = Student::all();
-        return view('admins.search-students', [
+        return view('secretary.search-students', [
             "students" => $students, "search_by" => $request->search_by, 
             "search_value" => $request->search_value, "gestion" => $request->gestion
         ]);
@@ -246,7 +237,14 @@ class SecretaryController extends Controller
     public function createStudent()
     {
         
-        return view('admins.create-student');
+        return view('secretary.create-student');
+    }
+
+    public function registration(Request $request)
+    {
+        
+        
+        return view('secretary.registration');
     }
 
     public function preregistrations(Request $request)
@@ -260,17 +258,116 @@ class SecretaryController extends Controller
         ]);
     }
 
-    public function registration(Request $request)
+    public function viewLicencePlates(Request $request) 
     {
-        
-        
-        return view('admins.registration');
+        $year = date('Y', strtotime(date('Y')));
+        $students = $this->getLicencePlatesByFilter($request, $year);
+        return view('admins.licenses-plates', [
+            'students' => $students, 'startDate' => $request->startDate, 
+            'endDate' => $request->endDate, 'curso' => $request->curso,
+            'nivel' => $request->nivel, 'turno' => $request->turno
+        ]);
     }
 
     public function users()
     {
 
         return view('admins.users');
+    }
+
+    public function listsByCourse()
+    {
+        $courses = Course::all();
+        return view('secretary.lists-by-course', ['courses' => $courses]);
+    }
+    public function listsByCourseExport(Request $request)
+    {
+        $request->validate([
+            'year' => 'required',
+            'course' => 'required',
+        ]);
+
+        $students = LicensePlate::where([
+            ['gestion', '=', $request->year],
+            ['codcurso', '=', $request->course]
+        ])->get();
+
+        // die($students);
+        return ExportExcels::exportListsByCourse($students, $request->course, $request->year);
+    }
+    public function listStudents()
+    {
+        return view('secretary.lists-students');
+
+    }
+    public function listStudentsExport(Request $request)
+    {
+        $request->validate([
+            'year' => 'required',
+        ]);
+
+        if($request->type == 'turno'){
+            $turno = ($request->value == 'Manana')? 'Mañana' : $request->value;
+            $courses = Course::where([
+                ['turno', '=', $turno],
+                ['nivel', '<>', 'Inicial'],
+            ])
+            ->orderBy("nivel", "ASC")
+            ->orderBy("gnumeral", "ASC")
+            ->orderBy("paralelo", "ASC")
+            ->get();
+
+            $coursesInicial = Course::where([
+                ['turno', '=', $turno],
+                ['nivel', '=', 'Inicial'],
+            ])
+            ->orderBy("nivel", "ASC")
+            ->orderBy("gnumeral", "DESC")
+            ->orderBy("paralelo", "ASC")
+            ->get();
+            
+            $courses = $coursesInicial->merge($courses);
+            
+        }else if($request->type == 'nivel'){
+
+        }else if($request->type == 'todos'){
+
+        }
+
+        die($request->value);
+
+        return ExportExcels::exportListStudents();
+
+
+    }
+    public function studentsSchool()
+    {
+        $students = Student::whereHas('licenses_plates', function (Builder $query){
+            $query->where('gestion', date('Y'));
+        })
+        ->with('licenses_plates')
+        ->get();
+
+        // die($students);
+        return view('secretary.students-school', ['students' => $students]);
+
+    }
+    public function ticketsGenerate()
+    {
+        return view('secretary.ticket-generate');
+
+    }
+    public function advisors()
+    {
+        $advisors = Course::where('responsable', '<>', NULL)->get();
+        return view('secretary.advisors', ['advisors' => $advisors]);
+
+    }
+    public function indexes()
+    {
+        $indexes = DB::table('indice')->get();
+        return view('secretary.indexes', ['indexes' => $indexes]);
+
     }
 
     public function storeUser(Request $request)

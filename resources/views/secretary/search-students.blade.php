@@ -151,24 +151,34 @@
         <div class="d-flex flex-wrap justify-content-between mt-2">
             <div class="d-flex flex-wrap">
                 <a class="link-edit-student" href="#" target="_blank">
-                    <button class="btn btn-primary-custom me-1">Editar Registro</button>
+                    <button class="btn btn-primary-custom me-1">
+                        <i class="fa-solid fa-pen"></i>
+                        Editar Registro
+                    </button>
                 </a>
-
-                <button class="btn btn-primary-custom me-1">Matricular</button>
-
+                <a class="link-matricula-student" href="#" target="_blank">
+                    <button class="btn btn-primary-custom me-1">
+                        <i class="fa-solid fa-file-pen"></i>
+                        Matricular
+                    </button>
+                </a>
                 <a href="{{ route('admins.create_student') }}" target="_blank">
-                    <button class="btn btn-primary-custom me-1">Registro Nuevo</button>
+                    <button class="btn btn-primary-custom me-1">
+                        <i class="fa-solid fa-user"></i>
+                        Registro Nuevo
+                    </button>
                 </a>
-
                 <a class="link-disabled-student" data-id="" href="#" >
-                    <button class="btn btn-primary-custom me-1">Deshabilitar</button>
+                    <button class="btn btn-primary-custom me-1">
+                        <i class="fa-solid fa-power-off"></i>
+                        Deshabilitar
+                    </button>
                 </a>
-
             </div>
             <div>
-                <a class="link-delete-student" href="#" data-id="">
+                {{-- <a class="link-delete-student" href="#" data-id="">
                     <button class="btn btn-primary-custom">Eliminar Registro</button>
-                </a>
+                </a> --}}
             </div>
         </div>
         
@@ -261,42 +271,7 @@
                     }
                 }
             })
-            function deleteStudent(id_estudiante) {
-                fetch(
-                    "/students/"+id_estudiante,
-                    {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        }
-                        // body: JSON.stringify({
-                        //     'estado': estado
-                        // }) 
-                    }
-                )
-                .then(res => res.text())
-                .then(data => {
-                    Swal.fire({
-                        title: 'Usuario Eliminado',
-                        imageUrl: "/images/logo-salle-2.png",
-                        confirmButtonColor: '#101f34',
-                        confirmButtonText: 'Ok',
-                    })
-                    .then(result => {
-                        if(result.isConfirmed){
-                            $(`table > tbody > tr[data-id="${id_estudiante}"]`).remove();
-                        }
-                    });
-                });
-            }
-            $('.link-delete-student').on('click', function(){
-                let id_student = $(this).attr('data-id');
 
-                if(id_student.trim() != ''){
-                    deleteStudent(id_student);
-                }
-            })
 
 
         });

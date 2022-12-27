@@ -18,7 +18,7 @@
     <option @if($exp =='LP') selected @endif value="LP">LP La Paz</option>
     <option @if($exp =='CB') selected @endif value="CB">CB Cochabamba</option>
     <option @if($exp =='OR') selected @endif value="OR">OR Oruro</option>
-    <option @if($exp =='PT"') selected @endif value="PT">PT Potosí</option>
+    <option @if($exp =='PT') selected @endif value="PT">PT Potosí</option>
     <option @if($exp =='TJ') selected @endif value="TJ">TJ Tarija</option>
     <option @if($exp =='SC') selected @endif value="SC">SC Santa Cruz</option>
     <option @if($exp =='BE') selected @endif value="BE">BE Beni</option>

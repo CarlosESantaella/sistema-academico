@@ -10,22 +10,11 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             @auth
             @if(auth()->user()->tipo == 3)
-                <x-nav-link 
-                    :href="route('students.edit', ['student'=>auth()->user()->clave])" 
-                    :active="request()->routeIs('students.edit')"
-                    class="nav-link"
-                >
-                    Inicio
-                </x-nav-link>
-                <x-nav-link 
-                    :href="route('students.certs')" 
-                    :active="request()->routeIs('students.certs')"
-                    class="nav-link"
-                >
-                    Certificados
-                </x-nav-link>
+                <x-header.student-nav />
             @elseif(auth()->user()->tipo == 2)
                 <x-header.sec-nav />
+            @elseif(auth()->user()->tipo == 1)
+                <x-header.teacher-nav />
             @elseif(auth()->user()->tipo == 0)
                 <x-header.admin-nav />
             @endif

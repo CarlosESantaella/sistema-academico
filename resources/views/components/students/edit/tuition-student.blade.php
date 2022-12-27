@@ -43,7 +43,7 @@
                 tabindex="0">
                 <div class="input-group">
                     <span class="input-group-text">SIE: </span>
-                    <input type="text" name="sie" value="{{$student->sie ?? '' }}" class="form-control tw-uppercase">
+                    <input type="text" name="sie" value="{{$student->sie ?? '' }}" class="form-control tw-uppercase f-sie">
                 </div>
             </div> 
             <div class="tab-pane fade p-4" id="historial-tab-pane" role="tabpanel" aria-labelledby="historial-tab"
@@ -61,13 +61,13 @@
                 tabindex="0">
                 <div class="input-group mb-3">
                     <span class="input-group-text">Nombre: </span>
-                    <input type="text" name="fnombre" value="{{$student->fnombre ?? '' }}" class="form-control tw-uppercase">
+                    <input type="text" name="fnombre" value="{{$student->fnombre ?? '' }}" class="form-control tw-uppercase f-facturacion">
                 </div>
                 <div class="row">
                     <div class="col-6">
                         <div class="input-group">
                             <span class="input-group-text">NIT: </span>
-                            <input type="text" name="nit" value="{{$student->nit ?? '' }}" class="form-control tw-uppercase">
+                            <input type="text" name="nit" value="{{$student->nit ?? '' }}" class="form-control tw-uppercase f-nit">
                             {{-- @error('nit')
                                 <p class="text-danger w-100">Este campo es requerido</p>
                             @enderror --}}

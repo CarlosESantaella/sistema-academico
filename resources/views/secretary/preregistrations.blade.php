@@ -96,9 +96,9 @@
                             $course = $student->student->licenses_plates[0]->course;
                             
                             $gnumeral = match($course->gnumeral){
-                                "Kinder" => '1',
-                                "Prekinder" => '2',
-                                " Prekinder" => '2',
+                                "Kinder" => '2',
+                                "Prekinder" => '1',
+                                " Prekinder" => '1',
                                 default => $course->gnumeral
                             };
                             

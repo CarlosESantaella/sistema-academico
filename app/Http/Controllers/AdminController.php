@@ -5,35 +5,50 @@ namespace App\Http\Controllers;
 use DateTime;
 
 use App\Models\User;
+use App\Models\Course;
 use App\Models\Student;
 use App\Models\LicensePlate;
 use Illuminate\Http\Request;
+use App\Exports\ExportExcels;
 use App\Models\PreRegistration;
 use Illuminate\Support\Facades\DB;
-use App\Exports\LicensesPlatesExport;
 use Illuminate\Database\Eloquent\Builder;
 
 class AdminController extends Controller
 {
     public function pruebas()
     {
-        $students = Student::whereHas('licenses_plates', function (Builder $query){
-            $query->whereYear('finscripcion', date('Y'));
-        })->get();
-        // $students = Student::with(['licenses_plates' =>  function($query){
+        // $students = Student::whereHas('licenses_plates', function (Builder $query){
         //     $query->whereYear('finscripcion', date('Y'));
-        // }])->get();
+        // })->get();
 
-        foreach($students as $student)
-        {
-            $student->estado = -1;
-            $student->save();
-        }
+        // foreach($students as $student)
+        // {
+        //     $student->estado = -1;
+        //     $student->save();
+        // }
 
-        $preRegistrations = PreRegistration::all();
+        // $preRegistrations = PreRegistration::all();
 
-        foreach($preRegistrations as $preRegistration){
-            $preRegistration->delete();
+        // foreach($preRegistrations as $preRegistration){
+        //     $preRegistration->delete();
+        // }
+
+        $users = User::all();
+
+        foreach($users as $user){
+            $username_a = explode(' ', $user->nombres);
+            $first_letter_names = '';
+
+            foreach($username_a as $letter){
+                $letter_a = str_split($letter, 1);
+                $first_letter_names .= $letter_a[0];
+            }
+            
+            $username = $first_letter_names.str_replace(" ", "", $user->appaterno);
+
+            $user->usuario = $username;
+            $user->save();
         }
         
         die();
@@ -86,7 +101,7 @@ class AdminController extends Controller
             if ($curso) {
                 if ($student->course->gnumeral != $curso_parse[0] || 
                     $student->course->paralelo != $curso_parse[1]) {
-                        continue;       
+                        continue;
                 }
             }
             if ($nivel) {
@@ -247,7 +262,7 @@ class AdminController extends Controller
     {
         $year = date('Y', strtotime(date('Y')));
         $students = $this->getLicencePlatesByFilter($request, $year);
-        return LicensesPlatesExport::export($students);
+        return ExportExcels::export($students);
     }
 
     public function exportPreRegistrations(Request $request) 
@@ -255,7 +270,17 @@ class AdminController extends Controller
         $year = date('Y', strtotime(date('Y')));
         $students = $this->getPreRegistrationsByFilter($request, $year);
 
-        return LicensesPlatesExport::exportPreRegistrations($students);
+        return ExportExcels::exportPreRegistrations($students);
+    }
+    public function exportSubjectsProfessor(Request $request) 
+    {
+        if($request->professorId == 0){
+            echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
+            die();
+        }else{
+            return ExportExcels::exportarMateriasProfesor($request->professorId);
+        }
+
     }
 
     public function searchStudents(Request $request)
@@ -294,6 +319,7 @@ class AdminController extends Controller
     public function users()
     {
 
+        // die('hola mundo');
         return view('admins.users');
     }
 
@@ -327,6 +353,13 @@ class AdminController extends Controller
 
         return redirect()->back()->with('message', 'Certificados subidos correctamente');
 
+    }
+
+    public function subjects()
+    {
+
+
+        return view('admins.subjects');
     }
 
 

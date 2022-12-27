@@ -79,7 +79,7 @@
             </thead>
             <tbody>
                 @foreach($students as $student)
-                    @php
+                @php
                     $gnumeral = match($student->course->gnumeral){
                         "Kinder" => '1',
                         "Prekinder" => '2',
@@ -88,6 +88,7 @@
                     };
                     
                     $curso_procesado = $cursos[$student->course->nivel] . str_replace("°", "", $gnumeral).$student->course->paralelo;
+                    
                 @endphp
                     <tr>
                         <td>{{ $student->student->codigo }}</td>

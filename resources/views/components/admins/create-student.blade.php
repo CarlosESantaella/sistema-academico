@@ -23,7 +23,7 @@
                     <x-students.edit.social-aspects />
                 </div> --}}
                 <div class="col-12 d-flex justify-content-end pe-0 mt-3 mt-md-0">
-                    <button class="btn btn-primary-custom btn-lg" type="submit">Guardar datos</button>
+                    <button class="btn btn-primary-custom btn-lg" @if(!request()->routeIs('admins.create_student')) type="submit" @else type="button" data-bs-toggle="modal" data-bs-target="#createStudentModal" @endif>Guardar datos</button>
                 </div>
             </div>
         </div>

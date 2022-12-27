@@ -41,9 +41,17 @@ class StudentsController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'codigo' => 'required',
+            'codigo' => 'required|min:6|max:6',
             'nombres' => 'required',
+            'appaterno' => 'required',
+            'apmaterno' => 'required',
         ]);
+
+        $searchStudent = Student::find($request->codigo);
+
+        if($searchStudent){
+            return redirect()->back()->with('error', 'Usuario ya existente');
+        }
 
         if($request->hasFile('image')){
             $img_path = $request->file('image')->store('public/users/img');
@@ -55,21 +63,33 @@ class StudentsController extends Controller
             $file_name = $request->foto;
         }
 
-        $codigo_alumno = rand(100000, 999999);
+        $password = $request->codigo.'CLS';
+        $username_a = explode(' ', $request->nombres);
+        $first_letter_names = '';
+
+        foreach($username_a as $letter){
+            $letter_a = str_split($letter, 1);
+            $first_letter_names .= $letter_a[0];
+        }
+        
+        $correct_username = $first_letter_names.str_replace(" ", "", $request->appaterno);
+        // die($correct_username);
+        $username = $correct_username;
 
         // Students
         $user = User::create([
-            "codigo" => $codigo_alumno,
+            "codigo" => $request->codigo,
             "appaterno" => strtoupper($request->appaterno),
             "apmaterno" => strtoupper($request->apmaterno),
             "nombres" => strtoupper($request->nombres),
-            "clave" => $codigo_alumno.'CLS',
+            "usuario" => strtoupper($username),
+            "clave" => $password,
             "fnacimiento" => $request->fecha_nacimiento,
             "tipo" => 3,
             "ci" => strtoupper($request->documento),
         ]);
         $student = Student::create([
-            "codigo" => $codigo_alumno,
+            "codigo" => $request->codigo,
             "rude" => $request->codigo_estudiantil_rude,
             "foto" => $file_name,
             "appaterno" => strtoupper($request->appaterno),
@@ -105,7 +125,7 @@ class StudentsController extends Controller
             // "nsalud" => strtoupper($request->salud),
             // "transporte" => strtoupper($request->transporte),
             // "tiempo" => strtoupper($request->tiempo),
-            "usuario_fk" => $codigo_alumno,
+            "usuario_fk" => $request->codigo,
         ]);
 
         // Parents
@@ -134,7 +154,7 @@ class StudentsController extends Controller
             );
 
             ResponsibleStudent::create([
-                "codalumno" => $codigo_alumno,
+                "codalumno" => $request->codigo,
                 "codresponsable" => $responsible_1->codigo
             ]);
         }
@@ -162,12 +182,17 @@ class StudentsController extends Controller
             );
 
             ResponsibleStudent::create([
-                "codalumno" => $codigo_alumno,
+                "codalumno" => $request->codigo,
                 "codresponsable" => $responsible_2->codigo
             ]);
         }
 
-        return redirect()->back()->with('message', 'Alumno creado correctamente');
+        return redirect()->route('admins.edit.student', ['student' => $request->codigo.'CLS'])->with('messageCreateStudent', 'Alumno creado correctamente');
+    }
+
+    public function miniStore(Request $request)
+    {
+        
     }
 
     /**
@@ -192,11 +217,15 @@ class StudentsController extends Controller
         // $student = Student::where('codigo', $id)->get();
         // die($id);
         $student = User::where('clave', $id)->first()->student()->first();
+        $user = User::where('clave', $id)->first();
+        if(auth()->user()->tipo == 3){
+            $this->authorize('view', $student);
+        }
         // $student = User::where('clave', $id)->firstOrFail();
         // echo $student;
         $register = $student->licenses_plates()->whereYear('finscripcion', date('Y'))->first();
 
-        if(auth()->user()->tipo != 0 && auth()->user()->tipo != 2){
+        if(auth()->user()->tipo != 0 && auth()->user()->tipo != 2 && auth()->user()->tipo != 1){
 
             if($register){
     
@@ -219,17 +248,17 @@ class StudentsController extends Controller
             }
         }
         $password = $student->codigo.'CLS';
-        $username_a = explode(' ', $student->nombres);
-        $first_letter_names = '';
+        // $username_a = explode(' ', $student->nombres);
+        // $first_letter_names = '';
 
-        foreach($username_a as $letter){
-            $letter_a = str_split($letter, 1);
-            $first_letter_names .= $letter_a[0];
-        }
+        // foreach($username_a as $letter){
+        //     $letter_a = str_split($letter, 1);
+        //     $first_letter_names .= $letter_a[0];
+        // }
         
-        $correct_username = $first_letter_names.str_replace(" ", "", $student->appaterno);
-        // die($correct_username);
-        $username = $correct_username;
+        // $correct_username = $first_letter_names.str_replace(" ", "", $student->appaterno);
+        
+        $username = $user->usuario;
         $responsibles = Student::findOrFail($student->codigo)->responsibles()->get();
         $license_plates = Student::findOrFail($student->codigo)->licenses_plates()->orderBy('finscripcion', 'desc')->get();
         // echo $responsibles;
@@ -252,8 +281,11 @@ class StudentsController extends Controller
      */
     public function update(Request $request, Student $student)
     {
+        if(auth()->user()->tipo == 3){
+            $this->authorize('view', $student);
+        }
         $validate = $request->validate([
-            'codigo' => 'required',
+            'codigo' => 'required|min:6|max:6',
             'nombres' => 'required',
         ]);
         if($request->hasFile('image')){
@@ -295,6 +327,7 @@ class StudentsController extends Controller
         $student->localidad = strtoupper($request->localidad);
         $student->telefono = strtoupper($request->telefono);
         $student->sie = strtoupper($request->sie);
+        $student->fnombre = strtoupper($request->fnombre);
         $student->nit = strtoupper($request->nit);
         $student->complemento = strtoupper($request->complemento);
         $student->correo_institucional = strtolower($request->correo_institucional);
@@ -421,10 +454,17 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
+
+
+        $this->authorize('delete', Student::class);
+        if(auth()->user()->tipo != 0){
+            abort(403);
+        }
         $student = Student::find($id);
+        $user = User::find($id);
 
         $student->delete();
-        
+        $user->delete();
     }
 
     public function changeState(Request $request, $id)

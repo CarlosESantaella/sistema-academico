@@ -64,42 +64,37 @@ class LoginController extends Controller
         // $user_type = $request->user_type;
         
         
-        $user = User::where('clave', $clave)->first();
+        $user = User::where([
+            ['clave', $clave],
+            ['usuario', $nombres]
+        ])->first();
 
         if($user){
-            $username_a = explode(' ', $user->nombres);
-            $first_letter_names = '';
+            // $username_a = explode(' ', $user->nombres);
+            // $first_letter_names = '';
 
-            foreach($username_a as $letter){
-                $letter_a = str_split($letter, 1);
-                $first_letter_names .= $letter_a[0];
-            }
+            // foreach($username_a as $letter){
+            //     $letter_a = str_split($letter, 1);
+            //     $first_letter_names .= $letter_a[0];
+            // }
             
-            $correct_username = $first_letter_names.str_replace(" ", "", $user->appaterno);
+            // $correct_username = $first_letter_names.str_replace(" ", "", $user->appaterno);
             
-            if($correct_username == $nombres){
-                //PRUEBA1 PRUEBA2
-                //777777CLS
+            
+            //PRUEBA1 PRUEBA2
+            //777777CLS
 
-                auth()->login($user);
+            auth()->login($user);
 
+            if(auth()->user()->tipo == 3){
 
-
-                if(auth()->user()->tipo == 3){
-
-                    return redirect()->route('students.edit', ['student' => auth()->user()->clave]);
-                }else if(auth()->user()->tipo == 2){
-                    return redirect()->route('secretary.index');
-                }else if(auth()->user()->tipo == 1){
-                    echo 'eres un profesor';
-                }else if(auth()->user()->tipo == 0){
-                    return redirect()->route('admins.index');
-                }
-
-
-            }else{
-                return back()->with('message', 'Usuario o contraseña incorrectos');
-
+                return redirect()->route('students.edit', ['student' => auth()->user()->clave]);
+            }else if(auth()->user()->tipo == 2){
+                return redirect()->route('secretary.index');
+            }else if(auth()->user()->tipo == 1){
+                return redirect()->route('teacher.index');
+            }else if(auth()->user()->tipo == 0){
+                return redirect()->route('admins.index');
             }
 
         }else{
